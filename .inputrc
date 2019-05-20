@@ -1,0 +1,27 @@
+$include /etc/inputrc
+
+set bell-style visible
+set blink-matching-paren on
+set colored-completion-prefix on
+set colored-stats on
+set visible-stats on
+
+
+# for vi mode
+set editing-mode vi
+$if mode=vi
+
+set keymap vi-command
+# these are for vi-command mode
+"\e[A": history-search-backward            # arrow up
+"\e[B": history-search-forward             # arrow down
+"\ep": yank-last-arg                       # bind to Alt-p
+Control-l: clear-screen
+
+set keymap vi-insert
+# these are for vi-insert mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\ep": yank-last-arg
+Control-l: clear-screen
+$endif

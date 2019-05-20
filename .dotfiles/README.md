@@ -15,9 +15,9 @@ allowing them to be under version control. Here's how to do it:
 
 ```
 git init --bare $HOME/.dotfiles
-alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles config --local status.showUntrackedFiles no
-dotfiles remote add origin git@github.com:githubuser/.dotfiles.git
+dotfiles remote add origin https://github.com/githubuser/.dotfiles.git
 ```
 
 You'll need to change the remote URL to your git repo. You should also add the

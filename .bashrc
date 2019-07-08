@@ -16,7 +16,7 @@ export EDITOR=vim               # vim is the only editor
 export VISUAL=vim               # vim is the only editor
 
 export HISTCONTROL=ignoreboth   # skip space cmds and dupes in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help:fg:bg:history"
 export HISTFILE=$HOME/.bash_history
 export HISTSIZE=9000
 export HISTFILESIZE=${HISTSIZE}
@@ -100,11 +100,11 @@ function ssh-copy-id {
         echo "!! You need to enter a hostname in order to send your public key !!"
     else
         echo "* Copying SSH public key to server..."
-        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" < ~/.ssh/id_rsa.pub
+        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" < ~/.ssh/id_ed25519.pub
         echo "* All done!"
     fi
 
-    ID_FILE="${HOME}/.ssh/id_rsa.pub"
+    ID_FILE="${HOME}/.ssh/id_ed25519.pub"
 
     if [ "-i" = "$1" ]; then
         shift

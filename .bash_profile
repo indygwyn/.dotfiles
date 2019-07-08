@@ -7,6 +7,8 @@ export PATH=${PATH}:${GOPATH}/bin
 export PATH="/usr/local/opt/ruby/bin:$PATH" # Homebrew ruby
 export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:${PATH} # Homebrew Ruby Gems
 
+export GITHUB_URL=https://github.exacttarget.com/
+
 # Not using rbenv to manage my ruby
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 

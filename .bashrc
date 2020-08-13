@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC1090
 shopt -s histappend             # append to history instead of overwrite
 shopt -s cmdhist                # save multiline cmds in history
 shopt -s cdspell                # spellcheck cd
@@ -16,11 +17,11 @@ export EDITOR=vim               # vim is the only editor
 export VISUAL=vim               # vim is the only editor
 
 export HISTCONTROL=ignoreboth   # skip space cmds and dupes in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help:fg:bg:history"
+export HISTIGNORE="ls:ls -la:cd:cd -:pwd:exit:date:* --help:fg:bg:history:w"
 export HISTFILE=$HOME/.bash_history
 export HISTSIZE=9000
 export HISTFILESIZE=${HISTSIZE}
-export HISTTIMEFORMAT="%s "
+export HISTTIMEFORMAT="%F %T: "
 export HISTCONTROL=ignorespace:erasedups
 export DBHISTORY=true
 export DBHISTORYFILE=$HOME/.dbhist
@@ -36,6 +37,7 @@ _bash_history_sync() {
   builtin history -c
   builtin history -r
 }
+export starship_precmd_user_func=_bash_history_sync
 
 # hex to decimal and vice-versa
 h2d() { echo $((16#$@)); }
@@ -185,6 +187,18 @@ function surootx() {
         sudo -i
     }
 
+#function httpget () {
+#  IFS=/ read -r proto z host query <<< "$1"
+#  exec 3< /dev/tcp/"$host"/80
+#  {
+#    echo GET /"$query" HTTP/1.1
+#    echo connection: close
+#    echo host: "$host"
+#    echo
+#  } >&3
+#  sed '1,/^$/d' <&3 > $(basename $1)
+#}
+
 function httpcompression() {
     local encoding
     encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" |
@@ -238,6 +252,45 @@ function genpass() {
     fi
 }
 
+function highlight() {
+	declare -A fg_color_map
+	fg_color_map[black]=30
+	fg_color_map[red]=31
+	fg_color_map[green]=32
+	fg_color_map[yellow]=33
+	fg_color_map[blue]=34
+	fg_color_map[magenta]=35
+	fg_color_map[cyan]=36
+	fg_color_map[white]=37
+
+	fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
+	c_rs=$'\e[0m'
+	gsed -u s"/$2/$fg_c\0$c_rs/g"
+}
+
+function tcpknock() {
+  if [[ -z $1 || -z $2 ]] ; then
+    echo "Usage: $0 <host> <port>"
+    return
+  fi
+  local host=$1
+  local port=$2
+  timeout 1 bash -c "</dev/tcp/$host/$port &> /dev/null" &&
+    echo "$host: port $port is open" ||
+    echo "$host: port $port is closed"
+}
+
+function tlsdates() {
+  if [[ -z $1 || -z $2 ]] ; then
+    echo "Usage: $0 <host> <port>"
+    return
+  fi
+  local host=$1
+  local port=$2
+  echo | openssl s_client -servername "${host}" -connect "${host}:${port}" 2>/dev/null | openssl x509 -noout -dates
+}
+
+
 # Platform Specific Aliases here
 case $OSTYPE in
     darwin*)
@@ -267,8 +320,11 @@ case $OSTYPE in
         alias bsr='brew search'
         alias binf='brew info'
         alias bdr='brew doctor'
+        alias brewski='brew update && brew upgrade && brew cask upgrade && brew cleanup; brew doctor'
         alias md5sum='md5'
         alias sha1sum='shasum'
+        alias cpwd='pwd|tr -d "\n"|pbcopy'
+        function f() { open -a "Finder" "${1-.}"; }
         complete -o default -o nospace -F _git g
         function pdfman () {
             man -t "$1" | open -a /Applications/Preview.app -f
@@ -332,18 +388,25 @@ esac
 
 complete -C /usr/local/bin/vault vault
 
-GIT_PROMPT_SHOW_UPSTREAM=1
-GIT_PROMPT_THEME=Custom
-if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
-  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+#GIT_PROMPT_SHOW_UPSTREAM=1
+#GIT_PROMPT_THEME=Custom
+#if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+#  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
+#fi
 
 
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
       tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
 
-PROMPT_COMMAND="_bash_history_sync;$PROMPT_COMMAND"
+#PROMPT_COMMAND="_bash_history_sync;$PROMPT_COMMAND"
 
 source "$HOME/.bashrc-${HOSTNAME%%.*}"
+
+eval "$(starship init bash)"
+
+alias op-signin='eval $(op signin my.1password.com)'
+alias op-logout='op signout && unset OP_SESSION_example'
+
+alias serveit='ruby -run -e httpd . -p 8000'

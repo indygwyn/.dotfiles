@@ -1,0 +1,45 @@
+add_newline = false
+
+[character]
+use_symbol_for_status = true
+
+[cmd_duration]
+min_time = 4
+
+[directory]
+truncation_length = 8
+
+[git_branch]
+#symbol = ""
+symbol = ""
+#truncation_length = "4"
+#truncation_symbol = "…"
+
+[git_state]
+#progress_divider = " of "
+#cherry_pick = "🍒 PICKING"
+
+[git_status]
+#conflicted = "🏳"
+#ahead = "🏎💨"
+#behind = "😰"
+#diverged = "😵"
+#untracked = "🤷‍"
+#stashed = "📦"
+#modified = "📝"
+#staged = "➕"
+#renamed = "👅"
+#deleted = "🗑"
+
+[hostname]
+ssh_only = true
+#prefix = "⟪"
+#suffix = "⟫"
+
+[username]
+
+[package]
+#symbol = "🎁 "
+
+[rust]
+symbol = "⚙️ "

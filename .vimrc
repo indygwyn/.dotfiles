@@ -25,18 +25,35 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'docunext/closetag.vim'
 " git
-Plug 'itchyny/vim-gitbranch'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 " ui
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'maximbaz/lightline-ale'
-Plug 'itchyny/lightline-powerful'
+Plug 'itchyny/vim-gitbranch'
+Plug 'macthecadillac/lightline-gitdiff'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'albertomontesg/lightline-asyncrun'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
+function! LightlineFugitive()
+  if exists('*FugitiveHead')
+    let branch = FugitiveHead()
+    return branch !=# '' ? ''.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
 
 " globals for plugin options
 "let g:ale_set_loclist = 0
@@ -44,15 +61,53 @@ call plug#end()
 let g:ale_sign_column_always = 1
 let g:deoplete#enable_at_startup = 1
 
+let g:lightline = {
+\ 'colorscheme': 'PaperColor',
+\ 'active': {
+\   'left': [['mode', 'paste'],
+\            ['fugitive', 'readonly', 'filename']],
+\   'right': [['percent', 'lineinfo'],
+\             ['fileformat', 'fileencoding', 'filetype'],
+\             ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+\             ['asyncrun_status']]
+\ },
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' },
+\ 'component_expand': {
+\   'asyncrun_status': 'lightline#asyncrun#status',
+\   'linter_checking': 'lightline#ale#checking',
+\   'linter_infos': 'lightline#ale#infos',
+\   'linter_warnings': 'lightline#ale#warnings',
+\   'linter_errors': 'lightline#ale#errors',
+\   'linter_ok': 'lightline#ale#ok',
+\ },
+\ 'component_function': {
+\   'readonly': 'LightlineReadonly',
+\   'fugitive': 'LightlineFugitive',
+\ },
+\ 'component_type': {
+\   'linter_checking': 'right',
+\   'linter_infos': 'right',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'linter_ok': 'right',
+\ },
+\}
+
+let g:ale_linters = {
+      \ 'vim': ['vimls'],
+      \}
+
 " ui config
 set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
-"set t_Co=256
 if has('gui_running')
-    set background=light
+  set background=light
 else
-    set background=dark
+  "set t_Co=256 " turn on trucolor
+  set background=dark
 endif
 colorscheme PaperColor
+set noshowmode
 
 filetype plugin indent on
 scriptencoding utf-8

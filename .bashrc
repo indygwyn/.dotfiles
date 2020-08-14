@@ -55,14 +55,14 @@ alias badge="tput bel"
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-#function autoCompleteHostname() {
-#    local hosts
-#    local cur
-#    hosts=($(awk '{print $1}' ~/.ssh/known_hosts | cut -d, -f1))
-#    cur=${COMP_WORDS[COMP_CWORD]}
-#    COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur ))
-#}
-#complete -F autoCompleteHostname ssh # ssh autocomplete function
+function autoCompleteHostname() {
+    local hosts
+    local cur
+    hosts=($(awk '{print $1}' ~/.ssh/known_hosts | cut -d, -f1))
+    cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur ))
+}
+complete -F autoCompleteHostname ssh # ssh autocomplete function
 
 function repeat () {
     local count="$1" i
@@ -187,17 +187,17 @@ function surootx() {
         sudo -i
     }
 
-#function httpget () {
-#  IFS=/ read -r proto z host query <<< "$1"
-#  exec 3< /dev/tcp/"$host"/80
-#  {
-#    echo GET /"$query" HTTP/1.1
-#    echo connection: close
-#    echo host: "$host"
-#    echo
-#  } >&3
-#  sed '1,/^$/d' <&3 > $(basename $1)
-#}
+function httpget () {
+  IFS=/ read -r proto z host query <<< "$1"
+  exec 3< /dev/tcp/"$host"/80
+  {
+    echo GET /"$query" HTTP/1.1
+    echo connection: close
+    echo host: "$host"
+    echo
+  } >&3
+  sed '1,/^$/d' <&3 > $(basename $1)
+}
 
 function httpcompression() {
     local encoding
@@ -388,20 +388,11 @@ esac
 
 complete -C /usr/local/bin/vault vault
 
-#GIT_PROMPT_SHOW_UPSTREAM=1
-#GIT_PROMPT_THEME=Custom
-#if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-#  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
-#  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
-#fi
-
-
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
       tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
 
-#PROMPT_COMMAND="_bash_history_sync;$PROMPT_COMMAND"
-
+# load hostname specific stuff
 source "$HOME/.bashrc-${HOSTNAME%%.*}"
 
 eval "$(starship init bash)"

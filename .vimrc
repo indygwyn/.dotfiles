@@ -1,7 +1,3 @@
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_disable_lsp = 1
-
 call plug#begin('~/.vim/plugged')       " Plugins managed with vim-plug
 Plug 'tpope/vim-sensible'               " start with sensible defaults
 Plug 'tpope/vim-fugitive'               " git :Gedit, :Gdiff, :Gstatus
@@ -17,14 +13,23 @@ Plug 'godlygeek/tabular'                " line up text :Tabularize
 Plug 'tpope/vim-repeat'                 " fix . for plugins
 Plug 'tpope/vim-endwise'                " wisely add ends to my begins and more
 Plug 'docunext/closetag.vim'            " html/xml close tags
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 Plug 'NLKNguyen/papercolor-theme'       " I like this color theme
 Plug 'lilydjwg/colorizer'               " colorize the #79f or rgb(252,34,43)
 Plug 'dougireton/vim-chef'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'               " linting
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
+Plug 'itchyny/lightline-powerful'
 call plug#end()
+
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+let g:ale_sign_column_always = 1
+let g:deoplete#enable_at_startup = 1
 
 set encoding=utf-8
 set autoindent

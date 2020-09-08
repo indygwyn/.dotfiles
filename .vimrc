@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " colorschemes
 Plug 'NLKNguyen/papercolor-theme'
+"
 Plug 'tpope/vim-sensible'
 " syntax
 Plug 'Shougo/deoplete.nvim'
@@ -28,6 +29,7 @@ Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
+
 " ui
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -142,6 +144,8 @@ augroup Chef
   let b:ale_linters = ['cookstyle']
   let b:ale_fixers = ['cookstyle']
 augroup END
+
+call add(b:ale_linters, 'shellcheck')
 
 " site specific
 source ~/.vimrc-local

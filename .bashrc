@@ -11,7 +11,8 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
 export CLICOLOR=1               # colorize ls
-export LSCOLORS=fxfxcxdxbxegedabagacad
+export LSCOLORS=Exfxcxdxbxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
 export EDITOR=vim               # vim is the only editor
 export VISUAL=vim               # vim is the only editor

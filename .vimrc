@@ -70,7 +70,7 @@ let g:ale_sign_column_always = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
-\ 'colorscheme': 'seoul256',
+\ 'colorscheme': 'PaperColor',
 \ 'active': {
 \   'left': [['mode', 'paste'],
 \            ['fugitive', 'readonly', 'filename']],
@@ -114,8 +114,7 @@ else
   "set t_Co=256 " turn on trucolor
   set background=dark
 endif
-"colorscheme PaperColor
-colorscheme vividchalk
+colorscheme PaperColor
 set noshowmode
 
 filetype plugin indent on

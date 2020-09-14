@@ -1,7 +1,7 @@
 # Keep dotfiles where they belong and avoid symlinks entirely
 
 This arrangement of dotfiles is taken from [here](https://news.ycombinator.com/item?id=11070797)
-and [here](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
+and [here](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and [here](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b).
 The idea is to keep all the dotfiles at their original locations, and avoid
 symlinks entirely (as opposed to the general approach of putting all config
 files in one directory and symlinking them with a script or GNU stow).

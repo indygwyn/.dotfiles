@@ -1,10 +1,12 @@
-let mapleader=","
+let mapleader=','
+set encoding=utf-8
 
 " vim-plug is my plugin manager :PlugInstall, :PlugUpdate:, :PlugClean
 call plug#begin('~/.vim/plugged')
 
 " colorschemes
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'tpope/vim-vividchalk'
 "
 Plug 'tpope/vim-sensible'
 " syntax
@@ -16,6 +18,7 @@ Plug 'lilydjwg/colorizer'
 Plug 'dense-analysis/ale'
 " code
 Plug 'dougireton/vim-chef'
+Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
 " helpers
 Plug 'tpope/vim-sleuth'
 Plug 'ntpeters/vim-better-whitespace'
@@ -24,7 +27,10 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-unimpaired'
 Plug 'docunext/closetag.vim'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -64,7 +70,7 @@ let g:ale_sign_column_always = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
-\ 'colorscheme': 'PaperColor',
+\ 'colorscheme': 'seoul256',
 \ 'active': {
 \   'left': [['mode', 'paste'],
 \            ['fugitive', 'readonly', 'filename']],
@@ -108,14 +114,14 @@ else
   "set t_Co=256 " turn on trucolor
   set background=dark
 endif
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme vividchalk
 set noshowmode
 
 filetype plugin indent on
 scriptencoding utf-8
 
 set autoindent
-set encoding=utf-8
 set nofoldenable
 set updatetime=250
 set number

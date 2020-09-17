@@ -126,6 +126,7 @@ set updatetime=250
 set number
 set relativenumber
 set hlsearch
+set colorcolumn=80
 
 nmap <S-Up> V
 nmap <S-Down> V
@@ -148,6 +149,12 @@ augroup Chef
   autocmd BufNewFile,BufRead */chef-repo/roles/*.rb set filetype=ruby.chef
   let b:ale_linters = ['cookstyle']
   let b:ale_fixers = ['cookstyle']
+augroup END
+
+augroup vimrc
+  autocmd!
+  autocmd BufNewFile,BufRead .vimrc set filetype=vim
+  let b:ale_linters = ['vint']
 augroup END
 
 call add(b:ale_linters, 'shellcheck')

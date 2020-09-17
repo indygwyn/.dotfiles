@@ -397,6 +397,7 @@ fi
 source "$HOME/.bashrc-${HOSTNAME%%.*}"
 
 eval "$(starship init bash)"
+eval "$(navi widget bash)"
 
 alias op-signin='eval $(op signin my.1password.com)'
 alias op-logout='op signout && unset OP_SESSION_example'

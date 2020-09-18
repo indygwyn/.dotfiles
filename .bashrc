@@ -1,5 +1,4 @@
 #!/bin/bash
-# shellcheck disable=SC1090
 shopt -s histappend             # append to history instead of overwrite
 shopt -s cmdhist                # save multiline cmds in history
 shopt -s cdspell                # spellcheck cd
@@ -9,14 +8,12 @@ set -o vi                       # use a vi-style command line editing interface
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
-
 export CLICOLOR=1               # colorize ls
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
 export EDITOR=vim               # vim is the only editor
 export VISUAL=vim               # vim is the only editor
-
 export HISTCONTROL=ignoreboth   # skip space cmds and dupes in history
 export HISTIGNORE="ls:ls -la:cd:cd -:pwd:exit:date:* --help:fg:bg:history:w"
 export HISTFILE=$HOME/.bash_history
@@ -26,41 +23,31 @@ export HISTTIMEFORMAT="%F %T: "
 export HISTCONTROL=ignorespace:erasedups
 export DBHISTORY=true
 export DBHISTORYFILE=$HOME/.dbhist
+export starship_precmd_user_func=_bash_history_sync
 
-history() {
+function history() {
   _bash_history_sync
   builtin history "$@"
 }
 
-_bash_history_sync() {
+function _bash_history_sync() {
   builtin history -a
   HISTFILESIZE=$HISTSIZE
   builtin history -c
   builtin history -r
 }
-export starship_precmd_user_func=_bash_history_sync
 
 # hex to decimal and vice-versa
-h2d() { echo $((16#$@)); }
-d2h() { echo $((0x$@)); }
-
-alias idle='while true ; do uname -a ; uptime ; sleep 30 ; done'
-alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'
-alias j='jobs -l'
-alias sl=ls
-alias today='date +"%A, %B %d, %Y"'
-alias yesterday='date -v-1d +"%A %B %d, %Y"'
-alias epoch='date +%s'
-alias rot13='tr a-zA-Z n-za-mN-ZA-M'
-alias badge="tput bel"
-
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+function h2d() { echo $((16#$@)); }
+function d2h() { echo $((0x$@)); }
 
 function autoCompleteHostname() {
     local hosts
     local cur
-    hosts=($(awk '{print $1}' ~/.ssh/known_hosts | cut -d, -f1))
+    # shellcheck disable=SC2034,SC2207
+    hosts=($(awk '{split($1,a,",");print a[1]}' ~/.ssh/known_hosts))
     cur=${COMP_WORDS[COMP_CWORD]}
+    # shellcheck disable=SC2016,SC2207,SC2086
     COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur ))
 }
 complete -F autoCompleteHostname ssh # ssh autocomplete function
@@ -189,6 +176,7 @@ function surootx() {
     }
 
 function httpget () {
+  # shellcheck disable=SC2034
   IFS=/ read -r proto z host query <<< "$1"
   exec 3< /dev/tcp/"$host"/80
   {
@@ -197,7 +185,7 @@ function httpget () {
     echo host: "$host"
     echo
   } >&3
-  sed '1,/^$/d' <&3 > $(basename $1)
+  sed '1,/^$/d' <&3 > "$(basename "$1")"
 }
 
 function httpcompression() {
@@ -290,7 +278,6 @@ function tlsdates() {
   local port=$2
   echo | openssl s_client -servername "${host}" -connect "${host}:${port}" 2>/dev/null | openssl x509 -noout -dates
 }
-
 
 # Platform Specific Aliases here
 case $OSTYPE in
@@ -394,12 +381,26 @@ if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
 fi
 
 # load hostname specific stuff
-source "$HOME/.bashrc-${HOSTNAME%%.*}"
+LOCALBASHRC="$HOME/.bashrc-${HOSTNAME%%.*}"
+# shellcheck disable=SC1090
+[ -f "$LOCALBASHRC" ] && source "$LOCALBASHRC"
 
+# initialize starship prompt
 eval "$(starship init bash)"
+
+# initialize navi widget
 eval "$(navi widget bash)"
 
+alias idle='while true ; do uname -a ; uptime ; sleep 30 ; done'
+alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'
+alias j='jobs -l'
+alias sl=ls
+alias today='date +"%A, %B %d, %Y"'
+alias yesterday='date -v-1d +"%A %B %d, %Y"'
+alias epoch='date +%s'
+alias rot13='tr a-zA-Z n-za-mN-ZA-M'
+alias badge="tput bel"
 alias op-signin='eval $(op signin my.1password.com)'
 alias op-logout='op signout && unset OP_SESSION_example'
-
 alias serveit='ruby -run -e httpd . -p 8000'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

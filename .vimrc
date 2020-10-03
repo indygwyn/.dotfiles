@@ -47,6 +47,7 @@ Plug 'macthecadillac/lightline-gitdiff'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'albertomontesg/lightline-asyncrun'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-rails'
 
 call plug#end()
 

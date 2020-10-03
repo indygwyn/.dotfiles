@@ -17,15 +17,44 @@
       ui = auto
 [user]
       name = Thomas W. Holt Jr.
-      email = twh@pobox.com
+[core]
+      editor = vim
+      whitespace = trailing-space,space-before-tab
+      excludesfile = /Users/tholt/.gitignore
+      ignorecase = true
+      autocrlf = input
+[pack]
+      useSparse = true
+[http]
+      postBuffer = 157286400
+[fetch]
+      prune = true
+[diff]
+      colorMoved = zebra
+[rebase]
+      autostash = true
+      autoSquash = true
+[credential]
+      helper = osxkeychain
+      helper = cache
+[pull]
+      ff = only
 [alias]
       co = checkout
       br = branch
       ci = commit
-      st = status
+      st = status --short --branch
       unstage = reset HEAD --
       last = log -1 HEAD
-[credential]
-      helper = osxkeychain
-[pull]
-      ff = only
+      logs = log --show-signature
+      l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(     13 white)%s%C(reset) %C(dim white)- %an%C(reset)'
+      lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+      source = remote get-url origin
+      plog = log @{1}..
+      slog = log --pretty=slog
+      pslog = log --pretty=slog @{1}..
+      ffpull = pull --ff-only
+      ffmerge = merge --ff-only
+      gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
+      track = "!f() { ([ $# -eq 2 ] && ( echo \"Setting tracking for branch \" $1 \" -> \" $2;git branch --set-upstream $1 $2; ) || ( git for-each-ref --format=\"local: %(refname:short) <--sync--> remote: %(upstream:short)\" refs/heads && echo --Remotes && git remote -v)); }; f"
+

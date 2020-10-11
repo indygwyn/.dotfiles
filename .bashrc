@@ -386,10 +386,10 @@ LOCALBASHRC="$HOME/.bashrc-${HOSTNAME%%.*}"
 [ -f "$LOCALBASHRC" ] && source "$LOCALBASHRC"
 
 # initialize starship prompt
-command -v starship && eval "$(starship init bash)"
+command -v starship >/dev/null && eval "$(starship init bash)"
 
 # initialize navi widget
-command -v navi && eval "$(navi widget bash)"
+command -v navi >/dev/null && eval "$(navi widget bash)"
 
 alias idle='while true ; do uname -a ; uptime ; sleep 30 ; done'
 alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'

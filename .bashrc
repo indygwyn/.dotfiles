@@ -376,9 +376,9 @@ esac
 
 complete -C /usr/local/bin/vault vault
 
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-      tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-fi
+# if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+#      tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+# fi
 
 # load hostname specific stuff
 LOCALBASHRC="$HOME/.bashrc-${HOSTNAME%%.*}"

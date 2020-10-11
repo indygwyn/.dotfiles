@@ -40,7 +40,7 @@ because you might have some default config files in your $HOME which will
 cause a normal clone to fail.
 
 ```
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/githubuser/dotfiles.git tmpdotfiles
-rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
-rm -r tmpdotfiles
+git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dotfiles checkout
 ```

@@ -41,6 +41,6 @@ cause a normal clone to fail.
 
 ```
 git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout
 ```

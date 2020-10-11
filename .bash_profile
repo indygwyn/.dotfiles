@@ -21,3 +21,5 @@ export DATA_BAGS_PATH=${HOME}/Cookbooks/salesforce/data_bags
 export DATA_BAG_SECRET_KEY_PATH=${HOME}/.chef/encrypted_data_bag_secret
 
 GPG_TTY=$(tty) ; export GPG_TTY
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+

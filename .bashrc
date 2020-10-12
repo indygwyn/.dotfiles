@@ -24,6 +24,7 @@ export HISTCONTROL=ignorespace:erasedups
 export DBHISTORY=true
 export DBHISTORYFILE=$HOME/.dbhist
 export starship_precmd_user_func=_bash_history_sync
+export CDPATH=.:$HOME
 
 function history() {
   _bash_history_sync

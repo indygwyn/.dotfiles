@@ -10,6 +10,7 @@ Plug 'tpope/vim-vividchalk'
 "
 Plug 'tpope/vim-sensible'
 " syntax
+Plug 'rizzatti/dash.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'

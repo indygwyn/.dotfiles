@@ -5,6 +5,7 @@ set encoding=utf-8
 call plug#begin('~/.vim/plugged')
 
 " colorschemes
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-vividchalk'
 "
@@ -18,6 +19,7 @@ Plug 'lilydjwg/colorizer'
 " linters
 Plug 'dense-analysis/ale'
 " code
+Plug 'sheerun/vim-polyglot'
 Plug 'dougireton/vim-chef'
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
 " helpers
@@ -72,7 +74,7 @@ let g:ale_sign_column_always = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
-\ 'colorscheme': 'PaperColor',
+\ 'colorscheme': 'dracula',
 \ 'active': {
 \   'left': [['mode', 'paste'],
 \            ['fugitive', 'readonly', 'filename']],
@@ -113,10 +115,12 @@ set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
 if has('gui_running')
   set background=light
 else
-  "set t_Co=256 " turn on trucolor
+  " set t_Co=256 " turn on trucolor
   set background=dark
 endif
-colorscheme PaperColor
+" set termguicolors
+colorscheme dracula
+
 set noshowmode
 
 filetype plugin indent on

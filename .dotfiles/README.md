@@ -44,3 +44,57 @@ git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout
 ```
+
+## Extra Setup
+
+### HomeBrew 
+
+Use `brew bundle` to install everything in your
+[Brewfile](https://github.com/Homebrew/homebrew-bundle)
+
+```
+cd ~/.dotfiles
+brew bundle
+```
+
+### Ruby (rbenv & gem)
+
+Use [`rbenv`](https://github.com/rbenv/rbenv) to install the latest ruby and
+[`bundler`](https://bundler.io) to install your required gems.
+`rbenv`, `ruby-build`, and `bundler` were installed by HomeBrew
+
+```
+rbenv init 		# initialize your rbenv
+# rbenv setup should already be in your shell from .dotfiles
+source .bashrc		# source your shell files
+source .bash_profile
+rbenv install 2.7.2	# install ruby 2.7.2 using ruby-build
+rbenv global 2.7.2	# set 2.7.2 as your global python version
+cd ~/.dotfiles
+bundle install		# install all the Gems in Gemfile
+```
+
+### Python (pyenv & pip)
+
+Use `pyenv` to install the latest python and `pip` to install your required
+modules. `pyenv` was installed by HomeBrew
+
+```
+pyenv init		# initialize your pyenv
+# pyenv setup should already be in your shell from .dotfiles
+source .bashrc		# source your shell files
+source .bash_profile
+pyenv install 3.9.0	# install python 3.9.0
+pyenv global 3.9.0	# set 3.9.0 as your global python version
+pip -r .dotfiles requirements.txt
+
+```
+
+### NodeJS (yarn)
+
+Use `yarn` to install your required NodeJS modules.  `yarn` and `node` were
+installed by HomeBrew
+
+```
+yarn global add standard
+```

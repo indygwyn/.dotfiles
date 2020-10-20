@@ -23,6 +23,7 @@
       excludesfile = /Users/tholt/.gitignore
       ignorecase = true
       autocrlf = input
+	attributesfile = /Users/twh/.gitattributes
 [pack]
       useSparse = true
 [http]

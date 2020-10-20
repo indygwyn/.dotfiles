@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 " colorschemes
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-vividchalk'
 "
@@ -16,6 +17,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'lilydjwg/colorizer'
+Plug 'xu-cheng/brew.vim'
 " linters
 Plug 'dense-analysis/ale'
 " code
@@ -74,7 +76,7 @@ let g:ale_sign_column_always = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
-\ 'colorscheme': 'dracula',
+\ 'colorscheme': 'daycula',
 \ 'active': {
 \   'left': [['mode', 'paste'],
 \            ['fugitive', 'readonly', 'filename']],
@@ -120,6 +122,7 @@ else
 endif
 " set termguicolors
 colorscheme dracula
+
 
 set noshowmode
 

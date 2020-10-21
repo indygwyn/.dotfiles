@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'awesome_print'
 gem 'brewfile'
+gem 'cookstyle'
 gem 'bundler'
 gem 'clipboard'
 gem 'ed25519'

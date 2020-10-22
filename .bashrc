@@ -381,10 +381,7 @@ complete -C /usr/local/bin/vault vault
 #      tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 # fi
 
-# load hostname specific stuff
-LOCALBASHRC="$HOME/.bashrc-${HOSTNAME%%.*}"
-# shellcheck disable=SC1090
-[ -f "$LOCALBASHRC" ] && source "$LOCALBASHRC"
+[ -f .bashrc-local ] && source .bashrc-local
 
 # initialize starship prompt
 command -v starship >/dev/null && eval "$(starship init bash)"

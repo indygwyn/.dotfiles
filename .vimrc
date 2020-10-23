@@ -44,7 +44,7 @@ Plug 'airblade/vim-gitgutter'
 " ui
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'ryanoasis/vim-devicons'
 Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/vim-gitbranch'

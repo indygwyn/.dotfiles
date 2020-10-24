@@ -277,14 +277,19 @@ brew 'znapzend'
 brew 'zstd'
 cask '1password'
 cask '1password-cli'
+cask 'adoptopenjdk'
+cask 'adoptopenjdk8'
 cask 'aerial'
 cask 'alfred'
 cask 'anki'
-cask 'atom'
+cask 'balenaetcher'
 cask 'bartender'
+cask 'battle-net'
+cask 'beekeeper-studio'
 cask 'betterzip'
 cask 'brackets'
 cask 'brooklyn'
+cask 'burn'
 cask 'caffeine'
 cask 'charles'
 cask 'cheatsheet'
@@ -293,9 +298,11 @@ cask 'choosy'
 cask 'chromedriver'
 cask 'colorpicker-skalacolor'
 cask 'dash'
+cask 'discord'
 cask 'docker'
 cask 'element'
 cask 'firefox'
+cask 'fission'
 cask 'font-computer-modern'
 cask 'font-fira-mono-for-powerline'
 cask 'font-hack'
@@ -303,12 +310,15 @@ cask 'font-iosevka'
 cask 'font-juliamono'
 cask 'font-source-code-pro-for-powerline'
 cask 'fork'
-cask 'gitbook'
+cask 'gdlauncher'
+cask 'geektool'
+cask 'github'
 cask 'gitup'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'graphiql'
 cask 'hammerspoon'
+cask 'hdhomerun'
 cask 'hyper'
 cask 'inspec'
 cask 'karabiner-elements'
@@ -318,6 +328,7 @@ cask 'launchcontrol'
 cask 'launchrocket'
 cask 'lepton'
 cask 'lightproxy'
+cask 'logitech-options'
 cask 'macupdater'
 cask 'macvim'
 cask 'meetingbar'
@@ -340,6 +351,7 @@ cask 'quicklook-json'
 cask 'rectangle'
 cask 'redis'
 cask 'rocket'
+cask 'satellite-eyes'
 cask 'secretive'
 cask 'sekey'
 cask 'shifty'
@@ -347,18 +359,24 @@ cask 'signal'
 cask 'skype'
 cask 'slack'
 cask 'sloth'
+cask 'sonos'
 cask 'spotify'
+cask 'squidman'
 cask 'standard-notes'
+cask 'steam'
 cask 'sublime-merge'
 cask 'sublime-text'
 cask 'suspicious-package'
+cask 'tigervnc-viewer'
 cask 'transmission'
 cask 'transmit'
+cask 'twitch'
 cask 'vagrant'
 cask 'vagrant-manager'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'viscosity'
+cask 'visualvm'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'vmware-remote-console'
@@ -368,16 +386,26 @@ cask 'whatsapp'
 cask 'workbench'
 cask 'workflowy'
 cask 'xquartz'
+cask 'yubico-authenticator'
+cask 'yubico-yubikey-personalization-gui'
+cask 'yubico-yubikey-manager'
+cask 'yubico-yubikey-piv-manager'
 cask 'zerotier-one'
 cask 'zettlr'
+cask 'zoomus'
 cask 'zulu8'
 mas "Bear", id: 1091189122
 mas "Better", id: 1121192229
 mas "Cardhop", id: 1290358394
+mas "Checksum", id: 1371978119
+mas "Clozure CL", id: 489900618
 mas "Commander One PRO", id: 1035237815
 mas "Cyberduck", id: 409222199
 mas "Deliveries", id: 924726344
+mas "Dato", id: 1470584107
+mas "DuckDuckGo Privacy Essentials", id: 1482920575
 mas "Fantastical", id: 975937182
+mas "iVI 4", id: 1221678819
 mas "Keynote", id: 409183694
 mas "Messenger", id: 1480068668
 mas "MultiMarkdown Composer", id: 1275176220
@@ -385,10 +413,16 @@ mas "MultiMarkdown Converter Pro", id: 1217667791
 mas "Numbers", id: 409203825
 mas "OmniOutliner", id: 1142578772
 mas "Pastebot", id: 1179623856
+mas "Patterns", id: 429449079
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
 mas "Pocket", id: 568494494
+mas "Primitive", id: 1175103038
 mas "Reeder 5", id: 1529448980
+mas "Shazam", id: 897118787
+mas "SnippetsLab", id: 1006087419
+mas "Termius", id: 1176074088
 mas "Twitter", id: 1482454543
+mas "Vectornator Pro", id: 1470168007
 mas "VMware Remote Console", id: 1230249825
 mas "Xcode", id: 497799835

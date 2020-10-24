@@ -5,7 +5,7 @@ min_time = 4
 format = "took [$duration]($style) "
 
 [git_branch]
-symbol = ""
+symbol = ""
 
 [status]
 disabled = false

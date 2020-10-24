@@ -114,14 +114,18 @@ let g:ale_linters = {
 
 " ui config
 set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
+
 if has('gui_running')
   set guifont=JuliaMono:h18
   set background=light
 else
-  " set t_Co=256 " turn on trucolor
   set background=dark
 endif
-" set termguicolors
+
+if $TERM_PROGRAM isnot# 'Apple_Terminal'
+  set termguicolors
+endif
+
 colorscheme dracula
 
 

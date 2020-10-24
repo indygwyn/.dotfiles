@@ -115,6 +115,7 @@ let g:ale_linters = {
 " ui config
 set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
 if has('gui_running')
+  set guifont=JuliaMono:h18
   set background=light
 else
   " set t_Co=256 " turn on trucolor

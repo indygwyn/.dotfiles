@@ -24,6 +24,7 @@ Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'dougireton/vim-chef'
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
+Plug 'kristijanhusak/vim-carbon-now-sh'
 " helpers
 Plug 'tpope/vim-sleuth'
 Plug 'ntpeters/vim-better-whitespace'
@@ -59,7 +60,7 @@ call plug#end()
 function! LightlineFugitive()
   if exists('*FugitiveHead')
     let branch = FugitiveHead()
-    return branch !=# '' ? ''.branch : ''
+    return branch !=# '' ? ''.branch : ''
   endif
   return ''
 endfunction
@@ -116,8 +117,10 @@ let g:ale_linters = {
 set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
 
 if has('gui_running')
-  set guifont=JuliaMono:h18
   set background=light
+  set macligatures
+  set guifont=Fira\ Code:h18
+  " set guifont=JuliaMono:h18
 else
   set background=dark
 endif
@@ -142,10 +145,16 @@ set relativenumber
 set hlsearch
 set colorcolumn=80
 
+" Visual mode tweaks
 nmap <S-Up> V
 nmap <S-Down> V
 vmap <S-Up> k
 vmap <S-Down> j
+
+" Esc remaps
+imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
 
 " use ag for grep if available
 if executable('ag')

@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 18,
 
     // font family with optional fallbacks
-    fontFamily: 'JuliaMono, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -154,7 +154,9 @@ module.exports = {
     "hyperlinks",
     "hyperterm-safepaste",
     "hyperalfred",
-    "hyperterm-summon"
+    "hyperterm-summon",
+    "hyper-font-ligatures",
+    "hyper-active-tab"
   ],
 
   // in development, you can create a directory under

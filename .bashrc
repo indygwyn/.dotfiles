@@ -401,5 +401,3 @@ alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 # shellcheck source=/dev/null
 [ -f "${HOME}/.bashrc-local" ] && source "${HOME}/.bashrc-local"
-
-tmux ls

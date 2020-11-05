@@ -26,6 +26,7 @@ Plug 'dougireton/vim-chef'
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
 Plug 'kristijanhusak/vim-carbon-now-sh'
 " helpers
+Plug 'vifm/vifm.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'

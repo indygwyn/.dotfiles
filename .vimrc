@@ -173,6 +173,7 @@ augroup Chef
   autocmd BufNewFile,BufRead */chef-repo/roles/*.rb set filetype=ruby.chef
   let b:ale_linters = ['cookstyle']
   let b:ale_fixers = ['cookstyle']
+  let g:ale_ruby_rubocop_executable = 'cookstyle'
 augroup END
 
 augroup vimrc

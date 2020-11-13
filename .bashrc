@@ -61,6 +61,20 @@ function repeat() {
 	done
 }
 
+function cd() {
+	case $1 in
+		....)
+			builtin cd ../../..
+			;;
+		...)
+			builtin cd ../..
+			;;
+		*)
+			builtin cd  "$@"
+			;;
+	esac
+}
+
 function seqx() {
 	local lower upper output
 	lower=$1 upper=$2

@@ -40,6 +40,8 @@
       helper = cache
 [pull]
       ff = only
+[push]
+      gpgSign = if-asked
 [alias]
       co = checkout
       br = branch
@@ -58,3 +60,5 @@
       ffmerge = merge --ff-only
       gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
       track = "!f() { ([ $# -eq 2 ] && ( echo \"Setting tracking for branch \" $1 \" -> \" $2;git branch --set-upstream $1 $2; ) || ( git for-each-ref --format=\"local: %(refname:short) <--sync--> remote: %(upstream:short)\" refs/heads && echo --Remotes && git remote -v)); }; f"
+[commit]
+	gpgsign = true

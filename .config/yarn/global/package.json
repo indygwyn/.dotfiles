@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "git-user-switch": "^0.1.0",
     "standard": "^14.3.4"
   }
 }

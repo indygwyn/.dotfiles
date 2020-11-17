@@ -22,7 +22,6 @@ Plug 'xu-cheng/brew.vim'
 Plug 'dense-analysis/ale'
 " code
 Plug 'sheerun/vim-polyglot'
-Plug 'dougireton/vim-chef'
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
 Plug 'kristijanhusak/vim-carbon-now-sh'
 " helpers
@@ -163,27 +162,14 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-" chef ruby filetype and ale
-augroup Chef
-  autocmd!
-  autocmd BufNewFile,BufRead */\(attributes\|definitions\|libraries\|providers\|recipes\|resources\)/*.rb set filetype=ruby.chef
-  autocmd BufNewFile,BufRead */templates/*/*.erb set filetype=eruby.chef
-  autocmd BufNewFile,BufRead */metadata.rb set filetype=ruby.chef
-  autocmd BufNewFile,BufRead */chef-repo/environments/*.rb set filetype=ruby.chef
-  autocmd BufNewFile,BufRead */chef-repo/roles/*.rb set filetype=ruby.chef
-  let b:ale_linters = ['cookstyle']
-  let b:ale_fixers = ['cookstyle']
-  let g:ale_ruby_rubocop_executable = 'cookstyle'
-augroup END
-
 augroup vimrc
   autocmd!
   autocmd BufNewFile,BufRead .vimrc set filetype=vim
   let b:ale_linters = ['vint']
 augroup END
 
-call add(b:ale_linters, 'shellcheck')
+" TOOD: fix shell ftdetect/ftplugin
+"call add(b:ale_linters, 'shellcheck')
 
 " site specific
 source ~/.vimrc-local
-

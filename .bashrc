@@ -69,13 +69,13 @@ function repeat() {
 function cd() {
 	case $1 in
 		....)
-			builtin cd ../../..
+			builtin cd ../../.. || return
 			;;
 		...)
-			builtin cd ../..
+			builtin cd ../.. || return
 			;;
 		*)
-			builtin cd  "$@"
+			builtin cd  "$@" || return
 			;;
 	esac
 }

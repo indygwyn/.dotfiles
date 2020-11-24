@@ -1,4 +1,9 @@
 #!/bin/bash
+# uncomment the folowing and last 2 lines to profile startup
+# PS4='+ $EPOCHREALTIME\011 '
+# exec 3>&2 2>/tmp/bashstart.$$.log
+# set -x
+
 shopt -s histappend # append to history instead of overwrite
 shopt -s cmdhist    # save multiline cmds in history
 shopt -s cdspell    # spellcheck cd
@@ -415,3 +420,6 @@ alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
 # shellcheck source=/dev/null
 [ -f "${HOME}/.bashrc-local" ] && source "${HOME}/.bashrc-local"
+
+# set +x
+# exec 2>&3 3>&-

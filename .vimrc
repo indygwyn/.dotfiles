@@ -143,5 +143,11 @@ endif
 
 " extra ft settings for chef/shell are in ~/.vim/after/ft*/*.vim
 
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 " load site specific settings
-source ~/.vimrc-local
+call SourceIfExists('~/.vimrc-local')

@@ -141,15 +141,7 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-" TODO: move this to .vim/after/ftdetect/vim.vim
-augroup vimrc
-  autocmd!
-  autocmd BufNewFile,BufRead .vimrc set filetype=vim
-  let b:ale_linters = ['vint']
-augroup END
-
-" TODO: fix shell ftdetect/ftplugin
-"call add(b:ale_linters, 'shellcheck')
+" extra ft settings for chef/shell are in ~/.vim/after/ft*/*.vim
 
 " load site specific settings
 source ~/.vimrc-local

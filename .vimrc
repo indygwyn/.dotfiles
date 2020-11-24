@@ -9,12 +9,13 @@ Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
 Plug 'rizzatti/dash.vim'                " :Dash for Dash Documentation Browser
 Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+" Deoplete requires python3.6+ and the pynvim module
+" see https://github.com/Shougo/deoplete.nvim#requirements
 Plug 'roxma/nvim-yarp'                  " rpc framework - dep for deoplete
 Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
-Plug 'xu-cheng/brew.vim'                " Homebrew formula language support
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
 Plug 'vifm/vifm.vim'                    " use vifm as file chooser
 Plug 'tpope/vim-sleuth'                 " Heuristically set buffer options

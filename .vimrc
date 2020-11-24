@@ -1,62 +1,46 @@
+" pre-plugin config
 let mapleader=','
 set encoding=utf-8
 
 " vim-plug is my plugin manager :PlugInstall, :PlugUpdate:, :PlugClean
 call plug#begin('~/.vim/plugged')
-
-" colorschemes
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'tpope/vim-vividchalk'
-"
-Plug 'tpope/vim-sensible'
-" syntax
-Plug 'rizzatti/dash.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'lilydjwg/colorizer'
-Plug 'xu-cheng/brew.vim'
-" linters
-Plug 'dense-analysis/ale'
-" code
-Plug 'sheerun/vim-polyglot'
+Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
+Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
+Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
+Plug 'rizzatti/dash.vim'                " :Dash for Dash Documentation Browser
+Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+Plug 'roxma/nvim-yarp'                  " rpc framework - dep for deoplete
+Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
+Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
+Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
+Plug 'sheerun/vim-polyglot'             " collection of language packs
+Plug 'xu-cheng/brew.vim'                " Homebrew formula language support
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
-Plug 'kristijanhusak/vim-carbon-now-sh'
-" helpers
-Plug 'vifm/vifm.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-unimpaired'
-Plug 'docunext/closetag.vim'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
-
-" ui
-Plug 'tpope/vim-vinegar'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'ryanoasis/vim-devicons'
-Plug 'maximbaz/lightline-ale'
-Plug 'itchyny/vim-gitbranch'
-Plug 'macthecadillac/lightline-gitdiff'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'albertomontesg/lightline-asyncrun'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-rails'
-
+Plug 'vifm/vifm.vim'                    " use vifm as file chooser
+Plug 'tpope/vim-sleuth'                 " Heuristically set buffer options
+Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
+Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap
+Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
+Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
+Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
+Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
+Plug 'docunext/closetag.vim'            " close open HTML/XML tags
+Plug 'guns/vim-sexp'                    " Precision Editing for S-expressions
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " make sexp usable
+Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
+Plug 'mhinz/vim-signify'                " Show a diff in sign column
+Plug 'ctrlpvim/ctrlp.vim'               " Full path fuzzy file, buffer, mru, tag finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " A command-line fuzzy finder
+Plug 'maximbaz/lightline-ale'           " lightline ale support
+Plug 'macthecadillac/lightline-gitdiff' " lightline git support
+Plug 'skywind3000/asyncrun.vim'         " background runner
+Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
+Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 call plug#end()
 
+" post plugin config
+
+" branch name function for lightline
 function! LightlineFugitive()
   if exists('*FugitiveHead')
     let branch = FugitiveHead()
@@ -65,17 +49,16 @@ function! LightlineFugitive()
   return ''
 endfunction
 
+" readonly indicator function for lightline
 function! LightlineReadonly()
   return &readonly ? '' : ''
 endfunction
 
-
 " globals for plugin options
-"let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
-let g:ale_sign_column_always = 1
-let g:deoplete#enable_at_startup = 1
+let g:ale_sign_column_always = 1            " always show the sign column
+let g:deoplete#enable_at_startup = 1        " deoplete on open
 
+" lightline config
 let g:lightline = {
 \ 'colorscheme': 'daycula',
 \ 'active': {
@@ -109,30 +92,25 @@ let g:lightline = {
 \ },
 \}
 
-let g:ale_linters = {
-      \ 'vim': ['vimls'],
-      \}
+set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣ " :set list
 
-" ui config
-set listchars=eol:¶,tab:→‒,trail:~,extends:>,precedes:<,space:␣
-
+" cli vs gui options
 if has('gui_running')
   set background=light
   set macligatures
   set guifont=Fira\ Code:h18
-  " set guifont=JuliaMono:h18
 else
   set background=dark
 endif
 
+" 32 bit color except in Terminal.app
 if $TERM_PROGRAM isnot# 'Apple_Terminal'
   set termguicolors
 endif
 
 colorscheme dracula
 
-
-set noshowmode
+set noshowmode        " lightline indicator used instead
 
 filetype plugin indent on
 scriptencoding utf-8
@@ -140,12 +118,13 @@ scriptencoding utf-8
 set autoindent
 set nofoldenable
 set updatetime=250
-set number
-set relativenumber
-set hlsearch
-set colorcolumn=80
+set number            " number lines
+set relativenumber    " relative to cursor position
+set hlsearch          " highlight search matches
+set colorcolumn=80,100 " ruler in column 80 and 100
+highlight ColorColumn guibg=SlateBlue
 
-" Visual mode tweaks
+" Visual mode mappings
 nmap <S-Up> V
 nmap <S-Down> V
 vmap <S-Up> k
@@ -162,14 +141,15 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" TODO: move this to .vim/after/ftdetect/vim.vim
 augroup vimrc
   autocmd!
   autocmd BufNewFile,BufRead .vimrc set filetype=vim
   let b:ale_linters = ['vint']
 augroup END
 
-" TOOD: fix shell ftdetect/ftplugin
+" TODO: fix shell ftdetect/ftplugin
 "call add(b:ale_linters, 'shellcheck')
 
-" site specific
+" load site specific settings
 source ~/.vimrc-local

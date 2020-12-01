@@ -10,6 +10,8 @@ export PATH=/usr/local/opt/openssl@1.1/bin:${PATH}
 
 export PATH=${PATH}:/home/twh/.cargo/bin # cargo
 
+export LANG="en_US.UTF-8"
+
 # go stuff
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin

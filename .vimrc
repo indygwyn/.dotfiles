@@ -37,6 +37,7 @@ Plug 'macthecadillac/lightline-gitdiff' " lightline git support
 Plug 'skywind3000/asyncrun.vim'         " background runner
 Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
+Plug 'jamessan/vim-gnupg'
 call plug#end()
 
 " post plugin config
@@ -149,6 +150,16 @@ function! SourceIfExists(file)
     exe 'source' a:file
   endif
 endfunction
+
+" Armor files
+let g:GPGPreferArmor=1
+" Set the default option
+let g:GPGDefaultRecipients=['twh@pobox.com']
+
+
+augroup GnuPG
+  autocmd User GnuPG setl textwidth=72
+augroup END
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

@@ -17,6 +17,7 @@ Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
+Plug 'tpope/vim-rails'                  " Ruby on Rails
 Plug 'vifm/vifm.vim'                    " use vifm as file chooser
 Plug 'tpope/vim-sleuth'                 " Heuristically set buffer options
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting

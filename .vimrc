@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'rizzatti/dash.vim'                " :Dash for Dash Documentation Browser
 Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
 " Deoplete requires python3.6+ and the pynvim module
 " see https://github.com/Shougo/deoplete.nvim#requirements
@@ -25,6 +24,9 @@ Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
+Plug 'AndrewRadev/switch.vim'           " :Switch
+Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
+Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=
 Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'docunext/closetag.vim'            " close open HTML/XML tags
 Plug 'guns/vim-sexp'                    " Precision Editing for S-expressions

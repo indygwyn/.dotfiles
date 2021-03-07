@@ -415,6 +415,11 @@ alias op-signin='eval $(op signin my.1password.com)'
 alias op-logout='op signout && unset OP_SESSION_example'
 alias serveit='ruby -run -e httpd . -p 8000'
 alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
+export EXA_COLORS="da=1;34:di=32:gm=33:gd=31"
+export EXA_STRICT=true
+alias x='exa --all --long --header --group --group-directories-first --time-style long-iso --git --git-ignore'
+alias x1='exa --oneline --all --group-directories-first'
+alias xt='exa --tree'
 
 # shellcheck source=/dev/null
 [ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
@@ -423,3 +428,4 @@ alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
 
 # set +x
 # exec 2>&3 3>&-
+eval "$(direnv hook bash)"

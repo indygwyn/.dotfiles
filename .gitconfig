@@ -66,3 +66,5 @@
       path = ~/.gitconfig-local
 [submodule]
 	recurse = true
+[maintenance]
+	repo = /Users/twh

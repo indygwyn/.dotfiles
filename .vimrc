@@ -15,32 +15,26 @@ Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
-Plug 'tpope/vim-jdaddy'                 " JSON aj, gqaj, gwaj, ij
-Plug 'tpope/vim-rails'                  " Ruby on Rails
-Plug 'vifm/vifm.vim'                    " use vifm as file chooser
-Plug 'tpope/vim-sleuth'                 " Heuristically set buffer options
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
-Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap
+Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
+Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
+Plug 'jiangmiao/auto-pairs'             " auto end surrounders
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
 Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=
 Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'docunext/closetag.vim'            " close open HTML/XML tags
-Plug 'guns/vim-sexp'                    " Precision Editing for S-expressions
-Plug 'tpope/vim-sexp-mappings-for-regular-people' " make sexp usable
 Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
 Plug 'mhinz/vim-signify'                " Show a diff in sign column
-Plug 'ctrlpvim/ctrlp.vim'               " Full path fuzzy file, buffer, mru, tag finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " A command-line fuzzy finder
 Plug 'maximbaz/lightline-ale'           " lightline ale support
 Plug 'macthecadillac/lightline-gitdiff' " lightline git support
 Plug 'skywind3000/asyncrun.vim'         " background runner
 Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
-Plug 'jamessan/vim-gnupg'
+Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 call plug#end()
 
 " post plugin config
@@ -163,6 +157,18 @@ let g:GPGDefaultRecipients=['twh@pobox.com']
 augroup GnuPG
   autocmd User GnuPG setl textwidth=72
 augroup END
+
+let g:ale_linters = {
+      \   'ruby': ['rubocop'],
+      \   'python': ['flake8'],
+      \   'javascript': ['eslint'],
+      \}
+
+let g:deoplete#enable_at_startup = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

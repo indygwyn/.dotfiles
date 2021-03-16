@@ -149,14 +149,11 @@ module.exports = {
   plugins: [
     "hypercwd",
     "hyper-search",
-    "hyper-pane",
     "hyper-dracula",
     "hyperlinks",
-    "hyperterm-safepaste",
-    "hyperalfred",
-    "hyperterm-summon",
     "hyper-font-ligatures",
-    "hyper-active-tab"
+    "hyper-active-tab",
+    "hyperborder"
   ],
 
   // in development, you can create a directory under

@@ -21,7 +21,7 @@ Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
-Plug 'jiangmiao/auto-pairs'             " auto end surrounders
+Plug 'Raimondi/delimitMate'             " auto-completion for quotes, parens, brackets
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
 Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=

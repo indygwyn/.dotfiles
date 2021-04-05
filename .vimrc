@@ -35,6 +35,7 @@ Plug 'skywind3000/asyncrun.vim'         " background runner
 Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
+Plug 'ervandew/supertab'                " <Tab> insert completion
 call plug#end()
 
 " post plugin config
@@ -152,7 +153,6 @@ endfunction
 let g:GPGPreferArmor=1
 " Set the default option
 let g:GPGDefaultRecipients=['twh@pobox.com']
-
 
 augroup GnuPG
   autocmd User GnuPG setl textwidth=72

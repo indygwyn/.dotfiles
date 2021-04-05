@@ -1,1 +1,3 @@
-let b:ale_linters = ['shellcheck']
+let b:ale_linters = {
+     \ 'sh': ['language_server', 'shellcheck'],
+     \ }

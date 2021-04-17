@@ -36,6 +36,7 @@ Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'ervandew/supertab'                " <Tab> insert completion
+Plug 'segeljakt/vim-silicon'            " carbon.sh clone
 call plug#end()
 
 " post plugin config

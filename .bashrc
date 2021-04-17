@@ -332,6 +332,7 @@ darwin*)
 	alias md5sum='md5'
 	alias sha1sum='shasum'
 	alias cpwd='pwd|tr -d "\n"|pbcopy'
+	alias hbsu="brew update && brew upgrade && brew cleanup"
 	function f() { open -a "Finder" "${1-.}"; }
 	complete -o default -o nospace -F _git g
 	function pdfman() {
@@ -429,3 +430,5 @@ alias xt='exa --tree'
 # set +x
 # exec 2>&3 3>&-
 eval "$(direnv hook bash)"
+# shellcheck source=.cargo/env
+source "$HOME/.cargo/env"

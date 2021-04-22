@@ -165,6 +165,11 @@ let g:ale_linters = {
       \   'javascript': ['eslint'],
       \}
 
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_sign_info = 'ℹ'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 let g:deoplete#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {

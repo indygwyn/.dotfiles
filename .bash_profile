@@ -30,5 +30,3 @@ command -v rbenv 1> /dev/null 2>&1 && eval "$(rbenv init -)"
 command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
 
 GPG_TTY=$(tty) ; export GPG_TTY
-if [ -e /Users/twh/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/twh/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-source "$HOME/.cargo/env"

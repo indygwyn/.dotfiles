@@ -430,5 +430,3 @@ alias xt='exa --tree'
 # set +x
 # exec 2>&3 3>&-
 eval "$(direnv hook bash)"
-# shellcheck source=.cargo/env
-source "$HOME/.cargo/env"

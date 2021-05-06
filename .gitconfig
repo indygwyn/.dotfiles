@@ -40,6 +40,7 @@
       ff = only
 [push]
       gpgSign = if-asked
+	followTags = true
 [alias]
       co = checkout
       br = branch

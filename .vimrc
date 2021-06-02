@@ -151,6 +151,8 @@ function! SourceIfExists(file)
   endif
 endfunction
 
+set runtimepath+=/usr/local/opt/fzf
+
 " Armor files
 let g:GPGPreferArmor=1
 " Set the default option

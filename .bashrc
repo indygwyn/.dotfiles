@@ -430,3 +430,5 @@ alias xt='exa --tree'
 # set +x
 # exec 2>&3 3>&-
 eval "$(direnv hook bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

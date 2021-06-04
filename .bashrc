@@ -395,13 +395,7 @@ FreeBSD) ;;
 
 esac
 
-complete -C /usr/local/bin/vault vault
-
-# initialize starship prompt
-command -v starship >/dev/null && eval "$(starship init bash)"
-
-# initialize navi widget
-command -v navi >/dev/null && eval "$(navi widget bash)"
+complete -C vault vault
 
 alias idle='while true ; do uname -a ; uptime ; sleep 30 ; done'
 alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'
@@ -422,13 +416,16 @@ alias x='exa --all --long --header --group --group-directories-first --time-styl
 alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
 
-# shellcheck source=/dev/null
-[ -f "${HOME}/.fzf.bash" ] && source "${HOME}/.fzf.bash"
-# shellcheck source=/dev/null
-[ -f "${HOME}/.bashrc-local" ] && source "${HOME}/.bashrc-local"
+eval "$(asdf exec starship init bash)"
+eval "$(asdf exec direnv hook bash)"
+eval "$(asdf exec navi widget bash)"
 
-# set +x
-# exec 2>&3 3>&-
-eval "$(direnv hook bash)"
-
+# A shortcut for asdf managed direnv.
+direnv() { asdf exec direnv "$@"; }
+# shellcheck source=/dev/null
+[ -f ~/.asdf/plugins/java/set-java-home.bash ] && source ~/.asdf/plugins/java/set-java-home.bash
+# shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# shellcheck source=/dev/null
+[ -f ~/.bashrc-local ] && source ~/.bashrc-local
+

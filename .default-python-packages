@@ -1,0 +1,11 @@
+pynvim
+requests
+ansible
+ansible-lint
+autopep8
+flake8
+git-revise
+glances
+proselint
+semgrep
+yamllint

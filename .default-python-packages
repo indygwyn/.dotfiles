@@ -1,4 +1,5 @@
 pynvim
+neovim
 requests
 ansible
 ansible-lint

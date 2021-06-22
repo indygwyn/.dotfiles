@@ -6,3 +6,4 @@ typos-cli
 xplr
 zellij
 git-branchless
+--git https://github.com/adder46/hstr-rs.git

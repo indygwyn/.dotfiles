@@ -1,5 +1,6 @@
 awesome_print
 bcrypt_pbkdf
+binding_of_caller
 brewfile
 clipboard
 ed25519
@@ -17,6 +18,9 @@ prettier
 progress
 pry
 pry-byebug
+pry-doc
+pry-rails
+pry-stack_explorer
 rack
 rake
 rbnacl

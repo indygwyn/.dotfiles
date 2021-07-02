@@ -3,6 +3,7 @@ bcrypt_pbkdf
 binding_of_caller
 brewfile
 clipboard
+coderay
 ed25519
 fasterer
 git
@@ -21,6 +22,7 @@ pry-byebug
 pry-doc
 pry-rails
 pry-stack_explorer
+pry-theme
 rack
 rake
 rbnacl
@@ -34,3 +36,4 @@ tomlrb
 versionaire
 webrick
 yamljson
+

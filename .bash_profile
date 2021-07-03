@@ -31,10 +31,12 @@ if command -v brew 1> /dev/null 2>&1 ; then
 	OPENSSLHOME=$(brew --prefix openssl@1.1)
 	# shellcheck disable=SC2155
 	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSLHOME}"
-  ASDFHOME=$(brew --prefix asdf)
-	# shellcheck disable=SC1091
-  source "${ASDFHOME}/asdf.sh"
+  	ASDFHOME=$(brew --prefix asdf)
+else
+  	ASDFHOME=$HOME/.asdf
 
 fi
+# shellcheck disable=SC1091
+source "${ASDFHOME}/asdf.sh"
 
 GPG_TTY=$(tty) ; export GPG_TTY

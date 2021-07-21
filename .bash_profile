@@ -5,11 +5,9 @@
 export LANG="en_US.UTF-8"
 export PYENV_ROOT="$HOME/.pyenv"
 
-export PATH=~/bin:${PATH}
-export PATH=/usr/local/bin:${PATH}       # homebrew
-export PATH=/usr/local/sbin:${PATH}      # homebrew
-export PATH=/usr/local/opt/openssl@1.1/bin:${PATH}
+eval "$(/usr/local/bin/brew shellenv)"
 
+export PATH=~/bin:${PATH}
 export PATH="$HOME/.tfenv/bin:$PATH"     # tfenv
 export PATH="$PYENV_ROOT/bin:$PATH"      # pyenv
 export PATH=${PATH}:/home/twh/.cargo/bin # cargo

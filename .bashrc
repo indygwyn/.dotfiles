@@ -419,6 +419,7 @@ alias xt='exa --tree'
 eval "$(asdf exec starship init bash)"
 eval "$(asdf exec direnv hook bash)"
 eval "$(asdf exec navi widget bash)"
+# source <(kitty + complete setup bash)
 
 # A shortcut for asdf managed direnv.
 direnv() { asdf exec direnv "$@"; }

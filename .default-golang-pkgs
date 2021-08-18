@@ -3,3 +3,5 @@ filippo.io/mkcert
 github.com/jesseduffield/lazygit
 github.com/tomnomnom/gron
 github.com/ericchiang/pup
+github.com/nikitavoloboev/gitupdate
+go.mozilla.org/sops/v3/cmd/sops

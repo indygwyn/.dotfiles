@@ -415,6 +415,7 @@ export EXA_STRICT=true
 alias x='exa --all --long --header --group --group-directories-first --time-style long-iso --git --git-ignore'
 alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
+alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 
 eval "$(asdf exec starship init bash)"
 eval "$(asdf exec direnv hook bash)"
@@ -429,4 +430,6 @@ direnv() { asdf exec direnv "$@"; }
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null
 [ -f ~/.bashrc-local ] && source ~/.bashrc-local
+# shellcheck source=/dev/null
+[ -f ~/.bash.d/cht.sh ] && source ~/.bash.d/cht.sh
 

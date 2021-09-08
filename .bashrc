@@ -318,21 +318,11 @@ darwin*)
 	alias textedit='open -a TextEdit'
 	alias hex='open -a "Hex Fiend"'
 	alias ldd='otool -L'
-	# homebrew
-	alias yum='brew'
-	alias bup='brew update && brew upgrade'
-	alias bout='brew outdated'
-	alias bin='brew install'
-	alias brm='brew uninstall'
-	alias bls='brew list'
-	alias bsr='brew search'
-	alias binf='brew info'
-	alias bdr='brew doctor'
-	alias brewski='brew update && brew upgrade && brew cask upgrade && brew cleanup; brew doctor'
 	alias md5sum='md5'
 	alias sha1sum='shasum'
 	alias cpwd='pwd|tr -d "\n"|pbcopy'
 	alias hbsu="brew update && brew upgrade && brew cleanup"
+	alias docker='podman'
 	function f() { open -a "Finder" "${1-.}"; }
 	complete -o default -o nospace -F _git g
 	function pdfman() {

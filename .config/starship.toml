@@ -10,3 +10,9 @@ symbol = ""
 
 [status]
 disabled = false
+
+[shlvl]
+disabled = false
+
+[time]
+disabled = false

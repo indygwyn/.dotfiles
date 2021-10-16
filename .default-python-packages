@@ -10,3 +10,5 @@ glances
 proselint
 semgrep
 yamllint
+sqlfluff
+rpmlint

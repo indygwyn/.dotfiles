@@ -1,5 +1,12 @@
+# format = """$character"""
+# right_format = """$all"""
 add_newline = false
 command_timeout = 1000
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[✖](bold red)"
+disabled = false
 
 [cmd_duration]
 min_time = 4
@@ -15,4 +22,4 @@ disabled = false
 disabled = false
 
 [time]
-disabled = false
+disabled = true

@@ -41,7 +41,7 @@
       ff = only
 [push]
       gpgSign = if-asked
-	followTags = true
+      followTags = true
 [alias]
       co = checkout
       br = branch
@@ -71,3 +71,5 @@
 	recurse = true
 [maintenance]
 	repo = /Users/twh
+[init]
+	defaultBranch = main

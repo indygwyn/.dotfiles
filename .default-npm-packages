@@ -8,3 +8,4 @@ prettier
 yarn
 docsify-cli
 markdown-spellcheck
+mermaid-js/mermaid-cli

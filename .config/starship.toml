@@ -1,7 +1,7 @@
 # format = """$character"""
 # right_format = """$all"""
 add_newline = false
-command_timeout = 1000
+command_timeout = 1500
 
 [character]
 success_symbol = "[❯](bold green)"

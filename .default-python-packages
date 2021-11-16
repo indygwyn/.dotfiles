@@ -12,3 +12,5 @@ semgrep
 yamllint
 sqlfluff
 rpmlint
+jedi
+pyls

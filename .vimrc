@@ -7,20 +7,28 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+else
 " Deoplete requires python3.6+ and the pynvim module
 " see https://github.com/Shougo/deoplete.nvim#requirements
-Plug 'roxma/nvim-yarp'                  " rpc framework - dep for deoplete
-Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
-Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
+  Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+  Plug 'roxma/nvim-yarp'                  " rpc framework - dep for deoplete
+  Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
+endif
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'deoplete-plugins/deoplete-jedi'   " do not forget to install jedi
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
+Plug 'prabirshrestha/vim-lsp'           " vim Language Server Protocol
+Plug 'rhysd/vim-lsp-ale'                " vim-lsp + ale = happy
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
+Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'Raimondi/delimitMate'             " auto-completion for quotes, parens, brackets
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
@@ -163,9 +171,11 @@ augroup GnuPG
 augroup END
 
 let g:ale_linters = {
-      \   'ruby': ['rubocop'],
-      \   'python': ['flake8'],
-      \   'javascript': ['eslint'],
+      \ 'go': ['language_server'],
+      \ 'javascript': ['eslint'],
+      \ 'ruby': ['rubocop'],
+      \ 'python': ['flake8'],
+      \ 'sh': ['language_server'],
       \}
 
 
@@ -178,7 +188,12 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:deoplete#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'go': ['gopls'],
+    \ 'javascript': ['typescript-language-server'],
+    \ 'python':['pyls'],
+    \ 'ruby': ['solargraph','stdio'],
+    \ 'rust': ['rls'],
+    \ 'sh': ['bash-language-server', 'start'],
     \ }
 
 " load site specific settings

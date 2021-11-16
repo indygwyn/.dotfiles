@@ -56,6 +56,7 @@
       plog = log @{1}..
       slog = log --pretty=slog
       pslog = log --pretty=slog @{1}..
+      dog = log --all --decorate --oneline --graph
       ffpull = pull --ff-only
       ffmerge = merge --ff-only
       gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"

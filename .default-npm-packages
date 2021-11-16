@@ -9,3 +9,5 @@ yarn
 docsify-cli
 markdown-spellcheck
 mermaid-js/mermaid-cli
+vim-language-server
+typescript-language-server

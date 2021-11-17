@@ -8,20 +8,17 @@ Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-" Deoplete requires python3.6+ and the pynvim module
-" see https://github.com/Shougo/deoplete.nvim#requirements
-  Plug 'Shougo/deoplete.nvim'             " asynchronous completion framework
-  Plug 'roxma/nvim-yarp'                  " rpc framework - dep for deoplete
-  Plug 'roxma/vim-hug-neovim-rpc'         " neovim rpc client - dep for deoplete
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'deoplete-plugins/deoplete-jedi'   " do not forget to install jedi
+Plug 'prabirshrestha/vim-lsp'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
-Plug 'prabirshrestha/vim-lsp'           " vim Language Server Protocol
-Plug 'rhysd/vim-lsp-ale'                " vim-lsp + ale = happy
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
@@ -65,7 +62,6 @@ endfunction
 
 " globals for plugin options
 let g:ale_sign_column_always = 1            " always show the sign column
-let g:deoplete#enable_at_startup = 1        " deoplete on open
 
 " lightline config
 let g:lightline = {
@@ -170,15 +166,7 @@ augroup GnuPG
   autocmd User GnuPG setl textwidth=72
 augroup END
 
-let g:ale_linters = {
-      \ 'go': ['language_server'],
-      \ 'javascript': ['eslint'],
-      \ 'ruby': ['rubocop'],
-      \ 'python': ['flake8'],
-      \ 'sh': ['language_server'],
-      \}
-
-
+let g:markdown_fenced_languages = ['vim','help']
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
@@ -186,15 +174,6 @@ let g:ale_sign_info = 'ℹ️'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:deoplete#enable_at_startup = 1
-
-let g:LanguageClient_serverCommands = {
-    \ 'go': ['gopls'],
-    \ 'javascript': ['typescript-language-server'],
-    \ 'python':['pyls'],
-    \ 'ruby': ['solargraph','stdio'],
-    \ 'rust': ['rls'],
-    \ 'sh': ['bash-language-server', 'start'],
-    \ }
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

@@ -6,6 +6,7 @@ ansible-lint
 autopep8
 flake8
 git-revise
+gitlint
 glances
 proselint
 semgrep
@@ -14,3 +15,4 @@ sqlfluff
 rpmlint
 jedi
 pyls
+yamlfix

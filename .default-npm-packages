@@ -11,3 +11,5 @@ markdown-spellcheck
 mermaid-js/mermaid-cli
 vim-language-server
 typescript-language-server
+spectral
+swaglint

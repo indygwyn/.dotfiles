@@ -93,7 +93,7 @@ in lightline and I do use ligatures in my setup.
 ### Terminal
 
 I use Hyper, I like it.  You could easily adapt this to iTerm2. Hyper supports
-my font ligatures.  My preferred colorthem is Dracula or Daycula
+my font ligatures.  My preferred color theme is Dracula or Daycula
 
 ### -local
 

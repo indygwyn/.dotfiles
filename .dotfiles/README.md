@@ -45,56 +45,57 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout
 ```
 
-## Extra Setup
+## Tools Setup
 
-### HomeBrew 
+### HomeBrew
 
-Use `brew bundle` to install everything in your
-[Brewfile](https://github.com/Homebrew/homebrew-bundle)
+Use `brew bundle --global` to install everything in your
+~/.[Brewfile](https://github.com/Homebrew/homebrew-bundle)
 
-```
-cd ~/.dotfiles
-brew bundle
-```
+### ASDF
 
-### Ruby (rbenv & gem)
+Much of what used to be installed and managed by HomeBrew is now managed by
+[ASDF](https://asdf-vm.com), which is a version manager similar to rbenv or
+pyenv but with plugins to manage just about anything
 
-Use [`rbenv`](https://github.com/rbenv/rbenv) to install the latest ruby and
-[`bundler`](https://bundler.io) to install your required gems.
-`rbenv`, `ruby-build`, and `bundler` were installed by HomeBrew
+- asdf plugin list
+  - direnv
+  - fzf
+  - golang
+  - java
+  - nodejs
+  - python
+  - ruby
+  - rust
+  - shellcheck
+  - shfmt
+  - starship
+  - terraform
 
-```
-rbenv init 		# initialize your rbenv
-# rbenv setup should already be in your shell from .dotfiles
-source .bashrc		# source your shell files
-source .bash_profile
-rbenv install 2.7.2	# install ruby 2.7.2 using ruby-build
-rbenv global 2.7.2	# set 2.7.2 as your global python version
-cd ~/.dotfiles
-bundle install		# install all the Gems in Gemfile
-```
+The .default-* files control the Ruby Gems, Python Modules, Rust Crates,
+NodeJS Packages, and Go Packages that are maintained/installed when you install
+ad new version of those tools
 
-### Python (pyenv & pip)
+### VIM setup
 
-Use `pyenv` to install the latest python and `pip` to install your required
-modules. `pyenv` was installed by HomeBrew
+My VIM setup is not terribly complicated but depends on a lot of the linters
+and LSP providers that are maintained via asdf or homebrew
 
-```
-pyenv init		# initialize your pyenv
-# pyenv setup should already be in your shell from .dotfiles
-source .bashrc		# source your shell files
-source .bash_profile
-pyenv install 3.9.0	# install python 3.9.0
-pyenv global 3.9.0	# set 3.9.0 as your global python version
-pip -r .dotfiles requirements.txt
+I install MacVIM as most of my machines are macs, but it the setup should work
+with plain jane vim as well (some day NeoVIM or OniVIM2)
 
-```
+The main plugins I depend on are ALE(linting) and deoplete(completion) and they
+both use vim-lsp to use LSP providers.
 
-### NodeJS (yarn)
+I do depend on the Fira Code font to provide some powerline and git merge glyphs
+in lightline and I do use ligatures in my setup.
 
-Use `yarn` to install your required NodeJS modules.  `yarn` and `node` were
-installed by HomeBrew
+### Terminal
 
-```
-yarn global add standard
-```
+I use Hyper, I like it.  You could easily adapt this to iTerm2. Hyper supports
+my font ligatures.  My preferred colorthem is Dracula or Daycula
+
+### -local
+
+Many of my configs will load up a .blah-local file if it exists for settings
+and such that are only required on that particular machine/environment.

@@ -1,8 +1,8 @@
 filippo.io/age
 filippo.io/mkcert
-github.com/jesseduffield/lazygit
-github.com/tomnomnom/gron
 github.com/ericchiang/pup
+github.com/jesseduffield/lazygit
 github.com/nikitavoloboev/gitupdate
+github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls

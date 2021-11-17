@@ -4,6 +4,7 @@ binding_of_caller
 brewfile
 clipboard
 coderay
+debug --pre
 ed25519
 fasterer
 git
@@ -34,9 +35,8 @@ refinements
 reline
 rspec
 rubocop
+solargraph
 tomlrb
 versionaire
 webrick
 yamljson
-debug --pre
-solargraph

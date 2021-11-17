@@ -1,6 +1,3 @@
-pynvim
-neovim
-requests
 ansible
 ansible-lint
 autopep8
@@ -8,11 +5,14 @@ flake8
 git-revise
 gitlint
 glances
-proselint
-semgrep
-yamllint
-sqlfluff
-rpmlint
 jedi
+neovim
+proselint
 pyls
+pynvim
+requests
+rpmlint
+semgrep
+sqlfluff
 yamlfix
+yamllint

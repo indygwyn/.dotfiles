@@ -58,14 +58,6 @@ function autoCompleteHostname() {
 }
 complete -F autoCompleteHostname ssh # ssh autocomplete function
 
-function repeat() {
-	local count="$1" i
-	shift
-	for i in $(seq 1 "$count"); do
-		eval "$@"
-	done
-}
-
 function cd() {
 	case $1 in
 		....)

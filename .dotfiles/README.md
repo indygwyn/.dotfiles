@@ -1,7 +1,10 @@
 # Keep dotfiles where they belong and avoid symlinks entirely
 
-This arrangement of dotfiles is taken from [here](https://news.ycombinator.com/item?id=11070797)
-and [here](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and [here](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b).
+This arrangement of dotfiles is taken from
+[here](https://news.ycombinator.com/item?id=11070797) and
+[here](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
+and [here](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b).
+
 The idea is to keep all the dotfiles at their original locations, and avoid
 symlinks entirely (as opposed to the general approach of putting all config
 files in one directory and symlinking them with a script or GNU stow).
@@ -87,13 +90,16 @@ with plain jane vim as well (some day NeoVIM or OniVIM2)
 The main plugins I depend on are ALE(linting) and deoplete(completion) and they
 both use vim-lsp to use LSP providers.
 
-I do depend on the Fira Code font to provide some powerline and git merge glyphs
-in lightline and I do use ligatures in my setup.
+I do depend on the [FiraCode](https://github.com/tonsky/FiraCode) font to
+provide some powerline and git merge glyphs in lightline and I do use ligatures
+in my setup.
 
 ### Terminal
 
-I use Hyper, I like it.  You could easily adapt this to iTerm2. Hyper supports
-my font ligatures.  My preferred color theme is Dracula or Daycula
+I use [Hyper](https://hyper.is), I like it. You could easily adapt this to
+iTerm2. Hyper supports my font ligatures. My preferred colorthem is
+[Dracula](https://draculatheme.com) or
+[Daycula](https://github.com/ghifarit53/daycula-vim)
 
 ### -local
 

@@ -4,7 +4,6 @@ binding_of_caller
 brewfile
 clipboard
 coderay
-debug --pre
 ed25519
 fasterer
 git

@@ -37,8 +37,6 @@
 [credential]
       helper = osxkeychain
       helper = cache
-[pull]
-      ff = only
 [push]
       gpgSign = if-asked
       followTags = true
@@ -76,3 +74,5 @@
 	defaultBranch = main
 [advice]
 	detachedHead = false
+[pull]
+	ff = only

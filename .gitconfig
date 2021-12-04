@@ -37,8 +37,6 @@
 [credential]
       helper = osxkeychain
       helper = cache
-[pull]
-      ff = only
 [push]
       gpgSign = if-asked
       followTags = true
@@ -74,3 +72,7 @@
 	repo = /Users/twh
 [init]
 	defaultBranch = main
+[advice]
+	detachedHead = false
+[pull]
+	ff = only

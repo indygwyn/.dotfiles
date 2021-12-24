@@ -1,6 +1,7 @@
 filippo.io/age
 filippo.io/mkcert
 github.com/ericchiang/pup
+github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 github.com/jesseduffield/lazygit
 github.com/nikitavoloboev/gitupdate
 github.com/tomnomnom/gron

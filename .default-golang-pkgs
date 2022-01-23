@@ -7,3 +7,4 @@ github.com/nikitavoloboev/gitupdate
 github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
+github.com/multiprocessio/dsq@latest

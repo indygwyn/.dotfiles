@@ -8,3 +8,8 @@ github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 github.com/multiprocessio/dsq@latest
+github.com/charmbracelet/skate@latest
+github.com/charmbracelet/glow@latest
+github.com/charmbracelet/charm@latest
+github.com/qichengzx/m2@latest
+github.com/charmbracelet/soft-serve/cmd/soft@latest

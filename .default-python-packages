@@ -12,6 +12,7 @@ proselint
 pyls
 pynvim
 requests
+rich-cli
 rpmlint
 semgrep
 sqlfluff

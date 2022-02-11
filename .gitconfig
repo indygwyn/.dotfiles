@@ -12,7 +12,7 @@
       process = git-lfs filter-process
       required = true
 [color]
-      ui = auto
+      ui = always
 [user]
 	name = Thomas Holt
 	email = tholt@salesforce.com

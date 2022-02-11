@@ -1,5 +1,6 @@
 --git https://github.com/adder46/hstr-rs.git
 b3sum
+coreutils
 git-branchless
 hstr-rs
 hurl

@@ -30,6 +30,7 @@ rake
 rbnacl
 rbnacl-libsodium
 rbs
+redis-stat
 reek
 refinements
 reline

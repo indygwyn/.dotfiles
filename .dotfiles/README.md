@@ -1,3 +1,13 @@
+# Mermaid test
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 # Keep dotfiles where they belong and avoid symlinks entirely
 
 This arrangement of dotfiles is taken from

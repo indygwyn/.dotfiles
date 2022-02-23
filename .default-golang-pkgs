@@ -14,3 +14,4 @@ github.com/charmbracelet/charm@latest
 github.com/qichengzx/m2@latest
 github.com/charmbracelet/soft-serve/cmd/soft@latest
 github.com/benhoyt/goawk@latest
+mvdan.cc/sh/v3/cmd/shfmt@latest

@@ -388,8 +388,8 @@ darwin*)
   }
 	function asdf-up() {
 		asdf plugin update --all
-		asdf current | awk '{print $1}' | while read x ; do
-			asdf install $x latest ; asdf global $x latest
+		asdf current | awk '{print $1}' | while read -r x ; do
+			asdf install "$x" latest ; asdf global "$x" latest
 		done
   }
 	function f() { open -a "Finder" "${1-.}"; }

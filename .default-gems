@@ -12,6 +12,7 @@ git-lint
 hashie
 http
 httpclient
+lefthook
 looksee
 mdl
 octokit

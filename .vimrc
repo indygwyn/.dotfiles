@@ -11,8 +11,8 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'chrisbra/csv.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting

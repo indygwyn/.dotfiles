@@ -392,6 +392,9 @@ darwin*)
 			asdf install "$x" latest ; asdf global "$x" latest
 		done
   }
+  function vim-up() {
+		vim +PlugUpgrade +PlugUpdate +PlugClean +qall
+  }
 	function f() { open -a "Finder" "${1-.}"; }
 	complete -o default -o nospace -F _git g
 	function pdfman() {

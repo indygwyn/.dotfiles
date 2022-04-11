@@ -38,6 +38,7 @@ Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabl
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 " Plug 'ervandew/supertab'                " <Tab> insert completion
 Plug 'segeljakt/vim-silicon'            " carbon.sh clone
+Plug 'ryanolsonx/vim-xit'
 call plug#end()
 
 " post plugin config

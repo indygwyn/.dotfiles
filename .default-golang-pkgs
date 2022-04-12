@@ -16,3 +16,4 @@ github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
+github.com/multiprocessio/dsq@latest

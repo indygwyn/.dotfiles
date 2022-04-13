@@ -15,10 +15,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'ajh17/VimCompletesMe'             " simple lightweight tap completion
-Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'prabirshrestha/asyncomplete.vim'  " background completion
+Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
+Plug 'mattn/vim-lsp-settings'
+"Plug 'ajh17/VimCompletesMe'             " simple lightweight tap completion
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
@@ -46,6 +47,7 @@ Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabl
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'segeljakt/vim-silicon'            " carbon.sh clone
 Plug 'airblade/vim-rooter'              " pwd root in git repo
+Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 call plug#end()
 
@@ -172,6 +174,19 @@ augroup GnuPG
 augroup END
 
 let g:markdown_fenced_languages = ['vim','help']
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'

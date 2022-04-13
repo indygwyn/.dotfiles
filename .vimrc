@@ -1,3 +1,11 @@
+" verify we have vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  " vint: next-line -ProhibitAutocmdWithNoGroup
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " pre-plugin config
 let mapleader=','
 set encoding=utf-8
@@ -7,28 +15,28 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'chrisbra/csv.vim'
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
+Plug 'ajh17/VimCompletesMe'             " simple lightweight tap completion
+Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
+Plug 'prabirshrestha/asyncomplete.vim'  " background completion
+Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
+Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
+Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-eunuch'                 " Unix Helpers for vim
+Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
+Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
-Plug 'Raimondi/delimitMate'             " auto-completion for quotes, parens, brackets
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
 Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=
-Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'docunext/closetag.vim'            " close open HTML/XML tags
-Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
 Plug 'mhinz/vim-signify'                " Show a diff in sign column
 Plug 'maximbaz/lightline-ale'           " lightline ale support
 Plug 'macthecadillac/lightline-gitdiff' " lightline git support
@@ -36,9 +44,9 @@ Plug 'skywind3000/asyncrun.vim'         " background runner
 Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
-" Plug 'ervandew/supertab'                " <Tab> insert completion
 Plug 'segeljakt/vim-silicon'            " carbon.sh clone
-Plug 'ryanolsonx/vim-xit'
+Plug 'airblade/vim-rooter'              " pwd root in git repo
+Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 call plug#end()
 
 " post plugin config
@@ -171,10 +179,8 @@ let g:ale_sign_info = 'ℹ️'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters_ignore = {
-      \   'ruby': ['standardrb','solargraph'],
+      \   'ruby': ['standardrb'],
       \}
-
-let g:deoplete#enable_at_startup = 1
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

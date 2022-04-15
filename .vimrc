@@ -55,6 +55,7 @@ Plug 'airblade/vim-rooter'              " pwd root in git repo
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 call plug#end()
+runtime macros/sandwich/keymap/surround.vim
 
 " post plugin config
 
@@ -193,7 +194,60 @@ let g:ale_linters_ignore = {
       \   'ruby': ['standardrb'],
       \}
 
-runtime macros/sandwich/keymap/surround.vim
+" vim-sandwich
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \   {
+      \     'buns'    : ['%{', '}'],
+      \     'filetype': ['elixir'],
+      \     'input'   : ['m'],
+      \     'nesting' : 1,
+      \   },
+      \   {
+      \     'buns'    : 'StructInput()',
+      \     'filetype': ['elixir'],
+      \     'kind'    : ['add', 'replace'],
+      \     'action'  : ['add'],
+      \     'input'   : ['M'],
+      \     'listexpr'    : 1,
+      \     'nesting' : 1,
+      \   },
+      \   {
+      \     'buns'    : ['%\w\+{', '}'],
+      \     'filetype': ['elixir'],
+      \     'input'   : ['M'],
+      \     'nesting' : 1,
+      \     'regex'   : 1,
+      \   },
+      \   {
+      \     'buns':     ['<%= ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['='],
+      \     'nesting':  1
+      \   },
+      \   {
+      \     'buns':     ['<% ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['-'],
+      \     'nesting':  1
+      \   },
+      \   {
+      \     'buns':     ['<%# ', ' %>'],
+      \     'filetype': ['eruby'],
+      \     'input':    ['#'],
+      \     'nesting':  1
+      \   }
+      \ ]
+
+function! StructInput() abort
+  let s:StructLast = input('Struct: ')
+  if s:StructLast !=# ''
+    let struct = printf('%%%s{', s:StructLast)
+  else
+    throw 'OperatorSandwichCancel'
+  endif
+  return [struct, '}']
+endfunction
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

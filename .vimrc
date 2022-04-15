@@ -28,6 +28,7 @@ Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
+Plug 'machakann/vim-sandwich'           " operators and textobjects to search/select/edit sandwiched texts
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
 Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
@@ -191,6 +192,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters_ignore = {
       \   'ruby': ['standardrb'],
       \}
+
+runtime macros/sandwich/keymap/surround.vim
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

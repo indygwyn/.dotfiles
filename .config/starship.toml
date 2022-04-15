@@ -2,11 +2,11 @@
 # right_format = """$all"""
 add_newline = false
 command_timeout = 1500
+format = "[$all](dimmed white)"
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[✖](bold red)"
-disabled = false
+success_symbol = "[❯](dimmed green)"
+error_symbol = "[❯](dimmed red)"
 
 [cmd_duration]
 min_time = 4

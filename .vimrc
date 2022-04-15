@@ -15,11 +15,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
+Plug 'Shougo/defx.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'prabirshrestha/asyncomplete.vim'  " background completion
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
 Plug 'mattn/vim-lsp-settings'
-"Plug 'ajh17/VimCompletesMe'             " simple lightweight tap completion
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
@@ -27,11 +29,13 @@ Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
-Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
 Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-eunuch'                 " Unix Helpers for vim
 Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
+Plug 'tpope/vim-ragtag'                 " markup language helperrs
+Plug 'tpope/vim-speeddating'            " use CTRL-A/CTRL-X to increment dates, times, and more
+Plug 'ryanoasis/vim-devicons'
 Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
@@ -178,15 +182,6 @@ let g:markdown_fenced_languages = ['vim','help']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'

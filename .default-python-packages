@@ -11,6 +11,7 @@ neovim
 proselint
 pyls
 pynvim
+python-language-server
 requests
 rich-cli
 rpmlint

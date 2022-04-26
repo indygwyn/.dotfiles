@@ -42,6 +42,7 @@ Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
 Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=
+Plug 'junegunn/limelight.vim'
 Plug 'docunext/closetag.vim'            " close open HTML/XML tags
 Plug 'mhinz/vim-signify'                " Show a diff in sign column
 Plug 'maximbaz/lightline-ale'           " lightline ale support
@@ -54,6 +55,8 @@ Plug 'segeljakt/vim-silicon'            " carbon.sh clone
 Plug 'airblade/vim-rooter'              " pwd root in git repo
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'vimwiki/vimwiki'                  " personal wiki for vim
+Plug 'farmergreg/vim-lastplace'
+Plug 'axvr/org.vim'
 call plug#end()
 runtime macros/sandwich/keymap/surround.vim
 

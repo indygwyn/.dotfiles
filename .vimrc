@@ -57,6 +57,7 @@ Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 Plug 'farmergreg/vim-lastplace'
 Plug 'axvr/org.vim'
+Plug 'dewyze/vim-tada'
 call plug#end()
 runtime macros/sandwich/keymap/surround.vim
 

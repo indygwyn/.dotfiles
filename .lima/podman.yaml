@@ -1,0 +1,88 @@
+---
+# To run `podman` on the host (assumes podman-remote is installed):
+# $ export CONTAINER_HOST=$(limactl list podman --format 'unix://{{.Dir}}/sock/podman.sock')
+# $ podman --remote ...
+
+# This example requires Lima v0.8.0 or later
+
+# Arch: "default", "x86_64", "aarch64".
+# Default: "default" (corresponds to the host architecture)
+arch: "default"
+
+# An image must support systemd and cloud-init.
+# Default: none (must be specified)
+images:
+- location: "https://download.fedoraproject.org/pub/fedora/linux/releases/35/Cloud/x86_64/images/Fedora-Cloud-Base-35-1.2.x86_64.qcow2"
+  arch: "x86_64"
+  digest: "sha256:fe84502779b3477284a8d4c86731f642ca10dd3984d2b5eccdf82630a9ca2de6"
+- location: "https://download.fedoraproject.org/pub/fedora/linux/releases/35/Cloud/aarch64/images/Fedora-Cloud-Base-35-1.2.aarch64.qcow2"
+  arch: "aarch64"
+  digest: "sha256:c71f2e6ce75b516d565e2c297ea9994c69b946cb3eaa0a4bbea400dbd6f59ae6"
+
+# CPUs
+# Default: 4
+cpus: 2
+
+# Memory size
+# Default: "4GiB"
+memory: "2GiB"
+
+# Disk size
+# Default: "100GiB"
+disk: "20GiB"
+
+mounts:
+- location: "~"
+  writable: false
+- location: "/tmp/lima"
+  writable: true
+
+containerd:
+  system: false
+  user: false
+
+provision:
+# `system` is executed with the root privilege
+- mode: system
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    command -v podman >/dev/null 2>&1 && exit 0
+    dnf update -y
+    dnf copr enable rhcontainerbot/podman4
+    dnf install -y podman
+    systemctl --system enable --now podman.socket
+# `user` is executed without the root privilege
+- mode: user
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    systemctl --user enable --now podman.socket
+probes:
+- description: podman to be installed
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    if ! timeout 30s bash -c "until command -v podman; do sleep 3; done"; then
+      echo >&2 "podman is not installed yet"
+      exit 1
+    fi
+  hint: See "/var/log/cloud-init-output.log" in the guest
+
+portForwards:
+- guestSocket: "/run/user/{{.UID}}/podman/podman.sock"
+  hostSocket: "{{.Dir}}/sock/podman.sock"
+
+message: |
+  To run `podman` on the host (assumes podman-remote is installed):
+  $ export CONTAINER_HOST=unix://{{.Dir}}/sock/podman.sock
+  $ podman{{if eq .HostOS "linux"}}-remote{{end}} ...
+firmware:
+  # Use legacy BIOS instead of UEFI.
+  # Default: false
+  legacyBIOS: false
+
+video:
+  # QEMU display, e.g., "none", "cocoa", "sdl", "gtk".
+  # Default: "none"
+  display: "none"

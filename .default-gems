@@ -39,6 +39,7 @@ restforce
 rspec
 rubocop
 solargraph
+sorbet
 tomlrb
 versionaire
 webrick

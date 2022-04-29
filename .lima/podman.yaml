@@ -49,7 +49,7 @@ provision:
     set -eux -o pipefail
     command -v podman >/dev/null 2>&1 && exit 0
     dnf update -y
-    dnf copr enable rhcontainerbot/podman4
+    dnf copr enable rhcontainerbot/podman4 -y
     dnf install -y podman
     systemctl --system enable --now podman.socket
 # `user` is executed without the root privilege

@@ -6,6 +6,7 @@ markdown-spellcheck
 mermaid-js/mermaid-cli
 npm-groovy-lint
 prettier
+snyk
 spectral
 standard
 swaglint

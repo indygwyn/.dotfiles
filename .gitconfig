@@ -1,36 +1,25 @@
-[filter "media"]
-      required = true
-      clean = git media clean %f
-      smudge = git media smudge %f
-[filter "hawser"]
-      clean = git hawser clean %f
-      smudge = git hawser smudge %f
-      required = true
-[filter "lfs"]
-      clean = git-lfs clean -- %f
-      smudge = git-lfs smudge -- %f
-      process = git-lfs filter-process
-      required = true
-[color]
-      ui = always
-[user]
-	name = Thomas W. Holt Jr.
-	email = twh@pobox.com
 [core]
       editor = vim
       whitespace = trailing-space,space-before-tab
       excludesfile = /Users/tholt/.gitignore
       ignorecase = true
       autocrlf = input
-	attributesfile = /Users/twh/.gitattributes
+      attributesfile = /Users/twh/.gitattributes
+[merge]
+      conflictstyle = diff3
+[diff]
+      colorMoved = zebra
+[color]
+      ui = always
+[user]
+      name = Thomas W. Holt Jr.
+      email = twh@pobox.com
 [pack]
       useSparse = true
 [http]
       postBuffer = 157286400
 [fetch]
       prune = true
-[diff]
-      colorMoved = zebra
 [rebase]
       autostash = true
       autoSquash = true
@@ -40,6 +29,20 @@
 [push]
       gpgSign = if-asked
       followTags = true
+[commit]
+      gpgsign = true
+[include]
+      path = ~/.gitconfig-local
+[submodule]
+      recurse = true
+[maintenance]
+      repo = /Users/twh
+[init]
+      defaultBranch = main
+[advice]
+      detachedHead = false
+[pull]
+      ff = only
 [alias]
       co = checkout
       br = branch
@@ -60,19 +63,18 @@
       gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
       track = "!f() { ([ $# -eq 2 ] && ( echo \"Setting tracking for branch \" $1 \" -> \" $2;git branch --set-upstream $1 $2; ) || ( git for-each-ref --format=\"local: %(refname:short) <--sync--> remote: %(upstream:short)\" refs/heads && echo --Remotes && git remote -v)); }; f"
       cake = log --date=format:'%d %b %Y' --diff-filter=A --name-only --pretty='%n%C(yellow bold)🎂️ %ad%Creset by (%C(blue bold)%h%Creset)'
-	cloner = clone --recursive
-	uncommit = reset --soft HEAD^
-[commit]
-	gpgsign = true
-[include]
-      path = ~/.gitconfig-local
-[submodule]
-	recurse = true
-[maintenance]
-	repo = /Users/twh
-[init]
-	defaultBranch = main
-[advice]
-	detachedHead = false
-[pull]
-	ff = only
+      cloner = clone --recursive
+      uncommit = reset --soft HEAD^
+[filter "media"]
+      required = true
+      clean = git media clean %f
+      smudge = git media smudge %f
+[filter "hawser"]
+      clean = git hawser clean %f
+      smudge = git hawser smudge %f
+      required = true
+[filter "lfs"]
+      clean = git-lfs clean -- %f
+      smudge = git-lfs smudge -- %f
+      process = git-lfs filter-process
+      required = true

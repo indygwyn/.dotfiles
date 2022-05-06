@@ -384,7 +384,7 @@ darwin*)
 	alias md5sum='md5'
 	alias sha1sum='shasum'
 	alias cpwd='pwd|tr -d "\n"|pbcopy'
-	alias docker='podman'
+	#alias docker='podman'
 	function brew-up() {
     brew update && brew upgrade && brew cleanup
   }

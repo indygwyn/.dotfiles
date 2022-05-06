@@ -1,5 +1,6 @@
 bash-language-server
 docsify-cli
+dockerfile-language-server-nodejs
 git-user-switch
 jsonlint
 markdown-spellcheck
@@ -15,4 +16,5 @@ vim-language-server
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
 vscode-json-languageserver
+yaml-language-server
 yarn

@@ -26,6 +26,7 @@ pry-doc
 pry-rails
 pry-stack_explorer
 pry-theme
+puppet-lint
 rack
 rake
 rbnacl

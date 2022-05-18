@@ -393,6 +393,9 @@ darwin*)
 		asdf current | awk '{print $1}' | while read -r x ; do
 			asdf install "$x" latest ; asdf global "$x" latest
 		done
+		# reshim everything because of the embedded version in the shebangs
+		rm -f ~/.asdf/shims/*
+		asdf reshim
   }
   function vim-up() {
 		vim +PlugUpgrade +PlugUpdate +PlugClean +qall

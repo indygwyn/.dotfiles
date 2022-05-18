@@ -56,8 +56,10 @@ Plug 'airblade/vim-rooter'              " pwd root in git repo
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 Plug 'farmergreg/vim-lastplace'
+Plug 'rodjek/vim-puppet'
 Plug 'axvr/org.vim'
 Plug 'dewyze/vim-tada'
+Plug 'rizzatti/dash.vim'                " Dash.app integration
 call plug#end()
 runtime macros/sandwich/keymap/surround.vim
 

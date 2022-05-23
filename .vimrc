@@ -166,6 +166,9 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" :Marked to open current file in Marked
+command Marked :silent !open -a Marked\ 2.app '%:p'
+
 " extra ft settings for chef/shell are in ~/.vim/after/ft*/*.vim
 
 function! SourceIfExists(file)

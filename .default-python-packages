@@ -1,6 +1,7 @@
 ansible
 ansible-lint
 autopep8
+docutils
 flake8
 git-revise
 gitlint

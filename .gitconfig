@@ -5,12 +5,19 @@
       ignorecase = true
       autocrlf = input
       attributesfile = /Users/twh/.gitattributes
+[transfer]
+      fsckobjects = true
+[receive]
+      fsckobjects = true
+[pull]
+      ff = only
 [merge]
+      ff = only
       conflictstyle = diff3
 [diff]
       colorMoved = zebra
 [color]
-      ui = always
+      ui = auto
 [user]
       name = Thomas W. Holt Jr.
       email = twh@pobox.com
@@ -19,7 +26,9 @@
 [http]
       postBuffer = 157286400
 [fetch]
+      fsckobjects = true
       prune = true
+      parallel = 0
 [rebase]
       autostash = true
       autoSquash = true
@@ -39,10 +48,10 @@
       repo = /Users/twh
 [init]
       defaultBranch = main
+[feature]
+      manyFiles = true
 [advice]
       detachedHead = false
-[pull]
-      ff = only
 [alias]
       co = checkout
       br = branch
@@ -65,6 +74,7 @@
       cake = log --date=format:'%d %b %Y' --diff-filter=A --name-only --pretty='%n%C(yellow bold)🎂️ %ad%Creset by (%C(blue bold)%h%Creset)'
       cloner = clone --recursive
       uncommit = reset --soft HEAD^
+      credit = blame
 [filter "media"]
       required = true
       clean = git media clean %f

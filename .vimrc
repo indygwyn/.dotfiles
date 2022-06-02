@@ -199,6 +199,8 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_sign_info = 'ℹ️'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
+let g:ale_writegood_options = '--yes-eprime'
+
 let g:ale_linters_ignore = {
       \   'ruby': ['standardrb', 'reek'],
       \}

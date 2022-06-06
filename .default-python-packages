@@ -10,6 +10,7 @@ ipython
 jc
 jedi
 neovim
+perflint
 proselint
 pyls
 pynvim

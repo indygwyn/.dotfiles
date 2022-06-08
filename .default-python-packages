@@ -12,6 +12,7 @@ jedi
 neovim
 perflint
 proselint
+pygments
 pyls
 pynvim
 python-language-server

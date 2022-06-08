@@ -5,6 +5,7 @@ dockerfile-language-server-nodejs
 git-user-switch
 jscpd
 jsonlint
+markdownlint
 markdown-spellcheck
 mermaid-js/mermaid-cli
 npm-groovy-lint

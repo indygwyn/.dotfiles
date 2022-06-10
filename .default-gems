@@ -18,6 +18,7 @@ lefthook
 looksee
 mdl
 mdless
+metadata-json-lint
 octokit
 open-uri
 pragmater
@@ -30,6 +31,15 @@ pry-rails
 pry-stack_explorer
 pry-theme
 puppet-lint
+puppet-lint-strict_indent-check
+puppet-lint-manifest_whitespace-check
+puppet-lint-unquoted_string-check
+puppet-lint-leading_zero-check
+puppet-lint-absolute_classname-check
+puppet-lint-trailing_comma-check
+puppet-lint-file_ensure-check
+puppet-lint-legacy_facts-check
+puppet-strings
 rack
 rake
 rbnacl
@@ -41,9 +51,12 @@ refinements
 reline
 restforce
 rspec
+rspec-puppet
 rubocop
+rufo
 solargraph
 sorbet
+standardrb
 tomlrb
 versionaire
 webrick

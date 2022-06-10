@@ -6,6 +6,7 @@ flake8
 git-revise
 gitlint
 glances
+grip
 ipython
 jc
 jedi
@@ -23,3 +24,4 @@ semgrep
 sqlfluff
 yamlfix
 yamllint
+yapf

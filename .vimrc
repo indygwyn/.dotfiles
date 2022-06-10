@@ -15,14 +15,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'Shougo/defx.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/defx.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'prabirshrestha/asyncomplete.vim'  " background completion
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
 Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
+Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
@@ -146,7 +147,7 @@ set updatetime=250
 set number            " number lines
 set relativenumber    " relative to cursor position
 set hlsearch          " highlight search matches
-set colorcolumn=80,100 " ruler in column 80 and 100
+set colorcolumn=72,79 " ruler in column 80 and 100
 highlight ColorColumn guibg=SlateBlue
 
 " Visual mode mappings
@@ -202,7 +203,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters_ignore = {
-      \   'ruby': ['standardrb', 'reek'],
+      \   'ruby': ['rubocop', 'reek'],
       \}
 
 " vim-sandwich

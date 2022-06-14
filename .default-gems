@@ -5,6 +5,7 @@ binding_of_caller
 brewfile
 clipboard
 coderay
+cucumber
 doing
 ed25519
 fasterer

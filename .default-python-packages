@@ -12,6 +12,8 @@ jc
 jedi
 neovim
 perflint
+pex
+podman-compose
 proselint
 pygments
 pyls
@@ -19,7 +21,6 @@ pynvim
 python-language-server
 requests
 rich-cli
-rpmlint
 semgrep
 sqlfluff
 yamlfix

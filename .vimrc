@@ -148,7 +148,7 @@ set number            " number lines
 set relativenumber    " relative to cursor position
 set hlsearch          " highlight search matches
 set colorcolumn=72,79 " ruler in column 80 and 100
-highlight ColorColumn guibg=SlateBlue
+highlight ColorColumn guibg=#44475a
 
 " Visual mode mappings
 nmap <S-Up> V
@@ -203,7 +203,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters_ignore = {
-      \   'ruby': ['rubocop', 'reek'],
+      \   'ruby': ['standardrb', 'reek'],
       \}
 
 " vim-sandwich

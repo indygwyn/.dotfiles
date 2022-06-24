@@ -19,3 +19,4 @@ mvdan.cc/sh/v3/cmd/shfmt@latest
 github.com/multiprocessio/dsq@latest
 github.com/natesales/q@latest
 github.com/rust-lang/rls@latest
+github.com/sachaos/viddy@latest

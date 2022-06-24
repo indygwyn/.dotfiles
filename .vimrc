@@ -202,8 +202,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_writegood_options = '--yes-eprime'
 
-let g:ale_linters_ignore = {
-      \   'ruby': ['standardrb', 'reek'],
+let g:ale_linters = {
+      \   'ruby': ['standardrb', 'solargraph', 'reek'],
+      \   'python': ['flake8', 'pylint', 'bandit', 'pylsp']
       \}
 
 " vim-sandwich

@@ -10,7 +10,7 @@ export PATH=${PATH}:${GOPATH}/bin
 export CHEF_REPO=${HOME}/Cookbooks/salesforce/chef-repo/
 export DATA_BAGS_PATH=${HOME}/Cookbooks/salesforce/data_bags
 export DATA_BAG_SECRET_KEY_PATH=${HOME}/.chef/encrypted_data_bag_secret
-export RUBYOPT='-W:no-deprecated -W:no-experimental'
+#export RUBYOPT='-W:no-deprecated -W:no-experimental'
 if command -v brew 1> /dev/null 2>&1 ; then
 	OPENSSLHOME=$(brew --prefix openssl@1.1)
 	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSLHOME}"

@@ -8,6 +8,7 @@ gitlint
 glances
 grip
 ipython
+iredis
 jc
 jedi
 neovim

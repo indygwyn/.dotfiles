@@ -11,6 +11,7 @@ ipython
 iredis
 jc
 jedi
+minio==5.0.10
 neovim
 perflint
 pex

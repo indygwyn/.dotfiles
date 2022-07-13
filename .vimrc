@@ -262,5 +262,9 @@ function! StructInput() abort
   return [struct, '}']
 endfunction
 
+" silly python comment shortcut
+vnoremap <silent> # :s/^/# /<cr>:noh<cr>
+vnoremap <silent> -# :s/^# //<cr>:noh<cr>
+
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

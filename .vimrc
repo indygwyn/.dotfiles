@@ -23,7 +23,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
 Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
-Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
+"Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
@@ -61,6 +61,8 @@ Plug 'rodjek/vim-puppet'
 Plug 'axvr/org.vim'
 Plug 'dewyze/vim-tada'
 Plug 'rizzatti/dash.vim'                " Dash.app integration
+Plug 'vlime/vlime', {'rtp': 'vim/'}
+Plug 'kovisoft/paredit'
 call plug#end()
 runtime macros/sandwich/keymap/surround.vim
 
@@ -203,7 +205,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters = {
-      \   'ruby': ['standardrb', 'solargraph', 'reek'],
+      \   'ruby': ['standardrb'],
       \   'python': ['flake8', 'pylint', 'bandit', 'pylsp']
       \}
 

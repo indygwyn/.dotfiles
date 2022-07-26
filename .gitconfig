@@ -69,12 +69,24 @@
       dog = log --all --decorate --oneline --graph
       ffpull = pull --ff-only
       ffmerge = merge --ff-only
-      gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
+      gone = ! "git fetch -p && \
+            git for-each-ref --format '%(refname:short) %(upstream:track)' \
+            | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
       track = "!f() { ([ $# -eq 2 ] && ( echo \"Setting tracking for branch \" $1 \" -> \" $2;git branch --set-upstream $1 $2; ) || ( git for-each-ref --format=\"local: %(refname:short) <--sync--> remote: %(upstream:short)\" refs/heads && echo --Remotes && git remote -v)); }; f"
       cake = log --date=format:'%d %b %Y' --diff-filter=A --name-only --pretty='%n%C(yellow bold)🎂️ %ad%Creset by (%C(blue bold)%h%Creset)'
       cloner = clone --recursive
       uncommit = reset --soft HEAD^
       credit = blame
+      big-files  = !"git rev-list --objects --all \
+                   | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+                   | sed -n 's/^blob //p' \
+                   | sort -nk2 \
+                   | cut -c 1-12,41- \
+                   | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+      big-objects = !"git rev-list --all \
+                    | parallel git ls-tree -r --long "{}" \
+                    | sort -uk3 \
+                    | sort -nk4"
 [filter "media"]
       required = true
       clean = git media clean %f

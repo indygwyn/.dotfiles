@@ -87,6 +87,8 @@
                     | parallel git ls-tree -r --long "{}" \
                     | sort -uk3 \
                     | sort -nk4"
+	    whatadded = log --diff-filter=A --follow --find-renames=40% --oneline
+      birthdate = log --diff-filter=A --follow --find-renames=40% --pretty="format:%as"
 [filter "media"]
       required = true
       clean = git media clean %f

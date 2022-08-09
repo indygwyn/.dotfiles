@@ -14,6 +14,7 @@ record-query
 secrets
 semver-explain
 silicon
+ssclient
 tokei
 typos-cli
 websocat

@@ -24,6 +24,7 @@ neovim
 pep8
 perflint
 pex
+pip-audit
 podman-compose
 proselint
 pygithub

@@ -205,7 +205,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters = {
-      \   'ruby': ['rubocop', 'standardrb', 'reek', 'solargraph']
+      \   'ruby': ['standardrb'],
       \   'python': ['flake8', 'pylint', 'bandit', 'pylsp']
       \}
 

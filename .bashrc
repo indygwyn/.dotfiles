@@ -483,6 +483,7 @@ alias x='exa --all --long --header --group --group-directories-first --time-styl
 alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
+alias j2y='jq -r toYaml'
 
 eval "$(asdf exec starship init bash)"
 eval "$(asdf exec direnv hook bash)"

@@ -264,6 +264,9 @@ function! StructInput() abort
   return [struct, '}']
 endfunction
 
+nnoremap <leader>dd :Lexplore %:p:h<CR>
+nnoremap <Leader>da :Lexplore<CR>
+
 " silly python comment shortcut
 vnoremap <silent> # :s/^/# /<cr>:noh<cr>
 vnoremap <silent> -# :s/^# //<cr>:noh<cr>

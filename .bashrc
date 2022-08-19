@@ -32,120 +32,126 @@ export DBHISTORYFILE="$HOME/.dbhist"
 export starship_precmd_user_func=_bash_history_sync
 export CDPATH=.:"$HOME"
 
-function history() {
-	_bash_history_sync
-	builtin history "$@"
+function history {
+    _bash_history_sync
+    builtin history "$@"
 }
 
-function _bash_history_sync() {
-	builtin history -a
-	HISTFILESIZE=$HISTSIZE
-	builtin history -c
-	builtin history -r
+function _bash_history_sync {
+    builtin history -a
+    HISTFILESIZE=$HISTSIZE
+    builtin history -c
+    builtin history -r
 }
 
 # hex to decimal and vice-versa
-function h2d() { echo $((16#$@)); }
-function d2h() { echo $((0x$@)); }
+function h2d {
+    echo $((16#$@));
+}
+function d2h {
+    echo $((0x$@));
+}
 
-function autoCompleteHostname() {
-	local hosts
-	local cur
-	# shellcheck disable=SC2034,SC2207
-	hosts=($(awk '{split($1,a,",");print a[1]}' "$HOME/.ssh/known_hosts"))
-	cur=${COMP_WORDS[COMP_CWORD]}
-	# shellcheck disable=SC2016,SC2207,SC2086
-	COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur))
+function autoCompleteHostname {
+    local hosts
+    local cur
+    # shellcheck disable=SC2034,SC2207
+    hosts=($(awk '{split($1,a,",");print a[1]}' "$HOME/.ssh/known_hosts"))
+    cur=${COMP_WORDS[COMP_CWORD]}
+    # shellcheck disable=SC2016,SC2207,SC2086
+    COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur))
 }
 complete -F autoCompleteHostname ssh # ssh autocomplete function
 
-function cd() {
-	case $1 in
-		....)
-			builtin cd ../../.. || return
-			;;
-		...)
-			builtin cd ../.. || return
-			;;
-		*)
-			builtin cd  "$@" || return
-			;;
-	esac
+function cd {
+    case $1 in
+        ....)
+            builtin cd ../../.. || return
+            ;;
+        ...)
+            builtin cd ../.. || return
+            ;;
+        *)
+            builtin cd  "$@" || return
+            ;;
+    esac
 }
 
-function seqx() {
-	local lower upper output
-	lower=$1 upper=$2
-	while [ "$lower" -le "$upper" ]; do
-		output="$output $lower"
-		lower=$(("$lower" + 1))
-	done
-	echo "$output"
+function seqx {
+    local lower upper output
+    lower=$1 upper=$2
+    while [ "$lower" -le "$upper" ]; do
+        output="$output $lower"
+        lower=$(("$lower" + 1))
+    done
+    echo "$output"
 }
 
-function ip2hex() {
-	local ip="$1"
-	echo "$ip" |
-		awk -F. '{ for ( i=1; i<=NF; ++i ) printf ("%02x", $i % 256); print "" }'
+function ip2hex {
+    local ip="$1"
+    echo "$ip" |
+        awk -F. \
+            '{ for ( i=1; i<=NF; ++i ) printf ("%02x", $i % 256); print "" }'
 }
 
-function spinner() {
-	i=1
-	sp="/-\|"
-	echo -n ' '
-	while true; do
-		echo -en "\b${sp:i++%${#sp}:1}"
-	done
+function spinner {
+    i=1
+    sp="/-\|"
+    echo -n ' '
+    while true; do
+        echo -en "\b${sp:i++%${#sp}:1}"
+    done
 }
 
 function ssh-copy-id {
-	if [[ -z "$1" ]]; then
-		echo "!! You need to enter a hostname in order to send your public key !!"
-	else
-		echo "* Copying SSH public key to server..."
-		ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" <"$HOME/.ssh/id_ed25519.pub"
-		echo "* All done!"
-	fi
+    if [[ -z "$1" ]]; then
+        echo "!! Enter a hostname in order to send public key !!"
+    else
+        echo "* Copying SSH public key to server..."
+        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" < \
+            "$HOME/.ssh/id_ed25519.pub"
+        echo "* All done!"
+    fi
 
-	ID_FILE="${HOME}/.ssh/id_ed25519.pub"
+    ID_FILE="${HOME}/.ssh/id_ed25519.pub"
 
-	if [ "-i" = "$1" ]; then
-		shift
-		# check if we have 2 parameters left, if so the first is the new ID file
-		if [ -n "$2" ]; then
-			if expr "$1" : ".*\.pub" >/dev/null; then
-				ID_FILE="$1"
-			else
-				ID_FILE="$1.pub"
-			fi
-			shift # and this should leave $1 as the target name
-		fi
-	else
-		if [ "x$SSH_AUTH_SOCK" != x ] && ssh-add -L >/dev/null 2>&1; then
-			GET_ID="$GET_ID ssh-add -L"
-		fi
-	fi
+    if [ "-i" = "$1" ]; then
+        shift
+        # check if we have 2 parameters left, if so the first is the new ID file
+        if [ -n "$2" ]; then
+            if expr "$1" : ".*\.pub" >/dev/null; then
+                ID_FILE="$1"
+            else
+                ID_FILE="$1.pub"
+            fi
+            shift # and this should leave $1 as the target name
+        fi
+    else
+        if [ "x$SSH_AUTH_SOCK" != x ] && ssh-add -L >/dev/null 2>&1; then
+            GET_ID="$GET_ID ssh-add -L"
+        fi
+    fi
 
-	if [ -z "$(eval "$GET_ID")" ] && [ -r "${ID_FILE}" ]; then
-		GET_ID="cat ${ID_FILE}"
-	fi
+    if [ -z "$(eval "$GET_ID")" ] && [ -r "${ID_FILE}" ]; then
+        GET_ID="cat ${ID_FILE}"
+    fi
 
-	if [ -z "$(eval "$GET_ID")" ]; then
-		echo "ssh-copy-id: ERROR: No identities found" >&2
-		return 1
-	fi
+    if [ -z "$(eval "$GET_ID")" ]; then
+        echo "ssh-copy-id: ERROR: No identities found" >&2
+        return 1
+    fi
 
-	if [ "$#" -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-		echo "Usage: ssh-copy-id [-i [identity_file]] [user@]machine" >&2
-		return 1
-	fi
+    if [ "$#" -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        echo "Usage: ssh-copy-id [-i [identity_file]] [user@]machine" >&2
+        return 1
+    fi
 
-	# strip any trailing colon
-	host=${1%:}
+    # strip any trailing colon
+    host=${1%:}
 
-	{ eval "$GET_ID"; } | ssh "$host" "umask 077; test -d \${HOME}/.ssh || mkdir \${HOME}/.ssh ; cat >> \${HOME}/.ssh/authorized_keys" || return 1
+    { eval "$GET_ID"; } | ssh "$host" "umask 077; test -d \${HOME}/.ssh || mkdir \${HOME}/.ssh ; cat >> \${HOME}/.ssh/authorized_keys" || return 1
 
-	cat <<EOF
+    cat <<EOF
 Now try logging into the machine, with "ssh '$host'", and check in:
 
     ${HOME}/.ssh/authorized_keys
@@ -155,156 +161,156 @@ to make sure we haven't added extra keys that you weren't expecting.
 EOF
 }
 
-function ip2origin() {
-	if [[ -z "$1" ]]; then
-		echo "Usage: $0 IP"
-	else
-		ipary=("${1//./ }")
-		dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".origin.asn.cymru.com TXT
-	fi
+function ip2origin {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 IP"
+    else
+        ipary=("${1//./ }")
+        dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".origin.asn.cymru.com TXT
+    fi
 }
 
-function ip2peer() {
-	if [[ -z "$1" ]]; then
-		echo "Usage: $0 IP"
-	else
-		ipary=("${1//./ }")
-		dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".peer.asn.cymru.com TXT
-	fi
+function ip2peer {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 IP"
+    else
+        ipary=("${1//./ }")
+        dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".peer.asn.cymru.com TXT
+    fi
 }
 
-function asninfo() {
-	if [[ -z "$1" ]]; then
-		echo "Usage: $0 AS#####"
-	else
-		dig +short "$1.asn.cymru.com" TXT
-	fi
+function asninfo {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 AS#####"
+    else
+        dig +short "$1.asn.cymru.com" TXT
+    fi
 }
 
-function surootx() {
-	xauth list | while read -r XAUTH; do
-		echo "add $XAUTH" | sudo xauth
-	done
-	sudo -i
+function surootx {
+    xauth list | while read -r XAUTH; do
+        echo "add $XAUTH" | sudo xauth
+    done
+    sudo -i
 }
 
-function httpget() {
-	# shellcheck disable=SC2034
-	IFS=/ read -r proto z host query <<<"$1"
-	exec 3</dev/tcp/"$host"/80
-	{
-		echo GET /"$query" HTTP/1.1
-		echo connection: close
-		echo host: "$host"
-		echo
-	} >&3
-	sed '1,/^$/d' <&3 >"$(basename "$1")"
+function httpget {
+    # shellcheck disable=SC2034
+    IFS=/ read -r proto z host query <<<"$1"
+    exec 3</dev/tcp/"$host"/80
+    {
+        echo GET /"$query" HTTP/1.1
+        echo connection: close
+        echo host: "$host"
+        echo
+    } >&3
+    sed '1,/^$/d' <&3 >"$(basename "$1")"
 }
 
-function httpcompression() {
-	local encoding
-	encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" |
-		grep '^Content-Encoding:')" &&
-		echo "$1 is encoded using ${encoding#* }" ||
-		echo "$1 is not using any encoding"
+function httpcompression {
+    local encoding
+    encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" |
+        grep '^Content-Encoding:')" &&
+        echo "$1 is encoded using ${encoding#* }" ||
+        echo "$1 is not using any encoding"
 }
 
-function dataurl() {
-	local mimeType
-	mimeType="$(file -b --mime-type "$1")"
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8"
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+function dataurl {
+    local mimeType
+    mimeType="$(file -b --mime-type "$1")"
+    if [[ $mimeType == text/* ]]; then
+        mimeType="${mimeType};charset=utf-8"
+    fi
+    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 function base64url {
-	base64 -w 0 | tr '+/' '-_' | tr -d '='
+    base64 -w 0 | tr '+/' '-_' | tr -d '='
 }
 
-function 64font() {
-	openssl base64 -in "$1" | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "src:url(\"data:font/"ext";base64,"str1"\")  format(\"woff\");" }' | pbcopy
-	echo "$1 encoded as font and copied to clipboard"
+function 64font {
+    openssl base64 -in "$1" | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "src:url(\"data:font/"ext";base64,"str1"\")  format(\"woff\");" }' | pbcopy
+    echo "$1 encoded as font and copied to clipboard"
 }
 
-function gz() {
-	echo "orig size (bytes): "
-	wc -c "$1"
-	echo "gzipped size (bytes): "
-	gzip -c "$1" | wc -c
+function gz {
+    echo "orig size (bytes): "
+    wc -c "$1"
+    echo "gzipped size (bytes): "
+    gzip -c "$1" | wc -c
 }
 
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
+function digga {
+    dig +nocmd "$1" any +multiline +noall +answer
 }
 
-function genpass() {
-	local length=${1-8}
-	if command -v openssl >/dev/null; then
-		openssl rand -base64 "$length" | cut -c "1-$length"
-	else
-		local MATRIX="HpZldxsG47f0W9gNaLRTQjhUwnvPtD5eAzr6k@EyumB3@K^cbOCV+SFJoYi2q@MIX81"
-		local PASS=""
-		local n=1
-		while [ ${n} -le "$length" ]; do
-			PASS="$PASS${MATRIX:$((RANDOM % ${#MATRIX})):1}"
-			n=$((n + 1))
-		done
-		echo $PASS
-	fi
+function genpass {
+    local length=${1-8}
+    if command -v openssl >/dev/null; then
+        openssl rand -base64 "$length" | cut -c "1-$length"
+    else
+        local MATRIX="HpZldxsG47f0W9gNaLRTQjhUwnvPtD5eAzr6k@EyumB3@K^cbOCV+SFJoYi2q@MIX81"
+        local PASS=""
+        local n=1
+        while [ ${n} -le "$length" ]; do
+            PASS="$PASS${MATRIX:$((RANDOM % ${#MATRIX})):1}"
+            n=$((n + 1))
+        done
+        echo $PASS
+    fi
 }
 
-function highlight() {
-	declare -A fg_color_map
-	fg_color_map[black]=30
-	fg_color_map[red]=31
-	fg_color_map[green]=32
-	fg_color_map[yellow]=33
-	fg_color_map[blue]=34
-	fg_color_map[magenta]=35
-	fg_color_map[cyan]=36
-	fg_color_map[white]=37
+function highlight {
+    declare -A fg_color_map
+    fg_color_map[black]=30
+    fg_color_map[red]=31
+    fg_color_map[green]=32
+    fg_color_map[yellow]=33
+    fg_color_map[blue]=34
+    fg_color_map[magenta]=35
+    fg_color_map[cyan]=36
+    fg_color_map[white]=37
 
-	fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
-	c_rs=$'\e[0m'
-	gsed -u s"/$2/$fg_c\0$c_rs/g"
+    fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
+    c_rs=$'\e[0m'
+    gsed -u s"/$2/$fg_c\0$c_rs/g"
 }
 
-function tcpknock() {
-	if [[ -z $1 || -z $2 ]]; then
-		echo "Usage: $0 <host> <port>"
-		return
-	fi
-	local host=$1
-	local port=$2
-	timeout 1 bash -c "</dev/tcp/$host/$port &> /dev/null" &&
-		echo "$host: port $port is open" ||
-		echo "$host: port $port is closed"
+function tcpknock {
+    if [[ -z $1 || -z $2 ]]; then
+        echo "Usage: $0 <host> <port>"
+        return
+    fi
+    local host=$1
+    local port=$2
+    timeout 1 bash -c "</dev/tcp/$host/$port &> /dev/null" &&
+        echo "$host: port $port is open" ||
+        echo "$host: port $port is closed"
 }
 
-function tlsdates() {
-	if [[ -z $1 || -z $2 ]]; then
-		echo "Usage: $0 <host> <port>"
-		return
-	fi
-	local host=$1
-	local port=$2
-	echo | openssl s_client -servername "${host}" -connect "${host}:${port}" 2>/dev/null | openssl x509 -noout -dates
+function tlsdates {
+    if [[ -z $1 || -z $2 ]]; then
+        echo "Usage: $0 <host> <port>"
+        return
+    fi
+    local host=$1
+    local port=$2
+    echo | openssl s_client -servername "${host}" -connect "${host}:${port}" 2>/dev/null | openssl x509 -noout -dates
 }
 
-function truecolor() {
-	printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
+function truecolor {
+    printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 }
 
-function is_in_git_repo() {
+function is_in_git_repo {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
-function fzf-down() {
+function fzf-down {
   fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview "$@"
 }
 
-function _gf() {
+function _gf {
   is_in_git_repo || return
   git -c color.status=always status --short |
   fzf-down -m --ansi --nth 2..,.. \
@@ -312,7 +318,7 @@ function _gf() {
   cut -c4- | sed 's/.* -> //'
 }
 
-function _gb() {
+function _gb {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
   fzf-down --ansi --multi --tac --preview-window right:70% \
@@ -321,14 +327,14 @@ function _gb() {
   sed 's#^remotes/##'
 }
 
-function _gt() {
+function _gt {
   is_in_git_repo || return
   git tag --sort -version:refname |
   fzf-down --multi --preview-window right:70% \
     --preview 'git show --color=always {}'
 }
 
-function _gh() {
+function _gh {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
@@ -337,83 +343,93 @@ function _gh() {
   grep -o "[a-f0-9]\{7,\}"
 }
 
-function _gr() {
-  is_in_git_repo || return
-  git remote -v | awk '{print $1 "\t" $2}' | uniq |
-  fzf-down --tac \
-    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
-  cut -d$'\t' -f1
+function _gr {
+    is_in_git_repo || return
+    git remote -v | awk '{print $1 "\t" $2}' | uniq |
+    fzf-down --tac --preview \
+        'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
+    cut -d$'\t' -f1
 }
 
-function _gs() {
-  is_in_git_repo || return
-  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
-  cut -d: -f1
+function _gs {
+    is_in_git_repo || return
+    git stash list | fzf-down --reverse -d: --preview \
+        'git show --color=always {1}' |
+    cut -d: -f1
+}
+
+function git2http {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 git@somegithost:Path/Repo.git"
+        return
+    fi
+    echo "$1" | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
+    return
 }
 
 if [[ $- =~ i ]]; then
-  bind '"\er": redraw-current-line'
-  bind '"\C-g\C-f": "$(_gf)\e\C-e\er"'
-  bind '"\C-g\C-b": "$(_gb)\e\C-e\er"'
-  bind '"\C-g\C-t": "$(_gt)\e\C-e\er"'
-  bind '"\C-g\C-h": "$(_gh)\e\C-e\er"'
-  bind '"\C-g\C-r": "$(_gr)\e\C-e\er"'
-  bind '"\C-g\C-s": "$(_gs)\e\C-e\er"'
+    bind '"\er": redraw-current-line'
+    bind '"\C-g\C-f": "$(_gf)\e\C-e\er"'
+    bind '"\C-g\C-b": "$(_gb)\e\C-e\er"'
+    bind '"\C-g\C-t": "$(_gt)\e\C-e\er"'
+    bind '"\C-g\C-h": "$(_gh)\e\C-e\er"'
+    bind '"\C-g\C-r": "$(_gr)\e\C-e\er"'
+    bind '"\C-g\C-s": "$(_gs)\e\C-e\er"'
 fi
 
 # Platform Specific Aliases here
 case $OSTYPE in
 darwin*)
-	alias ls="gls --color"
-	alias eject='hdiutil eject'
-	alias apinfo='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
-	alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s'
-	alias cpwd='pwd|xargs echo -n|pbcopy'
-	alias flushdns='dscacheutil -flushcache'
-	alias locate='mdfind -name'
-	alias preview='open -a Preview'
-	alias xcode='open -a Xcode'
-	alias filemerge='open -a FileMerge'
-	alias safari='open -a Safari'
-	alias firefox='open -a Firefox'
-	alias chrome='open -a "Google Chrome"'
-	alias finder='open -a Finder '
-	alias textedit='open -a TextEdit'
-	alias hex='open -a "Hex Fiend"'
-	alias ldd='otool -L'
-	alias md5sum='md5'
-	alias sha1sum='shasum'
-	alias cpwd='pwd|tr -d "\n"|pbcopy'
-	#alias docker='podman'
-	function brew-up() {
-    brew update && brew upgrade && brew cleanup
-  }
-	function asdf-up() {
-		asdf plugin update --all
-		asdf current | awk '{print $1}' | while read -r x ; do
-			asdf install "$x" latest ; asdf global "$x" latest
-		done
-		# reshim everything because of the embedded version in the shebangs
-		rm -f ~/.asdf/shims/*
-		asdf reshim
-  }
-  function vim-up() {
-		vim +PlugUpgrade +PlugUpdate +PlugClean +qall
-  }
-	function f() { open -a "Finder" "${1-.}"; }
-	complete -o default -o nospace -F _git g
-	function pdfman() {
-		man -t "$1" | open -a /Applications/Preview.app -f
-	}
-	function note() {
-		local text
-		if [ -t 0 ]; then # argument
-			text="$1"
-		else # pipe
-			text=$(cat)
-		fi
-		body=$(echo "$text" | sed -E 's|$|<br>|g')
-		osascript >/dev/null <<EOF
+    alias ls="gls --color"
+    alias eject='hdiutil eject'
+    alias apinfo='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
+    alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s'
+    alias cpwd='pwd|xargs echo -n|pbcopy'
+    alias flushdns='dscacheutil -flushcache'
+    alias locate='mdfind -name'
+    alias preview='open -a Preview'
+    alias xcode='open -a Xcode'
+    alias filemerge='open -a FileMerge'
+    alias safari='open -a Safari'
+    alias firefox='open -a Firefox'
+    alias chrome='open -a "Google Chrome"'
+    alias finder='open -a Finder '
+    alias textedit='open -a TextEdit'
+    alias hex='open -a "Hex Fiend"'
+    alias ldd='otool -L'
+    alias md5sum='md5'
+    alias sha1sum='shasum'
+    alias cpwd='pwd|tr -d "\n"|pbcopy'
+    #alias docker='podman'
+    function brew-up {
+        brew update && brew upgrade && brew cleanup
+    }
+    function asdf-up {
+        asdf plugin update --all
+        asdf current | awk '{print $1}' | while read -r x ; do
+            asdf install "$x" latest ; asdf global "$x" latest
+        done
+        # reshim everything because of the embedded version in the shebangs
+        rm -f ~/.asdf/shims/*
+        asdf reshim
+    }
+    function vim-up {
+        vim +PlugUpgrade +PlugUpdate +PlugClean +qall
+    }
+    function f { open -a "Finder" "${1-.}"; }
+    complete -o default -o nospace -F _git g
+    function pdfman {
+        man -t "$1" | open -a /Applications/Preview.app -f
+    }
+    function note {
+        local text
+        if [ -t 0 ]; then # argument
+            text="$1"
+        else # pipe
+            text=$(cat)
+        fi
+        body=$(echo "$text" | sed -E 's|$|<br>|g')
+        osascript >/dev/null <<EOF
             tell application "Notes"
                 tell account "iCloud"
                     tell folder "Notes"
@@ -422,44 +438,24 @@ darwin*)
                 end tell
             end tell
 EOF
-	}
+    }
 
-	# This retrieves unread email for the current user using dscl to get the gmail address and keychain to get the password
-	function gmail() {
-		user=$(dscl . -read "/Users/$(whoami)" | grep "EMailAddress:" | sed 's/^EMailAddress: //')
-		pass=$(security find-internet-password -w -a "$user" -s "accounts.google.com")
-		curl -u "$user:$pass" --silent "https://mail.google.com/mail/feed/atom" | perl -ne '
-                print "Subject: $1 " if /<title>(.+?)<\/title>/ && $title++;
-                print "(from $1)\n" if /<email>(.+?)<\/email>/;
-                '
-	}
-
-	function remind() {
-		local text
-		if [ -t 0 ]; then
-			text="$1" # argument
-		else
-			text=$(cat) # pipe
-		fi
-		osascript >/dev/null <<EOF
+    function remind {
+        local text
+        if [ -t 0 ]; then
+            text="$1" # argument
+        else
+            text=$(cat) # pipe
+        fi
+        osascript >/dev/null <<EOF
                     tell application "Reminders"
                     tell the default list
                         make new reminder with properties {name:"$text"}
                         end tell
                     end tell
 EOF
-	}
-
-	;;
-solaris*)
-	export TERM=vt100
-	;;
-linux*) ;;
-
-netbsd) ;;
-
-FreeBSD) ;;
-
+    }
+    ;;
 esac
 
 complete -C vault vault
@@ -491,9 +487,12 @@ eval "$(asdf exec direnv hook bash)"
 # source <(kitty + complete setup bash)
 
 # A shortcut for asdf managed direnv.
-direnv() { asdf exec direnv "$@"; }
+function direnv {
+    asdf exec direnv "$@";
+}
 # shellcheck source=/dev/null
-[ -f ~/.asdf/plugins/java/set-java-home.bash ] && source ~/.asdf/plugins/java/set-java-home.bash
+[ -f ~/.asdf/plugins/java/set-java-home.bash ] &&
+    source ~/.asdf/plugins/java/set-java-home.bash
 # shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null

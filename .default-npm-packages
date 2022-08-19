@@ -17,11 +17,13 @@ standard
 swaglint
 textlint
 textlint-rule-period-in-list-item
+typescript
 typescript-language-server
 vim-language-server
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
 vscode-json-languageserver
+vscode-markdown-languageservice
 write-good
 yaml-language-server
 yarn

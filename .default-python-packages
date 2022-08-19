@@ -1,6 +1,7 @@
 ansible
 ansible-lint
 autopep8
+bashate
 black
 check-jsonschema
 coverage

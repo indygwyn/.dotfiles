@@ -1,0 +1,13 @@
+ #!/usr/bin/env bash
+
+# bash strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -uo pipefail # Unofficial Bash Strict Mode with error trapping
+IFS=$'\n\t' # only split on newline & tab, not space
+# shellcheck disable=SC2154
+# trap any error and report back the command and line number
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+#
+# if non-strict behavior required turn back on only for that section
+# set +u
+# source /path/to/venv/bin/activate
+# set -u

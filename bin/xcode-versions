@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Xcode
+if pkgutil --pkgs=com.apple.pkg.Xcode >/dev/null; then
+    echo Xcode: $(pkgutil --pkg-info=com.apple.pkg.Xcode | awk '/version:/ {print $2}')
+else
+    echo Xcode: not installed
+fi
+
+# Command Line Tools for Xcode
+if pkgutil --pkgs=com.apple.pkg.CLTools_Executables >/dev/null; then
+    echo CommandLineTools: $(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables | awk '/version:/ {print $2}')
+else
+    echo CommandLineTools: not installed
+fi

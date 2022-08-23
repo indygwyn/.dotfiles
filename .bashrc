@@ -406,10 +406,24 @@ darwin*)
     }
     function asdf-up {
         asdf plugin update --all
-        asdf current | awk '{print $1}' | while read -r x ; do
-            asdf install "$x" latest ; asdf global "$x" latest
+        plugins=$(asdf plugin list)
+        for plug in ${plugins} ; do
+            case $plug in
+                java)
+                    currver=$(asdf current "${plug}" | awk '{print $2}')
+                    latest=$(asdf list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
+                    if [[ "${currver}" == "${latest}" ]] ; then
+                        echo "java ${latest} is already installed"
+                    else
+                        asdf install "${plug}" "${latest}" ; asdf global "${plug}" "${latest}"
+                    fi
+                    ;;
+
+                *)
+                    asdf install "${plug}" latest ; asdf global "${plug}" latest
+                    ;;
+            esac
         done
-        # reshim everything because of the embedded version in the shebangs
         rm -f ~/.asdf/shims/*
         asdf reshim
     }

@@ -1,6 +1,7 @@
 --git https://github.com/adder46/hstr-rs.git
 b3sum
 broot
+cargo-semver-checks
 coreutils
 git-branchless
 hstr-rs

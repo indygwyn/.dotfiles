@@ -23,7 +23,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
 Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
-"Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
+Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
@@ -149,7 +149,7 @@ set updatetime=250
 set number            " number lines
 set relativenumber    " relative to cursor position
 set hlsearch          " highlight search matches
-set colorcolumn=72,79 " ruler in column 80 and 100
+set colorcolumn=80,100,120,140 " column rulers
 highlight ColorColumn guibg=#44475a
 
 " Visual mode mappings
@@ -205,7 +205,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters = {
-      \   'ruby': ['rubocop', 'reek'],
+      \   'ruby': ['rubocop', 'solargraph'],
       \   'python': ['flake8', 'pylint', 'bandit', 'pylsp']
       \}
 

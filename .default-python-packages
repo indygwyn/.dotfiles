@@ -38,6 +38,7 @@ python-dotenv
 python-language-server
 requests
 rich-cli
+ruff
 scriv
 semgrep
 slack_sdk

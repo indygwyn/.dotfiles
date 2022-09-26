@@ -8,7 +8,6 @@ jsonlint
 markdown-it
 markdownlint
 markdown-spellcheck
-mermaid-js/mermaid-cli
 @markdoc/markdoc
 npm-groovy-lint
 prettier

@@ -16,7 +16,8 @@ export LANG="en_US"
 export CLICOLOR=1 # colorize ls
 export LSCOLORS=Exfxcxdxbxegedabagacad
 #export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-LS_COLORS="$(vivid generate dracula)" ; export LS_COLORS
+LS_COLORS="$(vivid generate dracula)"
+export LS_COLORS
 export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
 export EDITOR=vim                # vim is the only editor
 export VISUAL=vim                # vim is the only editor
@@ -46,10 +47,10 @@ function _bash_history_sync {
 
 # hex to decimal and vice-versa
 function h2d {
-    echo $((16#$@));
+    echo $((16#$@))
 }
 function d2h {
-    echo $((0x$@));
+    echo $((0x$@))
 }
 
 function autoCompleteHostname {
@@ -65,15 +66,15 @@ complete -F autoCompleteHostname ssh # ssh autocomplete function
 
 function cd {
     case $1 in
-        ....)
-            builtin cd ../../.. || return
-            ;;
-        ...)
-            builtin cd ../.. || return
-            ;;
-        *)
-            builtin cd  "$@" || return
-            ;;
+    ....)
+        builtin cd ../../.. || return
+        ;;
+    ...)
+        builtin cd ../.. || return
+        ;;
+    *)
+        builtin cd "$@" || return
+        ;;
     esac
 }
 
@@ -108,8 +109,8 @@ function ssh-copy-id {
         echo "!! Enter a hostname in order to send public key !!"
     else
         echo "* Copying SSH public key to server..."
-        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" < \
-            "$HOME/.ssh/id_ed25519.pub"
+        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" <"\
+$HOME/.ssh/id_ed25519.pub"
         echo "* All done!"
     fi
 
@@ -303,69 +304,69 @@ function truecolor {
 }
 
 function is_in_git_repo {
-  git rev-parse HEAD > /dev/null 2>&1
+    git rev-parse HEAD >/dev/null 2>&1
 }
 
 function fzf-down {
-  fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview "$@"
+    fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview "$@"
 }
 
 function _gf {
-  is_in_git_repo || return
-  git -c color.status=always status --short |
-  fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
-  cut -c4- | sed 's/.* -> //'
+    is_in_git_repo || return
+    git -c color.status=always status --short |
+        fzf-down -m --ansi --nth 2..,.. \
+            --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
+        cut -c4- | sed 's/.* -> //'
 }
 
 function _gb {
-  is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort |
-  fzf-down --ansi --multi --tac --preview-window right:70% \
-    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' |
-  sed 's/^..//' | cut -d' ' -f1 |
-  sed 's#^remotes/##'
+    is_in_git_repo || return
+    git branch -a --color=always | grep -v '/HEAD\s' | sort |
+        fzf-down --ansi --multi --tac --preview-window right:70% \
+            --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' |
+        sed 's/^..//' | cut -d' ' -f1 |
+        sed 's#^remotes/##'
 }
 
 function _gt {
-  is_in_git_repo || return
-  git tag --sort -version:refname |
-  fzf-down --multi --preview-window right:70% \
-    --preview 'git show --color=always {}'
+    is_in_git_repo || return
+    git tag --sort -version:refname |
+        fzf-down --multi --preview-window right:70% \
+            --preview 'git show --color=always {}'
 }
 
 function _gh {
-  is_in_git_repo || return
-  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-    --header 'Press CTRL-S to toggle sort' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
-  grep -o "[a-f0-9]\{7,\}"
+    is_in_git_repo || return
+    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+        fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+            --header 'Press CTRL-S to toggle sort' \
+            --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+        grep -o "[a-f0-9]\{7,\}"
 }
 
 function _gr {
     is_in_git_repo || return
     git remote -v | awk '{print $1 "\t" $2}' | uniq |
-    fzf-down --tac --preview \
-        'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
-    cut -d$'\t' -f1
+        fzf-down --tac --preview \
+            'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
+        cut -d$'\t' -f1
 }
 
 function _gs {
     is_in_git_repo || return
     git stash list | fzf-down --reverse -d: --preview \
         'git show --color=always {1}' |
-    cut -d: -f1
+        cut -d: -f1
 }
 
 function git2http {
     if [[ -n "$1" ]]; then
-        echo "Read from positional argument $1";
+        echo "Read from positional argument $1"
         echo "$1" | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
         return
     elif [[ ! -t 0 ]]; then
         echo "Read from stdin if file descriptor /dev/stdin is open"
-        cat < /dev/stdin | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
+        cat </dev/stdin | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
     else
         echo "No standard input."
         echo "Usage: $0 git@somegithost:Path/Repo.git"
@@ -414,21 +415,23 @@ darwin*)
     function asdf-up {
         asdf plugin update --all
         plugins=$(asdf plugin list)
-        for plug in ${plugins} ; do
+        for plug in ${plugins}; do
             case $plug in
-                java)
-                    currver=$(asdf current "${plug}" | awk '{print $2}')
-                    latest=$(asdf list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
-                    if [[ "${currver}" == "${latest}" ]] ; then
-                        echo "java ${latest} is already installed"
-                    else
-                        asdf install "${plug}" "${latest}" ; asdf global "${plug}" "${latest}"
-                    fi
-                    ;;
+            java)
+                currver=$(asdf current "${plug}" | awk '{print $2}')
+                latest=$(asdf list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
+                if [[ "${currver}" == "${latest}" ]]; then
+                    echo "java ${latest} is already installed"
+                else
+                    asdf install "${plug}" "${latest}"
+                    asdf global "${plug}" "${latest}"
+                fi
+                ;;
 
-                *)
-                    asdf install "${plug}" latest ; asdf global "${plug}" latest
-                    ;;
+            *)
+                asdf install "${plug}" latest
+                asdf global "${plug}" latest
+                ;;
             esac
         done
         rm -f ~/.asdf/shims/*
@@ -509,7 +512,7 @@ eval "$(asdf exec direnv hook bash)"
 
 # A shortcut for asdf managed direnv.
 function direnv {
-    asdf exec direnv "$@";
+    asdf exec direnv "$@"
 }
 # shellcheck source=/dev/null
 [ -f ~/.asdf/plugins/java/set-java-home.bash ] &&

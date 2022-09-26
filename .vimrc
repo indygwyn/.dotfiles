@@ -15,16 +15,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-" Plug 'Shougo/defx.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'prabirshrestha/asyncomplete.vim'  " background completion
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim' " completion using lsp
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
@@ -204,12 +202,21 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_writegood_options = '--yes-eprime'
 
-let g:ale_linters = {
-      \   'ruby': ['rubocop', 'solargraph'],
-      \   'python': ['flake8', 'pylint', 'bandit', 'pylsp', 'mypy']
+let g:ale_linters_ignore = {
+      \   'sh': ['bashate'],
       \}
 
 let g:ale_python_mypy_options = '--strict'
+
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
 
 " vim-sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)

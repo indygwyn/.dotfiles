@@ -9,6 +9,7 @@ dlint
 docutils
 flake8
 flake8-simplify
+GitPython
 git-revise
 gitlint
 glances

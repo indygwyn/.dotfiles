@@ -206,8 +206,10 @@ let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters = {
       \   'ruby': ['rubocop', 'solargraph'],
-      \   'python': ['flake8', 'pylint', 'bandit', 'pylsp']
+      \   'python': ['flake8', 'pylint', 'bandit', 'pylsp', 'mypy']
       \}
+
+let g:ale_python_mypy_options = '--strict'
 
 " vim-sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)

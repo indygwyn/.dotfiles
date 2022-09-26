@@ -23,8 +23,8 @@ export VISUAL=vim                # vim is the only editor
 export HISTCONTROL=ignoreboth    # skip space cmds and dupes in history
 export HISTIGNORE="ls:ls -la:cd:cd -:pwd:exit:date:* --help:fg:bg:history:w"
 export HISTFILE="$HOME/.bash_history"
-export HISTSIZE=9000
-export HISTFILESIZE=${HISTSIZE}
+export HISTFILESIZE=1000000
+export HISTSIZE=${HISTFILESIZE}
 export HISTTIMEFORMAT="%F %T: "
 export HISTCONTROL=ignorespace:erasedups
 export DBHISTORY=true
@@ -359,11 +359,18 @@ function _gs {
 }
 
 function git2http {
-    if [[ -z "$1" ]]; then
+    if [[ -n "$1" ]]; then
+        echo "Read from positional argument $1";
+        echo "$1" | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
+        return
+    elif [[ ! -t 0 ]]; then
+        echo "Read from stdin if file descriptor /dev/stdin is open"
+        cat < /dev/stdin | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
+    else
+        echo "No standard input."
         echo "Usage: $0 git@somegithost:Path/Repo.git"
         return
     fi
-    echo "$1" | sed -e 's/\:/\//' -e 's/^git@/https:\/\//'
     return
 }
 

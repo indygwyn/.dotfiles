@@ -1,5 +1,6 @@
 asciidoctor
 awesome_print
+bashly
 bcrypt_pbkdf
 binding_of_caller
 brewfile
@@ -32,6 +33,7 @@ pry-doc
 pry-rails
 pry-stack_explorer
 pry-theme
+pstore
 puppet-lint
 puppet-lint-strict_indent-check
 puppet-lint-manifest_whitespace-check

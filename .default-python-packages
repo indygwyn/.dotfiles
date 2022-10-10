@@ -37,6 +37,7 @@ pynvim
 pytest
 python-dotenv
 python-language-server
+refurb
 requests
 rich-cli
 ruff
@@ -46,6 +47,7 @@ slack_sdk
 sqlfluff
 tox
 tqdm
+xdg
 yamlfix
 yamllint
 yapf

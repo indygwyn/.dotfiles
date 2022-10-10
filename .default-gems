@@ -22,6 +22,7 @@ looksee
 mdl
 mdless
 metadata-json-lint
+na
 octokit
 open-uri
 pragmater
@@ -57,6 +58,7 @@ restforce
 rspec
 rspec-puppet
 rubocop
+ruby-lsp
 rufo
 solargraph
 sorbet
@@ -65,4 +67,5 @@ syntax_suggest
 tomlrb
 versionaire
 webrick
+xdg
 yamljson

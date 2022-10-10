@@ -53,7 +53,6 @@ Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'segeljakt/vim-silicon'            " carbon.sh clone
 Plug 'airblade/vim-rooter'              " pwd root in git repo
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
-Plug 'vimwiki/vimwiki'                  " personal wiki for vim
 Plug 'farmergreg/vim-lastplace'
 Plug 'rodjek/vim-puppet'
 Plug 'axvr/org.vim'
@@ -204,9 +203,14 @@ let g:ale_writegood_options = '--yes-eprime'
 
 let g:ale_linters_ignore = {
       \   'sh': ['bashate'],
+      \   'markdown': ['vale'],
       \}
 
 let g:ale_python_mypy_options = '--strict'
+
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 if executable('solargraph')
     " gem install solargraph

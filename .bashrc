@@ -393,7 +393,6 @@ darwin*)
     alias apinfo='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
     alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s'
     alias cpwd='pwd|xargs echo -n|pbcopy'
-    alias flushdns='dscacheutil -flushcache'
     alias locate='mdfind -name'
     alias preview='open -a Preview'
     alias xcode='open -a Xcode'
@@ -409,6 +408,10 @@ darwin*)
     alias sha1sum='shasum'
     alias cpwd='pwd|tr -d "\n"|pbcopy'
     #alias docker='podman'
+    function flushdns {
+        sudo dscacheutil -flushcache
+        sudo killall -HUP mDNSResponder
+    }
     function brew-up {
         brew update && brew upgrade && brew cleanup
     }

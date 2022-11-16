@@ -26,6 +26,7 @@ neovim
 pep8
 perflint
 pex
+piera
 pip-audit
 podman-compose
 proselint

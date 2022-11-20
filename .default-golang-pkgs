@@ -7,6 +7,7 @@ github.com/charmbracelet/glow@latest
 github.com/charmbracelet/gum@latest
 github.com/charmbracelet/skate@latest
 github.com/charmbracelet/soft-serve/cmd/soft@latest
+github.com/mrtazz/checkmake/cmd/checkmake@latest
 github.com/cloudflare/cfssl/cmd/...@latest
 github.com/ericchiang/pup
 github.com/fullstorydev/grpcurl/cmd/grpcurl@latest

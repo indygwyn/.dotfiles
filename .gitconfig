@@ -67,8 +67,8 @@
       unstage = reset HEAD --
       last = log -1 HEAD
       logs = log --show-signature
-      l = log --color --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr)%C(bold blue)<%an>%C(yellow)%d%Creset' --abbrev-commit
-    	lg = log --graph --pretty=format:'%C(auto)%h%d%C(reset) %s %C(green)(%ad) %C(blue)<%an> %C(reset)' --date=relative
+      l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+      lg = log --graph --oneline --decorate --all
       lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
       source = remote get-url origin
       plog = log @{1}..

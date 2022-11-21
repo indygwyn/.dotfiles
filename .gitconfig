@@ -54,18 +54,23 @@
 [advice]
       detachedHead = false
 [alias]
+      st = status --short --branch
+      ci = commit
+      br = branch
+      co = checkout
+      df = diff
+      dc = diff --cached
+      rv = remote -v
+      who = shortlog -s --
+      untrack = rm --cache --
       mainbranch = "!git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
       synced = "!git pull origin $(git mainbranch) --rebase"
       update = "!git pull origin $(git rev-parse --abbrev-ref HEAD) --rebase"
       squash = "!git rebase -v -i $(git mainbranch)"
       publish = push origin HEAD --force-with-lease
       pub = publish
-      co = checkout
-      br = branch
-      ci = commit
-      st = status --short --branch
       unstage = reset HEAD --
-      last = log -1 HEAD
+      last = log -1 HEAD --stat
       logs = log --show-signature
       l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
       lg = log --graph --oneline --decorate --all
@@ -110,3 +115,5 @@
       smudge = git-lfs smudge -- %f
       process = git-lfs filter-process
       required = true
+[help]
+	autocorrect = 20

@@ -1,0 +1,6 @@
+[submodule "share/readline-vim"]
+	path = share/readline-vim
+	url = https://git.rcrnstn.net/rcrnstn/readline-vim
+[submodule "share/bash-surround"]
+	path = share/bash-surround
+	url = https://github.com/liloman/bash-surround

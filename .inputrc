@@ -20,6 +20,8 @@ set vi-cmd-mode-string \1\e[2 q\2
 # these are for vi-command mode
 "\e[A": history-search-backward            # arrow up
 "\e[B": history-search-forward             # arrow down
+j: history-search-forward
+k: history-search-backward
 "\ep": yank-last-arg                       # bind to Alt-p
 Control-l: clear-screen
 
@@ -29,4 +31,22 @@ set keymap vi-insert
 "\e[B": history-search-forward
 "\ep": yank-last-arg
 Control-l: clear-screen
+$endif
+
+## `readline-vim`
+$include ~/.inputrc.d/readline-vim.inputrc
+
+## Indicate mode with cursor shape
+set show-mode-in-prompt On
+$if term=linux
+    # https://www.kernel.org/doc/Documentation/admin-guide/vga-softcursor.rst
+    set vi-cmd-mode-string \1\e[?8c\2
+    set vi-ins-mode-string \1\e[?0c\2
+    set emacs-mode-string  \1\e[?0c\2
+$else
+    # https://vt100.net/docs/vt510-rm/DECSCUSR
+    # http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+    set vi-cmd-mode-string \1\e[1 q\2
+    set vi-ins-mode-string \1\e[5 q\2
+    set emacs-mode-string  \1\e[5 q\2
 $endif

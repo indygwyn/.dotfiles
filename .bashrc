@@ -526,3 +526,5 @@ function direnv {
 [ -f ~/.bashrc-local ] && source ~/.bashrc-local
 # shellcheck source=/dev/null
 [ -f ~/.bash.d/cht.sh ] && source ~/.bash.d/cht.sh
+
+bind -f ~/share/bash-surround/inputrc-surround

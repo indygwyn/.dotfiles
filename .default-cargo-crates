@@ -3,6 +3,7 @@ b3sum
 broot
 cargo-semver-checks
 coreutils
+dirdiff-ocamlpro
 git-branchless
 hstr-rs
 hurl

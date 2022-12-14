@@ -27,7 +27,6 @@ Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
 Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
-Plug 'machakann/vim-sandwich'           " operators and textobjects to search/select/edit sandwiched texts
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
 Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
@@ -35,6 +34,7 @@ Plug 'tpope/vim-eunuch'                 " Unix Helpers for vim
 Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-speeddating'            " use CTRL-A/CTRL-X to increment dates, times, and more
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
@@ -61,7 +61,6 @@ Plug 'rizzatti/dash.vim'                " Dash.app integration
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'kovisoft/paredit'
 call plug#end()
-runtime macros/sandwich/keymap/surround.vim
 
 " post plugin config
 
@@ -169,120 +168,36 @@ endif
 " :Marked to open current file in Marked
 command Marked :silent !open -a Marked\ 2.app '%:p'
 
-" extra ft settings for chef/shell are in ~/.vim/after/ft*/*.vim
-
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
   endif
 endfunction
 
-set runtimepath+=/usr/local/opt/fzf
-
-" Armor files
-let g:GPGPreferArmor=1
-" Set the default option
-let g:GPGDefaultRecipients=['twh@pobox.com']
-
-augroup GnuPG
-  autocmd User GnuPG setl textwidth=72
-augroup END
-
 let g:markdown_fenced_languages = ['vim','help']
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-let g:ale_sign_info = 'ℹ️'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-let g:ale_writegood_options = '--yes-eprime'
-
-let g:ale_linters_ignore = {
-      \   'sh': ['bashate'],
-      \   'markdown': ['vale'],
-      \}
-
-let g:ale_python_mypy_options = '--strict'
-
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-
-if executable('solargraph')
-    " gem install solargraph
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
-        \ })
-endif
-
-" vim-sandwich
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-let g:sandwich#recipes += [
-      \   {
-      \     'buns'    : ['%{', '}'],
-      \     'filetype': ['elixir'],
-      \     'input'   : ['m'],
-      \     'nesting' : 1,
-      \   },
-      \   {
-      \     'buns'    : 'StructInput()',
-      \     'filetype': ['elixir'],
-      \     'kind'    : ['add', 'replace'],
-      \     'action'  : ['add'],
-      \     'input'   : ['M'],
-      \     'listexpr'    : 1,
-      \     'nesting' : 1,
-      \   },
-      \   {
-      \     'buns'    : ['%\w\+{', '}'],
-      \     'filetype': ['elixir'],
-      \     'input'   : ['M'],
-      \     'nesting' : 1,
-      \     'regex'   : 1,
-      \   },
-      \   {
-      \     'buns':     ['<%= ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['='],
-      \     'nesting':  1
-      \   },
-      \   {
-      \     'buns':     ['<% ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['-'],
-      \     'nesting':  1
-      \   },
-      \   {
-      \     'buns':     ['<%# ', ' %>'],
-      \     'filetype': ['eruby'],
-      \     'input':    ['#'],
-      \     'nesting':  1
-      \   }
-      \ ]
-
-function! StructInput() abort
-  let s:StructLast = input('Struct: ')
-  if s:StructLast !=# ''
-    let struct = printf('%%%s{', s:StructLast)
-  else
-    throw 'OperatorSandwichCancel'
-  endif
-  return [struct, '}']
-endfunction
-
 nnoremap <leader>dd :Lexplore %:p:h<CR>
 nnoremap <Leader>da :Lexplore<CR>
 
 " silly python comment shortcut
 vnoremap <silent> # :s/^/# /<cr>:noh<cr>
 vnoremap <silent> -# :s/^# //<cr>:noh<cr>
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_sign_info = 'ℹ️'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_writegood_options = '--yes-eprime'
+let g:ale_python_mypy_options = '--strict'
+let g:ale_linters_ignore = {
+      \   'sh': ['bashate'],
+      \   'markdown': ['vale'],
+      \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb'],
+      \}
+
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

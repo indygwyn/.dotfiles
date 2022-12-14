@@ -445,8 +445,8 @@ darwin*)
     }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g
-    function pdfman {
-        man -t "$1" | open -a /Applications/Preview.app -f
+    function pdfman() {
+        mandoc -T pdf "$(/usr/bin/man -w "$@")" | open -fa Preview
     }
     function note {
         local text

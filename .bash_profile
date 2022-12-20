@@ -10,13 +10,9 @@ export PATH=${PATH}:${GOPATH}/bin
 export CHEF_REPO=${HOME}/Cookbooks/salesforce/chef-repo/
 export DATA_BAGS_PATH=${HOME}/Cookbooks/salesforce/data_bags
 export DATA_BAG_SECRET_KEY_PATH=${HOME}/.chef/encrypted_data_bag_secret
-#export RUBYOPT='-W:no-deprecated -W:no-experimental'
 if command -v brew 1> /dev/null 2>&1 ; then
     OPENSSLHOME=$(brew --prefix openssl@1.1)
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSLHOME}"
-    ASDFHOME=$(brew --prefix asdf)
-else
-    ASDFHOME=$HOME/.asdf
 fi
 READLINE_PATH=$(brew --prefix readline); export READLINE_PATH
 OPENSSL_PATH=$(brew --prefix openssl); export OPENSSL_PATH
@@ -26,5 +22,5 @@ export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
 export PATH=$OPENSSL_PATH/bin:$PATH
 
-# shellcheck disable=SC1091
-source "${ASDFHOME}/asdf.sh"
+. /usr/local/opt/asdf/libexec/asdf.sh
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash

@@ -1,6 +1,7 @@
 ansible
 ansible-lint
 autopep8
+bandit
 bashate
 black
 check-jsonschema
@@ -8,6 +9,7 @@ coverage
 dlint
 docutils
 flake8
+flake8-bugbear
 flake8-simplify
 GitPython
 git-revise
@@ -16,13 +18,17 @@ glances
 grip
 hvac
 ipython
+isort
 jc
 jedi
+jupytext
 logzero
 mccabe
 minio==5.0.10
 mypy
 neovim
+notebook
+notedown
 pep8
 perflint
 pex
@@ -39,6 +45,7 @@ pytest
 python-dotenv
 python-language-server
 refurb
+remarshal
 requests
 rich-cli
 ruff

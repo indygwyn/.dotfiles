@@ -41,6 +41,7 @@ pygments
 pyls
 pygithub
 pynvim
+pyright
 pytest
 python-dotenv
 python-language-server

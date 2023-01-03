@@ -14,6 +14,7 @@ hyperfine
 jless
 jt
 mcfly
+mdbook
 navi
 pastel
 pista
@@ -25,6 +26,7 @@ sd
 secrets
 semver-explain
 sequoia-chameleon-gnupg
+shellharden
 silicon
 ssclient
 tealdeer

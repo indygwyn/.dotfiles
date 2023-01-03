@@ -4,12 +4,15 @@ docsify-cli
 dockerfile-language-server-nodejs
 git-user-switch
 jscpd
+jshint
 jsonlint
+kmdr
 markdown-it
 markdownlint
 markdown-spellcheck
 @markdoc/markdoc
 npm-groovy-lint
+pag-cli
 prettier
 rousseau
 snyk

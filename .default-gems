@@ -59,6 +59,8 @@ standardrb
 syntax_suggest
 tomlrb
 versionaire
+wasmtime
+wasmer
 webrick
 xdg
 yamljson

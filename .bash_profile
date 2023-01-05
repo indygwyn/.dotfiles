@@ -19,8 +19,10 @@ OPENSSL_PATH=$(brew --prefix openssl); export OPENSSL_PATH
 export LDFLAGS="-L$READLINE_PATH/lib -L$OPENSSL_PATH/lib"
 export CPPFLAGS="-I$READLINE_PATH/include -I$OPENSSL_PATH/include"
 export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH --enable-yjit"
 export PATH=$OPENSSL_PATH/bin:$PATH
+export WASMTIME_HOME="$HOME/.asdf/installs/wasmtime/v4.0.0"
+export PATH="$WASMTIME_HOME/bin:$PATH"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
 . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash

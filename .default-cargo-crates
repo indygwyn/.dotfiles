@@ -3,6 +3,7 @@ bat
 b3sum
 broot
 cargo-semver-checks
+cargo-wasi
 coreutils
 dirdiff-ocamlpro
 exa
@@ -33,6 +34,7 @@ tealdeer
 tokei
 tp-note
 typos-cli
+wasi-vfs
 websocat
 xplr
 ytop

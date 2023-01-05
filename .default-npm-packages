@@ -2,6 +2,7 @@ alex
 bash-language-server
 docsify-cli
 dockerfile-language-server-nodejs
+eslint
 git-user-switch
 jscpd
 jshint

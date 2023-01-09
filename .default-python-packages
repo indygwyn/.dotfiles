@@ -9,7 +9,10 @@ coverage
 dlint
 docutils
 flake8
+flake8-bandit
+flake8-black
 flake8-bugbear
+flake8-isort
 flake8-simplify
 GitPython
 git-revise
@@ -36,6 +39,7 @@ pex
 piera
 pip-audit
 podman-compose
+pre-commit
 proselint
 pygithub
 pygments
@@ -53,6 +57,7 @@ rich-cli
 ruff
 scriv
 semgrep
+shot-scrapper
 slack_sdk
 sqlfluff
 tox

@@ -1,4 +1,5 @@
-github.com/martinlindhe/validtomlfilippo.io/age/cmd/...@latest
+github.com/martinlindhe/validjson@latest
+filippo.io/age/cmd/...@latest
 filippo.io/mkcert
 github.com/benhoyt/goawk@latest
 github.com/bufbuild/buf/cmd/buf@latest
@@ -27,3 +28,4 @@ github.com/maxmunzel/kvass@latest
 github.com/martinlindhe/validtoml@latest
 github.com/martinlindhe/validyaml@latest
 git.sr.ht/~gpanders/ijq@latest
+oss.terrastruct.com/d2@latest

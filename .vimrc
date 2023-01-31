@@ -15,10 +15,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'  " async completion
+Plug 'prabirshrestha/vim-lsp'           " async language server protocol plugin
+Plug 'prabirshrestha/asyncomplete-lsp.vim' " autocompletion sources for vim-lsp
+Plug 'mattn/vim-lsp-settings'           " Auto configurations for Language Server
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
@@ -26,7 +26,7 @@ Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting
 Plug 'tpope/vim-commentary'             " comment stuff out: gcc, gcap, gc visual
-Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple cs"'
+Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple
 Plug 'tpope/vim-repeat'                 " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-endwise'                " wisely add 'end' in ruby
 Plug 'tpope/vim-fugitive'               " A Git wrapper so awesome, it should be illegal
@@ -34,14 +34,11 @@ Plug 'tpope/vim-eunuch'                 " Unix Helpers for vim
 Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-speeddating'            " use CTRL-A/CTRL-X to increment dates, times, and more
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'ryanoasis/vim-devicons'
+Plug 'michaeljsmith/vim-indent-object'  " adds indentation level textobjects
 Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
-Plug 'junegunn/vim-easy-align'          " Align on = :gaip*=
-Plug 'junegunn/limelight.vim'
 Plug 'docunext/closetag.vim'            " close open HTML/XML tags
 Plug 'mhinz/vim-signify'                " Show a diff in sign column
 Plug 'maximbaz/lightline-ale'           " lightline ale support
@@ -51,15 +48,10 @@ Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'segeljakt/vim-silicon'            " carbon.sh clone
-Plug 'airblade/vim-rooter'              " pwd root in git repo
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
-Plug 'farmergreg/vim-lastplace'
-Plug 'rodjek/vim-puppet'
-Plug 'axvr/org.vim'
-Plug 'dewyze/vim-tada'
+Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
+Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
 Plug 'rizzatti/dash.vim'                " Dash.app integration
-Plug 'vlime/vlime', {'rtp': 'vim/'}
-Plug 'kovisoft/paredit'
 call plug#end()
 
 " post plugin config
@@ -196,6 +188,7 @@ let g:ale_linters_ignore = {
       \   'sh': ['bashate'],
       \   'markdown': ['vale'],
       \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb'],
+      \   'python': ['cspell', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre',],
       \}
 
 

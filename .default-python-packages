@@ -20,6 +20,7 @@ gitlint
 glances
 grip
 hvac
+html2text
 ipython
 isort
 jc
@@ -57,6 +58,7 @@ rich-cli
 ruff
 scriv
 semgrep
+shell-genie
 shot-scrapper
 slack_sdk
 sqlfluff

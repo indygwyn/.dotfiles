@@ -21,6 +21,9 @@ module.exports = {
     // font weight for bold characters: 'normal' or 'bold'
     fontWeightBold: 'bold',
 
+    // let there be ligatures
+    disableLigatures: false,
+
     // line height as a relative unit
     lineHeight: 1,
 

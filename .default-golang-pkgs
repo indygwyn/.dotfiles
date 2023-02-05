@@ -27,3 +27,4 @@ github.com/maxmunzel/kvass@latest
 github.com/martinlindhe/validtoml@latest
 github.com/martinlindhe/validyaml@latest
 git.sr.ht/~gpanders/ijq@latest
+github.com/mikefarah/yq/v4@latest

@@ -530,3 +530,4 @@ function direnv {
 [ -f ~/.bash.d/cht.sh ] && source ~/.bash.d/cht.sh
 
 bind -f ~/share/bash-surround/inputrc-surround
+source /Users/twh/.config/op/plugins.sh

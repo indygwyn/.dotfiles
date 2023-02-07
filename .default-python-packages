@@ -51,15 +51,12 @@ pyright
 pytest
 python-dotenv
 python-language-server
-refurb
-remarshal
 requests
 rich-cli
 ruff
 scriv
 semgrep
 shell-genie
-shot-scrapper
 slack_sdk
 sqlfluff
 tox

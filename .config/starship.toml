@@ -1,8 +1,27 @@
-# format = """$character"""
-# right_format = """$all"""
+"$schema" = 'https://starship.rs/config-schema.json'
 add_newline = false
 command_timeout = 1500
 format = "[$all](dimmed white)"
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+symbol = '☁️ '
+style = 'bold blue'
+
+[package]
+disabled = true
+
+[ruby]
+format = '[$symbol($version )]($style)'
+symbol = '💎'
+version_format = '${major}.${minor}'
+disabled = false
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = '🐍'
+version_format = '${major}.${minor}'
+disabled = false
 
 [character]
 success_symbol = "[❯](dimmed green)"
@@ -13,6 +32,7 @@ min_time = 4
 format = "took [$duration]($style) "
 
 [git_branch]
+format = 'on [$symbol$branch(:$remote_branch)]($style) '
 symbol = ""
 
 [status]

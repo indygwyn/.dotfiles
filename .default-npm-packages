@@ -3,6 +3,7 @@ bash-language-server
 docsify-cli
 dockerfile-language-server-nodejs
 eslint
+fx
 git-user-switch
 jscpd
 jshint
@@ -15,6 +16,7 @@ markdown-spellcheck
 npm-groovy-lint
 pag-cli
 prettier
+@prettier/plugin-ruby
 rousseau
 snyk
 spectral

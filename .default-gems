@@ -46,7 +46,6 @@ rbnacl-libsodium
 rbs
 redis-stat
 reek
-refinements
 reline
 restforce
 ronin
@@ -60,7 +59,6 @@ sorbet
 standardrb
 syntax_suggest
 tomlrb
-versionaire
 wasmtime
 wasmer
 webrick

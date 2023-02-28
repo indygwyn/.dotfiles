@@ -416,30 +416,29 @@ darwin*)
     function brew-up {
         brew update && brew upgrade && brew cleanup
     }
-    function asdf-up {
-        asdf plugin update --all
-        plugins=$(asdf plugin list)
+    function rtx-up {
+        rtx plugin update --all
+        plugins=$(rtx plugin list)
         for plug in ${plugins}; do
             case $plug in
             java)
-                currver=$(asdf current "${plug}" | awk '{print $2}')
-                latest=$(asdf list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
+                currver=$(rtx current "${plug}" | awk '{print $2}')
+                latest=$(rtx list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
                 if [[ "${currver}" == "${latest}" ]]; then
                     echo "java ${latest} is already installed"
                 else
-                    asdf install "${plug}" "${latest}"
-                    asdf global "${plug}" "${latest}"
+                    rtx install "${plug}" "${latest}"
+                    rtx global "${plug}" "${latest}"
                 fi
                 ;;
 
             *)
-                asdf install "${plug}" latest
-                asdf global "${plug}" latest
+                rtx install "${plug}" latest
+                rtx global "${plug}" latest
                 ;;
             esac
         done
-        rm -f ~/.asdf/shims/*
-        asdf reshim
+        rtx reshim
     }
     function vim-up {
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
@@ -509,25 +508,15 @@ alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias j2y='jq -r toYaml'
-
-eval "$(asdf exec starship init bash)"
-eval "$(asdf exec direnv hook bash)"
-# eval "$(asdf exec navi widget bash)"
-# source <(kitty + complete setup bash)
-
-# A shortcut for asdf managed direnv.
-function direnv {
-    asdf exec direnv "$@"
-}
-# shellcheck source=/dev/null
-[ -f ~/.asdf/plugins/java/set-java-home.bash ] &&
-    source ~/.asdf/plugins/java/set-java-home.bash
-# shellcheck source=/dev/null
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias asdf=rtx
+eval "$(starship init bash)"
+eval "$(direnv hook bash)"
+# eval "$(navi widget bash)"
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null
 [ -f ~/.bashrc-local ] && source ~/.bashrc-local
 # shellcheck source=/dev/null
 [ -f ~/.bash.d/cht.sh ] && source ~/.bash.d/cht.sh
-
 bind -f ~/share/bash-surround/inputrc-surround
-source /Users/twh/.config/op/plugins.sh
+# shellcheck source=/dev/null
+source ~/.config/op/plugins.sh

@@ -8,6 +8,7 @@ check-jsonschema
 coverage
 dlint
 docutils
+fawltydeps
 flake8
 flake8-bandit
 flake8-black

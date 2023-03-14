@@ -417,28 +417,8 @@ darwin*)
         brew update && brew upgrade && brew cleanup
     }
     function rtx-up {
-        rtx plugin update --all
-        plugins=$(rtx plugin list)
-        for plug in ${plugins}; do
-            case $plug in
-            java)
-                currver=$(rtx current "${plug}" | awk '{print $2}')
-                latest=$(rtx list all java | awk '/graalvm-.*+java17/ {last=$0} END {print last}')
-                if [[ "${currver}" == "${latest}" ]]; then
-                    echo "java ${latest} is already installed"
-                else
-                    rtx install "${plug}" "${latest}"
-                    rtx global "${plug}" "${latest}"
-                fi
-                ;;
-
-            *)
-                rtx install "${plug}" latest
-                rtx global "${plug}" latest
-                ;;
-            esac
-        done
-        rtx reshim
+        rtx self-update
+        rtx plugins update --all
     }
     function vim-up {
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
@@ -509,8 +489,8 @@ alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias j2y='jq -r toYaml'
 alias asdf=rtx
-eval "$(starship init bash)"
-eval "$(direnv hook bash)"
+eval "$(rtx exec starship -- starship init bash)"
+eval "$(rtx exec direnv -- direnv hook bash)"
 # eval "$(navi widget bash)"
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null

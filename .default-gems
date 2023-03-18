@@ -19,6 +19,8 @@ hashie
 http
 httpclient
 iruby
+jekyll
+kramdown
 lefthook
 looksee
 mdl
@@ -37,6 +39,7 @@ pry-rails
 pry-stack_explorer
 pry-theme
 pstore
+puma
 puppet-lint
 puppet-strings
 rack
@@ -44,16 +47,19 @@ rake
 rbnacl
 rbnacl-libsodium
 rbs
+redcarpet
 redis-stat
 reek
 reline
 restforce
 ronin
+rouge
 rspec
 rspec-puppet
 rubocop
 ruby-lsp
 rufo
+sinatra
 solargraph
 sorbet
 standardrb

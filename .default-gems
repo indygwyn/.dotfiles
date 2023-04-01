@@ -62,6 +62,11 @@ rouge
 rspec
 rspec-puppet
 rubocop
+rubocop-graphql
+rubocop-md
+rubocop-performance
+rubocop-rails
+rubocop-rspec
 ruby-lsp
 rufo
 simplecov

@@ -8,6 +8,16 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[*.md]
+indent_size = 3
+max_line_length = 80
+
+[*.rb]
+max_line_length = 80
+
+[*.pp]
+max_line_length = 140
+
 [*.py]
 indent_size = 4
 max_line_length = 88

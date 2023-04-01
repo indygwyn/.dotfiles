@@ -1,7 +1,9 @@
+@markdoc/markdoc
+@prettier/plugin-ruby
 alex
 bash-language-server
-docsify-cli
 dockerfile-language-server-nodejs
+docsify-cli
 eslint
 fx
 git-user-switch
@@ -10,13 +12,11 @@ jshint
 jsonlint
 kmdr
 markdown-it
-markdownlint
 markdown-spellcheck
-@markdoc/markdoc
+markdownlint
 npm-groovy-lint
 pag-cli
 prettier
-@prettier/plugin-ruby
 rousseau
 snyk
 spectral

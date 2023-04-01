@@ -28,6 +28,8 @@ mdless
 metadata-json-lint
 na
 octokit
+onceover
+onceover-codequality
 open-uri
 pragmater
 prettier
@@ -43,6 +45,8 @@ pstore
 puma
 puppet-lint
 puppet-strings
+puppet-syntax
+puppet_litmus
 rack
 rake
 rbnacl
@@ -60,6 +64,7 @@ rspec-puppet
 rubocop
 ruby-lsp
 rufo
+simplecov
 sinatra
 solargraph
 sorbet
@@ -69,8 +74,8 @@ syntax_tree
 syntax_tree-haml
 syntax_tree-rbs
 tomlrb
-wasmtime
 wasmer
+wasmtime
 webrick
 xdg
 yamljson

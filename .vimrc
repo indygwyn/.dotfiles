@@ -35,6 +35,7 @@ Plug 'tpope/vim-unimpaired'             " Pairs of handy bracket mappings
 Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-speeddating'            " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'michaeljsmith/vim-indent-object'  " adds indentation level textobjects
+Plug 'noprompt/vim-yardoc'              " syntax highlight yard tags
 Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
@@ -187,7 +188,7 @@ let g:ale_python_mypy_options = '--strict'
 let g:ale_linters_ignore = {
       \   'sh': ['bashate'],
       \   'markdown': ['vale'],
-      \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb'],
+      \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'rubocop'],
       \   'python': ['cspell', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre',],
       \}
 

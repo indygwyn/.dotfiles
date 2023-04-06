@@ -30,6 +30,7 @@ na
 octokit
 onceover
 onceover-codequality
+opal
 open-uri
 pragmater
 prettier
@@ -44,9 +45,17 @@ pry-theme
 pstore
 puma
 puppet-lint
+puppet-lint-strict_indent-check
+puppet-lint-manifest_whitespace-check
+puppet-lint-unquoted_string-check
+puppet-lint-leading_zero-check
+puppet-lint-absolute_classname-check
+puppet-lint-trailing_comma-check
+puppet-lint-file_ensure-check
+puppet-lint-legacy_facts-check
+puppet_litmus
 puppet-strings
 puppet-syntax
-puppet_litmus
 rack
 rake
 rbnacl

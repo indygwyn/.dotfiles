@@ -1,6 +1,7 @@
 filippo.io/age/cmd/...@latest
 filippo.io/mkcert
 git.sr.ht/~gpanders/ijq@latest
+github.com/antonmedv/fx@latest
 github.com/benhoyt/goawk@latest
 github.com/bufbuild/buf/cmd/buf@latest
 github.com/charmbracelet/charm@latest

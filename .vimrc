@@ -185,13 +185,23 @@ let g:ale_sign_info = 'ℹ️'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 let g:ale_python_mypy_options = '--strict'
+let g:ale_disable_lsp = 1
 let g:ale_linters_ignore = {
-      \   'sh': ['bashate'],
-      \   'markdown': ['vale'],
-      \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'rubocop'],
-      \   'python': ['cspell', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre',],
-      \}
+     \   'sh': ['cspell', 'bashate',],
+     \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'rubocop',],
+     \   'python': ['cspell', 'flake8', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre', 'pylsp',],
+     \}
 
+" let g:lsp_ale_auto_enable_linter = v:false
+
+" let g:ale_linters = {
+"     \   'go': ['vim-lsp'],
+"     \   'lua': ['vim-lsp'],
+"     \   'markdown': ['vim-lsp', 'mdl', 'writegood'],
+"     \   'ruby': ['vim-lsp', 'standardrb'],
+"     \   'sh': ['vim-lsp', 'shellcheck', 'language_server', 'shell',],
+"     \   'python': ['ruff'],
+"     \ }
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

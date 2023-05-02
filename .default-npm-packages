@@ -2,6 +2,7 @@
 @prettier/plugin-ruby
 alex
 bash-language-server
+cspell
 dockerfile-language-server-nodejs
 docsify-cli
 eslint

@@ -188,6 +188,7 @@ let g:ale_python_mypy_options = '--strict'
 let g:ale_disable_lsp = 1
 let g:ale_linters_ignore = {
      \   'sh': ['cspell', 'bashate',],
+     \   'markdown': ['cspell', 'vale',],
      \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'rubocop',],
      \   'python': ['cspell', 'flake8', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre', 'pylsp',],
      \}

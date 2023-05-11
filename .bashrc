@@ -361,14 +361,11 @@ function _gs {
 
 function git2http {
     if [[ -n "$1" ]]; then
-        echo "Read from positional argument $1"
         echo "$1" | sed -e 's/\:/\//' -e 's/git@/https:\/\//'
         return
     elif [[ ! -t 0 ]]; then
-        echo "Read from stdin if file descriptor /dev/stdin is open"
         cat </dev/stdin | sed -e 's/\:/\//g' -e 's/git@/https:\/\//g'
     else
-        echo "No standard input."
         echo "Usage: $0 git@somegithost:Path/Repo.git"
         return
     fi

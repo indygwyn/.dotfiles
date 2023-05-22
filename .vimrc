@@ -15,13 +15,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'yegappan/lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'  " async completion
-" Plug 'prabirshrestha/vim-lsp'           " async language server protocol plugin
-" Plug 'prabirshrestha/asyncomplete-lsp.vim' " autocompletion sources for vim-lsp
-" Plug 'mattn/vim-lsp-settings'           " Auto configurations for Language Server
+Plug 'prabirshrestha/asyncomplete.vim'  " async completion
+Plug 'prabirshrestha/vim-lsp'           " async language server protocol plugin
+Plug 'prabirshrestha/asyncomplete-lsp.vim' " autocompletion sources for vim-lsp
+Plug 'mattn/vim-lsp-settings'           " Auto configurations for Language Server
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
-" Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
+Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
@@ -186,22 +185,21 @@ let g:ale_sign_info = 'ℹ️'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_writegood_options = '--yes-eprime'
 let g:ale_python_mypy_options = '--strict'
-" let g:ale_disable_lsp = 1
-let g:ale_linters_ignore = {
-     \   'sh': ['cspell', 'bashate',],
-     \   'markdown': ['cspell', 'vale',],
-     \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb',],
-     \   'python': ['cspell', 'flake8', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre', 'pylsp',],
-     \}
+let g:ale_disable_lsp = 1
+let g:ale_virtualtext_cursor = 'current'
+"let g:ale_linters_ignore = {
+"     \   'sh': ['cspell', 'bashate',],
+"     \   'markdown': ['cspell', 'vale',],
+"     \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb',],
+"     \   'python': ['cspell', 'flake8', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre', 'pylsp',],
+"     \}
 
-" let g:ale_linters = {
-"     \   'go': ['vim-lsp'],
-"     \   'lua': ['vim-lsp'],
-"     \   'markdown': ['vim-lsp', 'mdl', 'writegood'],
-"     \   'ruby': ['vim-lsp', 'standardrb'],
-"     \   'sh': ['vim-lsp', 'shellcheck', 'language_server', 'shell',],
-"     \   'python': ['ruff'],
-"     \ }
+let g:ale_linters = {
+    \   'markdown': ['mdl', 'writegood'],
+    \   'ruby': ['rubocop'],
+    \   'sh': ['shellcheck', 'shell',],
+    \   'python': ['ruff'],
+    \ }
 
 let lspServers = [
       \ #{name: 'bashls', filetype: 'sh', path: 'bash-language-server', args: ['start'] },
@@ -210,16 +208,14 @@ let lspServers = [
       \ #{name: 'gopls', filetype: 'go', path: 'gopls', args: ['serve'] },
       \ #{name: 'htmlls', filetype: 'html', path: 'html-languageserver', args: ['--stdio'], },
       \ #{name: 'luals', filetype: 'lua', path: 'lua-language-server', args: [], debug: v:true, },
+      \ #{name: 'marksman', filetype: 'markdown', path: '/Users/tholt/.local/share/vim-lsp-settings/servers/marksman/marksman', args: ['server'], debug: v:true, },
       \ #{name: 'pylsp', filetype: 'python', path: 'pylsp', args: [], },
+      \ #{name: 'puppetls', filetype: 'puppet', path: '/Users/tholt/.local/share/vim-lsp-settings/servers/puppet-ls/puppet-languageserver', args: ['--stdio'], debug: v:true, },
       \ #{name: 'rustanalyzer', filetype: ['rust'], path: 'rust-analyzer', args: [], syncInit: v:true, },
       \ #{name: 'solargraph', filetype: ['ruby'], path: 'solargraph', args: ['stdio'], },
       \ #{name: 'vimls', filetype: 'vim', path: 'vim-language-server', args: ['--stdio'], },
       \ #{name: 'tsserver', filetype: ['javascript', 'typescript'], path: 'typescript-language-server', args: ['stdio'], },
       \]
-autocmd VimEnter * call LspAddServer(lspServers)
-
-let lspOpts = {'autoHighlightDiags': v:true}
-autocmd VimEnter * call LspOptionsSet(lspOpts)
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

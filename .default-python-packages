@@ -1,12 +1,14 @@
 GitPython
 ansible
 ansible-lint
+asyncio
 bandit
 bashate
 black
 check-jsonschema
 codegraph
 coverage
+dataclass
 dlint
 docutils
 fawltydeps
@@ -28,6 +30,9 @@ minio==5.0.10
 neovim
 notebook
 notedown
+numpy
+pandas
+pathlib
 perflint
 pex
 piera
@@ -35,6 +40,7 @@ pip-audit
 podman-compose
 pre-commit
 proselint
+pprint
 pygithub
 pygithub
 pygments
@@ -45,7 +51,9 @@ python-lsp-server
 python-lsp-black
 python-lsp-isort
 python-lsp-ruff
+readline
 requests
+rich
 rich-cli
 ruff
 scriv
@@ -55,6 +63,7 @@ slack_sdk
 sqlfluff
 tox
 tqdm
+typing
 xdg
 yamlfix
 yamllint

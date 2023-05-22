@@ -6,5 +6,6 @@ export GPG_TTY
 export LANG="en_US.UTF-8"
 export RUBYOPT='-W:deprecated '
 export PATH=~/bin:${PATH}
+export PYTHONSTARTUP="${HOME}/.config/python/startup.py"
 source /usr/local/opt/rtx/etc/bash_completion.d/rtx
 eval "$(/usr/local/bin/rtx activate bash)"

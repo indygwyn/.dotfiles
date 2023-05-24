@@ -359,6 +359,13 @@ function _gs {
         cut -d: -f1
 }
 
+function correcthorse {
+  for word in $(ggrep -E '^[a-z]{4,7}$' /usr/share/dict/words | shuf -n 5) ; do
+    echo -n "${word^}-"
+  done
+  date "+%m" | sed -e 's/^0//'
+}
+
 function git2http {
     if [[ -n "$1" ]]; then
         echo "$1" | sed -e 's/\:/\//' -e 's/git@/https:\/\//'

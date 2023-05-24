@@ -11,6 +11,7 @@ coverage
 dataclass
 dlint
 docutils
+environs
 fawltydeps
 git-revise
 gitlint
@@ -27,6 +28,7 @@ jupytext
 logzero
 mccabe
 minio==5.0.10
+more_itertools
 neovim
 notebook
 notedown
@@ -64,6 +66,7 @@ sqlfluff
 tox
 tqdm
 typing
+watchdog
 xdg
 yamlfix
 yamllint

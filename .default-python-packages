@@ -1,4 +1,5 @@
 GitPython
+aider
 ansible
 ansible-lint
 asyncio
@@ -7,8 +8,6 @@ bashate
 black
 check-jsonschema
 codegraph
-coverage
-dataclass
 dlint
 docutils
 environs
@@ -42,7 +41,6 @@ pip-audit
 podman-compose
 pre-commit
 proselint
-pprint
 pygithub
 pygithub
 pygments
@@ -53,7 +51,6 @@ python-lsp-server
 python-lsp-black
 python-lsp-isort
 python-lsp-ruff
-readline
 requests
 rich
 rich-cli

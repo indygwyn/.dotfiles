@@ -504,3 +504,4 @@ eval "$(rtx exec direnv -- direnv hook bash)"
 bind -f ~/share/bash-surround/inputrc-surround
 # shellcheck source=/dev/null
 source ~/.config/op/plugins.sh
+source ~/.rtfm.launch

@@ -257,7 +257,7 @@ function genpass {
             PASS="$PASS${MATRIX:$((RANDOM % ${#MATRIX})):1}"
             n=$((n + 1))
         done
-        echo $PASS
+        echo "$PASS"
     fi
 }
 
@@ -504,4 +504,5 @@ eval "$(rtx exec direnv -- direnv hook bash)"
 bind -f ~/share/bash-surround/inputrc-surround
 # shellcheck source=/dev/null
 source ~/.config/op/plugins.sh
+# shellcheck source=/dev/null
 source ~/.rtfm.launch

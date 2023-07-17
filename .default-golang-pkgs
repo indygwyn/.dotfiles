@@ -7,6 +7,7 @@ github.com/bufbuild/buf/cmd/buf@latest
 github.com/charmbracelet/charm@latest
 github.com/charmbracelet/glow@latest
 github.com/charmbracelet/gum@latest
+github.com/charmbracelet/pop@latest
 github.com/charmbracelet/skate@latest
 github.com/charmbracelet/soft-serve/cmd/soft@latest
 github.com/cloudflare/cfssl/cmd/...@latest

@@ -498,11 +498,11 @@ eval "$(rtx exec direnv -- direnv hook bash)"
 # eval "$(navi widget bash)"
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null
-[ -f ~/.bashrc-local ] && source ~/.bashrc-local
+[[ -f ~/.bashrc-local ]] && source ~/.bashrc-local
 # shellcheck source=/dev/null
-[ -f ~/.bash.d/cht.sh ] && source ~/.bash.d/cht.sh
-bind -f ~/share/bash-surround/inputrc-surround
+[[ -f ~/.bash.d/cht.sh ]] && source ~/.bash.d/cht.sh
+[[ -f ~/.local/share/bash-surround/inputrc-surround ]] && bind -f ~/.local/share/bash-surround/inputrc-surround
 # shellcheck source=/dev/null
-source ~/.config/op/plugins.sh
+[[ -f ~/.config/op/plugins.sh ]] && source ~/.config/op/plugins.sh
 # shellcheck source=/dev/null
-source ~/.rtfm.launch
+[[ -f ~/.rtfm.launch  ]] && source ~/.rtfm.launch

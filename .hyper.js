@@ -13,7 +13,7 @@ module.exports = {
     fontSize: 18,
 
     // font family with optional fallbacks
-    fontFamily: '"Victor Mono", "Iosevka Term", Consolas, monospace',
+    fontFamily: '"Fira Code", "Victor Mono", "Iosevka Term", Consolas, monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',

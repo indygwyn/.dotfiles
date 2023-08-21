@@ -8,6 +8,7 @@ shopt -s histappend # append to history instead of overwrite
 shopt -s cmdhist    # save multiline cmds in history
 shopt -s cdspell    # spellcheck cd
 shopt -s extglob    # bash extended globbing
+shopt -s checkhash  # rehash the PATH when command not found
 set -o noclobber    # no clobber of files on redirect >| override
 set -o vi           # use a vi-style command line editing interface
 

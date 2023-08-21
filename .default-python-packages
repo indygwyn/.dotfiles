@@ -12,6 +12,7 @@ dlint
 docutils
 environs
 fawltydeps
+fixit
 git-revise
 gitlint
 glances

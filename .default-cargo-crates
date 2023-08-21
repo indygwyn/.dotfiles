@@ -9,6 +9,7 @@ coreutils
 dirdiff-ocamlpro
 exa
 git-branchless
+gitoxide
 grex
 halp
 hurl

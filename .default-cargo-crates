@@ -9,6 +9,7 @@ coreutils
 dirdiff-ocamlpro
 exa
 git-branchless
+git-cliff
 gitoxide
 grex
 halp
@@ -27,6 +28,7 @@ procs
 record-query
 ripgrep
 rmesg
+rt
 sd
 secrets
 semver-explain

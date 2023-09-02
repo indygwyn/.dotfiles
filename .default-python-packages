@@ -12,6 +12,7 @@ dlint
 docutils
 environs
 fawltydeps
+fixit
 git-revise
 gitlint
 glances
@@ -51,6 +52,7 @@ python-lsp-server
 python-lsp-black
 python-lsp-isort
 python-lsp-ruff
+ranger-fm
 requests
 rich
 rich-cli

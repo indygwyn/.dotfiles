@@ -8,7 +8,7 @@ cargo-wasi
 coreutils
 dirdiff-ocamlpro
 dotenv-linter
-exa
+eza
 git-branchless
 git-cliff
 gitoxide

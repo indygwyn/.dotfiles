@@ -29,6 +29,7 @@ procs
 record-query
 ripgrep
 rmesg
+rst-traverse
 rt
 sd
 secrets

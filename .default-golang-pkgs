@@ -33,3 +33,4 @@ go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
 oss.terrastruct.com/d2@latest
+github.com/Boeing/config-file-validator/cmd/validator@latest

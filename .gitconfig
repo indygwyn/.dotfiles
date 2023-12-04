@@ -32,9 +32,6 @@
 [rebase]
       autostash = true
       autoSquash = true
-[credential]
-      helper = osxkeychain
-      helper = cache
 [push]
       gpgSign = if-asked
       followTags = true
@@ -117,3 +114,7 @@
       required = true
 [help]
 	autocorrect = 20
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

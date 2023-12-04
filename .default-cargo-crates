@@ -8,10 +8,16 @@ cargo-wasi
 coreutils
 dirdiff-ocamlpro
 dotenv-linter
+dprint
+dprint-plugin-typescript
+dprint-plugin-json
+dprint-plugin-markdown
+dprint-plugin-dockerfile
 eza
 git-branchless
 git-cliff
 gitoxide
+gitql
 grex
 halp
 hurl

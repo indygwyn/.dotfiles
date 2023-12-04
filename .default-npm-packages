@@ -1,4 +1,5 @@
 @markdoc/markdoc
+@microsoft/inshellisense
 @prettier/plugin-ruby
 alex
 bash-language-server

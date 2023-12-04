@@ -27,6 +27,7 @@ github.com/natesales/q@latest
 github.com/natesales/q@latest
 github.com/nikitavoloboev/gitupdate
 github.com/sachaos/viddy@latest
+github.com/sigstore/gitsign@latest
 github.com/sterchelen/hssp@latest
 github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops

@@ -3,11 +3,11 @@ aider
 ansible
 ansible-lint
 asyncio
-bandit
+# bandit
 bashate
 black
 check-jsonschema
-codegraph
+# codegraph
 dlint
 docutils
 environs

@@ -17,6 +17,7 @@ markdown-it
 markdown-spellcheck
 markdownlint
 npm-groovy-lint
+oxlint
 pag-cli
 prettier
 rousseau

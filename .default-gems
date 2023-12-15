@@ -21,6 +21,7 @@ httpclient
 iruby
 jekyll
 kramdown
+kramdown-man
 lefthook
 looksee
 maybe

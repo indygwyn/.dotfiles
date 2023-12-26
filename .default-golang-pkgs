@@ -18,6 +18,7 @@ github.com/jesseduffield/lazygit
 github.com/martinlindhe/validjson@latest
 github.com/martinlindhe/validtoml@latest
 github.com/martinlindhe/validyaml@latest
+github.com/mathaou/termdbms@latest
 github.com/maxmunzel/kvass@latest
 github.com/mikefarah/yq/v4@latest
 github.com/mrtazz/checkmake/cmd/checkmake@latest

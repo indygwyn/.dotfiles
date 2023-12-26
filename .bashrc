@@ -494,6 +494,7 @@ alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias j2y='jq -r toYaml'
 alias asdf=rtx
+alias weather='curl wttr.in/indianapolis'
 eval "$(rtx exec starship -- starship init bash)"
 eval "$(rtx exec direnv -- direnv hook bash)"
 # eval "$(navi widget bash)"

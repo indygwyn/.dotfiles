@@ -36,7 +36,6 @@ Plug 'tpope/vim-ragtag'                 " markup language helperrs
 Plug 'tpope/vim-speeddating'            " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'michaeljsmith/vim-indent-object'  " adds indentation level textobjects
 Plug 'noprompt/vim-yardoc'              " syntax highlight yard tags
-Plug 'tmsvg/pear-tree'                  " Close parenthesis, curly braces etc.
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
@@ -48,11 +47,9 @@ Plug 'skywind3000/asyncrun.vim'         " background runner
 Plug 'albertomontesg/lightline-asyncrun' " lightline asyncrun support
 Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabline
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
-Plug 'segeljakt/vim-silicon'            " carbon.sh clone
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
 Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
-Plug 'rizzatti/dash.vim'                " Dash.app integration
 call plug#end()
 
 " post plugin config

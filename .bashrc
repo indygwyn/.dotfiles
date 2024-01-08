@@ -421,9 +421,9 @@ darwin*)
     function brew-up {
         brew update && brew upgrade && brew cleanup
     }
-    function rtx-up {
-        rtx self-update
-        rtx plugins update --all
+    function mise-up {
+        mise self-update
+        mise plugins update --all
     }
     function vim-up {
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
@@ -493,10 +493,11 @@ alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias j2y='jq -r toYaml'
-alias asdf=rtx
+alias asdf=mise
+alias rtx-up=mise-up
 alias weather='curl wttr.in/indianapolis'
-eval "$(rtx exec starship -- starship init bash)"
-eval "$(rtx exec direnv -- direnv hook bash)"
+eval "$(mise exec starship -- starship init bash)"
+eval "$(mise exec direnv -- direnv hook bash)"
 # eval "$(navi widget bash)"
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null

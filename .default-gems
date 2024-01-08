@@ -20,7 +20,6 @@ hashie
 http
 httpclient
 iruby
-jekyll
 kramdown
 kramdown-man
 lefthook
@@ -92,8 +91,6 @@ syntax_tree-haml
 syntax_tree-rbs
 tomlrb
 tone
-wasmer
-wasmtime
 webrick
 xdg
 yamljson

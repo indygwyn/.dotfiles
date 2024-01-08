@@ -9,6 +9,6 @@ export LANG="en_US.UTF-8"
 export RUBYOPT='-W:deprecated '
 export PYTHONSTARTUP="${HOME}/.config/python/startup.py"
 # shellcheck source=/dev/null
-source "${BREW_PREFIX}/opt/rtx/etc/bash_completion.d/rtx"
-eval "$(${BREW_PREFIX}/bin/rtx activate bash)"
+source "${BREW_PREFIX}/opt/mise/etc/bash_completion.d/mise"
+eval "$(${BREW_PREFIX}/bin/mise activate bash)"
 source "${HOME}/.bashrc"

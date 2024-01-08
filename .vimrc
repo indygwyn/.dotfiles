@@ -15,10 +15,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } " default colorscheme
 Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}  " lightline uses daycula
 Plug 'tpope/vim-sensible'               " Defaults everyone can agree on
-Plug 'prabirshrestha/asyncomplete.vim'  " async completion
-Plug 'prabirshrestha/vim-lsp'           " async language server protocol plugin
-Plug 'prabirshrestha/asyncomplete-lsp.vim' " autocompletion sources for vim-lsp
-Plug 'mattn/vim-lsp-settings'           " Auto configurations for Language Server
+if has('timers')
+  Plug 'prabirshrestha/asyncomplete.vim'  " async completion
+  Plug 'prabirshrestha/vim-lsp'           " async language server protocol plugin
+  Plug 'prabirshrestha/asyncomplete-lsp.vim' " autocompletion sources for vim-lsp
+  Plug 'mattn/vim-lsp-settings'           " Auto configurations for Language Server
+endif
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
 Plug 'sheerun/vim-polyglot'             " collection of language packs

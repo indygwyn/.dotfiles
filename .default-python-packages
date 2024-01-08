@@ -8,6 +8,7 @@ bashate
 black
 check-jsonschema
 # codegraph
+devtools
 dlint
 docutils
 environs
@@ -19,6 +20,7 @@ glances
 grip
 html2text
 hvac
+icecream
 ipython
 isort
 jc
@@ -33,7 +35,6 @@ neovim
 notebook
 notedown
 numpy
-onprem
 pandas
 pathlib
 perflint
@@ -44,10 +45,12 @@ podman-compose
 pre-commit
 proselint
 pygithub
+ptpython
 pygithub
 pygments
 pynvim
 pytest
+pytest-sugar
 python-dotenv
 python-lsp-server
 python-lsp-black
@@ -59,7 +62,6 @@ rich
 rich-cli
 ruff
 scriv
-semgrep
 shell-genie
 slack_sdk
 sqlfluff

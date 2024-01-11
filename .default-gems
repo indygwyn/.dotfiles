@@ -19,6 +19,7 @@ hanami
 hashie
 http
 httpclient
+irb-theme-dracula
 iruby
 kramdown
 kramdown-man

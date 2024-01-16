@@ -428,6 +428,11 @@ darwin*)
     function vim-up {
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
     }
+    function daily-up {
+        brew update && brew upgrade && brew cleanup
+        mise upgrade
+        vim +PlugUpgrade +PlugUpdate +PlugClean +qall
+    }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g
     function pdfman() {

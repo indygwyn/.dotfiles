@@ -22,8 +22,8 @@ export LS_COLORS
 export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
 export EDITOR=vim                # vim is the only editor
 export VISUAL=vim                # vim is the only editor
-export HISTCONTROL=ignoreboth    # skip space cmds and dupes in history
-export HISTIGNORE="ls:ls -la:cd:cd -:pwd:exit:date:* --help:fg:bg:history:w"
+export HISTCONTROL=ignoreboth:erasedups  # skip space cmds and dupes in history
+export HISTIGNORE="ls*:rm*:cd*:CD*:ps*:exit*:reset*:clear*:synaptic*:mkdir*:cat*:fg:bg:history:w:date:pwd"
 export HISTFILE="$HOME/.bash_history"
 export HISTFILESIZE=1000000
 export HISTSIZE=${HISTFILESIZE}

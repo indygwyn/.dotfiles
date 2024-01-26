@@ -28,6 +28,7 @@ jedi
 jsl
 jupytext
 logzero
+marimo
 mccabe
 minio==5.0.10
 more_itertools

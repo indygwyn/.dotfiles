@@ -1,0 +1,3 @@
+--no-legacy_facts-check
+--no-top_scope_facts-check
+--no-variable_is_lowercase-check

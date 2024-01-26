@@ -141,7 +141,7 @@ try:
 except:
     # This could be solved using diskcache but I never took the time
     # to do it.
-    print("\n/!\ A session using this store already exist.")
+    print("\n/!// A session using this store already exist.")
 
 
 # Shorcurt to pip install packages without leaving the shell

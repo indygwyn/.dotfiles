@@ -18,6 +18,7 @@ git-branchless
 git-cliff
 gitoxide
 gitql
+gitu
 grex
 halp
 hurl
@@ -47,6 +48,7 @@ sozu
 ssclient
 tauri-cli
 tealdeer
+tinywasm-cli
 tokei
 tp-note
 typos-cli

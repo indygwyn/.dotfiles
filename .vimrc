@@ -198,6 +198,7 @@ let g:ale_linters = {
     \   'ruby': ['rubocop'],
     \   'sh': ['shellcheck', 'shell',],
     \   'python': ['ruff'],
+    \   'htmldjango': ['j2lint'],
     \ }
 
 let lspServers = [

@@ -12,6 +12,8 @@ shopt -s checkhash  # rehash the PATH when command not found
 set -o noclobber    # no clobber of files on redirect >| override
 set -o vi           # use a vi-style command line editing interface
 
+# [[ $- == *i* ]] && source ${HOME}/.local/share/blesh/ble.sh --noattach
+
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 export CLICOLOR=1 # colorize ls

@@ -15,7 +15,10 @@
       ff = only
       conflictstyle = diff3
 [diff]
+      tool = difftastic
       colorMoved = zebra
+[pager]
+      difftool = true
 [color]
       ui = auto
 [user]
@@ -59,6 +62,7 @@
       dc = diff --cached
       rv = remote -v
       who = shortlog -s --
+      dft = difftool
       untrack = rm --cache --
       mainbranch = "!git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
       synced = "!git pull origin $(git mainbranch) --rebase"
@@ -73,6 +77,7 @@
       lg = log --graph --oneline --decorate --all
       lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
       source = remote get-url origin
+      dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
       plog = log @{1}..
       slog = log --pretty=slog
       pslog = log --pretty=slog @{1}..
@@ -118,3 +123,7 @@
 	helper = /usr/local/bin/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[difftool]
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"

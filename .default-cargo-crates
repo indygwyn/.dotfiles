@@ -6,6 +6,7 @@ broot
 cargo-semver-checks
 cargo-wasi
 coreutils
+csv-to-usv
 dirdiff-ocamlpro
 dotenv-linter
 dprint

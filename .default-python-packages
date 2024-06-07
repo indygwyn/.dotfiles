@@ -45,11 +45,13 @@ pip-audit
 podman-compose
 pre-commit
 proselint
+pter
 pygithub
 ptpython
 pygithub
 pygments
 pynvim
+pyright
 pytest
 pytest-sugar
 python-dotenv

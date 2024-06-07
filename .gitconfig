@@ -15,8 +15,9 @@
       ff = only
       conflictstyle = diff3
 [diff]
-      tool = difftastic
-      colorMoved = zebra
+      external = difft
+      # tool = difftastic
+      # colorMoved = zebra
 [pager]
       difftool = true
 [color]
@@ -119,11 +120,12 @@
       required = true
 [help]
 	autocorrect = 20
-[credential]
-	helper = /usr/local/bin/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [difftool]
         prompt = false
 [difftool "difftastic"]
         cmd = difft "$LOCAL" "$REMOTE"
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

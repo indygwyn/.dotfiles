@@ -12,6 +12,7 @@ github.com/charmbracelet/pop@latest
 github.com/charmbracelet/skate@latest
 github.com/charmbracelet/soft-serve/cmd/soft@latest
 github.com/cloudflare/cfssl/cmd/...@latest
+github.com/danvergara/dblab@latest
 github.com/ericchiang/pup
 github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 github.com/jesseduffield/lazygit

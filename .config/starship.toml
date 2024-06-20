@@ -33,17 +33,20 @@ format = "took [$duration]($style) "
 
 [git_branch]
 format = 'on [$symbol$branch(:$remote_branch)]($style) '
-symbol = ""
+symbol = "🌿"
 
-[status]
-disabled = false
-
-[shlvl]
+[git_metrics]
 disabled = false
 
 [time]
 disabled = true
 
 [direnv]
+disabled = false
+
+[status]
+disabled = true
+
+[shlvl]
 disabled = false
 

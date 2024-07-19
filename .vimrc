@@ -52,6 +52,7 @@ Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
 Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
+Plug 'jvdmeulen/json-fold.nvim'         " foldable json
 call plug#end()
 
 " post plugin config

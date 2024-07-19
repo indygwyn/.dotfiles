@@ -3,11 +3,10 @@ aider
 ansible
 ansible-lint
 asyncio
-# bandit
 bashate
 black
+bython
 check-jsonschema
-# codegraph
 devtools
 dlint
 docutils
@@ -43,11 +42,12 @@ pex
 piera
 pip-audit
 podman-compose
+posting
 pre-commit
 proselint
 pter
-pygithub
 ptpython
+pygithub
 pygithub
 pygments
 pynvim
@@ -55,10 +55,10 @@ pyright
 pytest
 pytest-sugar
 python-dotenv
-python-lsp-server
 python-lsp-black
 python-lsp-isort
 python-lsp-ruff
+python-lsp-server
 ranger-fm
 requests
 rich

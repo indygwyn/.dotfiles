@@ -10,10 +10,11 @@ csv-to-usv
 dirdiff-ocamlpro
 dotenv-linter
 dprint
-dprint-plugin-typescript
+dprint-plugin-dockerfile
 dprint-plugin-json
 dprint-plugin-markdown
-dprint-plugin-dockerfile
+dprint-plugin-typescript
+envelope
 eza
 git-branchless
 git-cliff

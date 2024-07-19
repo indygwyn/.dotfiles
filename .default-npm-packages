@@ -1,3 +1,4 @@
+@dotenvx/dotenvx
 @markdoc/markdoc
 @microsoft/inshellisense
 @prettier/plugin-ruby

@@ -1,6 +1,8 @@
 filippo.io/age/cmd/...@latest
 filippo.io/mkcert
 git.sr.ht/~gpanders/ijq@latest
+github.com/Boeing/config-file-validator/cmd/validator@latest
+github.com/JFryy/qq.git@latest
 github.com/antonmedv/fx@latest
 github.com/antonmedv/walk@latest
 github.com/benhoyt/goawk@latest
@@ -36,4 +38,3 @@ go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
 oss.terrastruct.com/d2@latest
-github.com/Boeing/config-file-validator/cmd/validator@latest

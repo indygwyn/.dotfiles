@@ -1,12 +1,12 @@
 @dotenvx/dotenvx
 @markdoc/markdoc
-@microsoft/inshellisense
 @prettier/plugin-ruby
 alex
 bash-language-server
 cspell
 dockerfile-language-server-nodejs
 docsify-cli
+dom-to-semantic-markdown
 eslint
 fx
 git-user-switch

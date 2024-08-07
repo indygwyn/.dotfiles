@@ -17,6 +17,7 @@ gemoji
 git
 git-lint
 gollum
+grepfruit
 hanami
 hashie
 hirb
@@ -72,6 +73,7 @@ rake
 rbnacl
 rbnacl-libsodium
 rbs
+rdiscount
 redcarpet
 reek
 reline

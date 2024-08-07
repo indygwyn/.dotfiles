@@ -70,7 +70,9 @@ slack_sdk
 sqlfluff
 tox
 tqdm
+treescope
 typing
+wat-inspector
 watchdog
 xdg
 yamlfix

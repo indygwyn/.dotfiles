@@ -8,6 +8,7 @@ black
 bython
 check-jsonschema
 devtools
+django
 dlint
 docutils
 environs
@@ -16,6 +17,7 @@ fixit
 git-revise
 gitlint
 glances
+greenery
 grip
 html2text
 hvac

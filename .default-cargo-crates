@@ -18,6 +18,7 @@ envelope
 eza
 git-branchless
 git-cliff
+git-metrics
 gitoxide
 gitql
 gitu

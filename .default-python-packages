@@ -43,6 +43,7 @@ perflint
 pex
 piera
 pip-audit
+pipx
 podman-compose
 posting
 pre-commit

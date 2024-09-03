@@ -434,6 +434,7 @@ darwin*)
         brew update && brew upgrade && brew cleanup
         mise upgrade
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
+        softwareupdate -i -a
     }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g

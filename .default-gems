@@ -93,6 +93,7 @@ rubocop-performance
 rubocop-rspec
 ruby-lsp
 rufo
+sequel
 simplecov
 simplecov-html
 simplecov-lcov

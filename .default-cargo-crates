@@ -7,6 +7,7 @@ cargo-semver-checks
 cargo-wasi
 coreutils
 csv-to-usv
+desed
 dirdiff-ocamlpro
 dotenv-linter
 dprint

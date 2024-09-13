@@ -28,6 +28,8 @@ jc
 jedi
 jsl
 jupytext
+litecli
+llm
 logzero
 marimo
 mccabe
@@ -55,6 +57,7 @@ pygithub
 pygments
 pynvim
 pyright
+pysail
 pytest
 pytest-sugar
 python-dotenv

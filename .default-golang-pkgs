@@ -18,6 +18,7 @@ github.com/danvergara/dblab@latest
 github.com/ericchiang/pup
 github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 github.com/jesseduffield/lazygit
+github.com/josephburnett/jd@latest
 github.com/martinlindhe/validjson@latest
 github.com/martinlindhe/validtoml@latest
 github.com/martinlindhe/validyaml@latest
@@ -38,4 +39,3 @@ go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
 oss.terrastruct.com/d2@latest
-

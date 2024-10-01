@@ -16,6 +16,7 @@ fasterer
 flatito
 gemoji
 git
+git-improved
 git-lint
 gollum
 grepfruit
@@ -26,6 +27,7 @@ http
 httpclient
 irb-theme-dracula
 iruby
+jekyll
 kramdown
 kramdown-man
 lefthook
@@ -39,6 +41,7 @@ minitest
 na
 niceql
 octokit
+oktest
 onceover
 onceover-codequality
 opal

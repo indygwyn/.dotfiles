@@ -39,6 +39,8 @@ neovim
 notebook
 notedown
 numpy
+oktest
+open-webui
 pandas
 pathlib
 perflint
@@ -78,8 +80,10 @@ tox
 tqdm
 treescope
 typing
+vim
 wat-inspector
 watchdog
+whale-linter
 xdg
 yamlfix
 yamllint

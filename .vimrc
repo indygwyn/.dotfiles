@@ -54,6 +54,7 @@ Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit positio
 Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
 Plug 'jvdmeulen/json-fold.nvim'         " foldable json
 Plug 'jgdavey/vim-blockle'
+" Plug 'leocus/codeassistant.vim'         " not working requires async_wait
 call plug#end()
 
 " post plugin config

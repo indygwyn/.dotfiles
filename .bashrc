@@ -517,3 +517,5 @@ eval "$(mise exec direnv -- direnv hook bash)"
 [[ -f ~/.config/op/plugins.sh ]] && source ~/.config/op/plugins.sh
 # shellcheck source=/dev/null
 [[ -f ~/.rtfm.launch  ]] && source ~/.rtfm.launch
+
+[ -f /Users/tholt/.shelloracle.bash ] && source /Users/tholt/.shelloracle.bash

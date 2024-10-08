@@ -54,6 +54,7 @@ Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit positio
 Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
 Plug 'jvdmeulen/json-fold.nvim'         " foldable json
 Plug 'jgdavey/vim-blockle'
+Plug 'powerman/vim-plugin-AnsiEsc'
 " Plug 'leocus/codeassistant.vim'         " not working requires async_wait
 call plug#end()
 
@@ -162,6 +163,8 @@ endif
 
 " :Marked to open current file in Marked
 command Marked :silent !open -a Marked\ 2.app '%:p'
+
+command StripANSI :%s/[\x1B]\[[0-9;]*m//g
 
 function! SourceIfExists(file)
   if filereadable(expand(a:file))

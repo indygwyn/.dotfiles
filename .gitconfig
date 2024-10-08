@@ -1,7 +1,7 @@
 [core]
       editor = vim
       whitespace = trailing-space,space-before-tab
-      excludesfile = /Users/tholt/.gitignore
+	excludesfile = /Users/tholt/.gitignore
       ignorecase = true
       autocrlf = input
       attributesfile = /Users/twh/.gitattributes
@@ -23,8 +23,8 @@
 [color]
       ui = auto
 [user]
-      name = Thomas W. Holt Jr.
-      email = twh@pobox.com
+	name = Thomas W. Holt Jr.
+	email = twh@pobox.com
 [pack]
       useSparse = true
 [http]
@@ -42,6 +42,7 @@
     	autoSetupRemote = true
 [commit]
       gpgsign = true
+	template = /Users/tholt/.stCommitMsg
 [include]
       path = ~/.gitconfig-local
 [submodule]
@@ -135,6 +136,13 @@
 [difftool "difftastic"]
         cmd = difft "$LOCAL" "$REMOTE"
 [credential]
+	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

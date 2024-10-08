@@ -410,7 +410,6 @@ darwin*)
     alias chrome='open -a "Google Chrome"'
     alias finder='open -a Finder '
     alias textedit='open -a TextEdit'
-    alias hex='open -a "Hex Fiend"'
     alias ldd='otool -L'
     alias md5sum='md5'
     alias sha1sum='shasum'

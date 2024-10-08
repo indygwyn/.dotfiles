@@ -1,4 +1,5 @@
 asciidoctor
+amazing_print
 awesome_print
 bashly
 bcrypt_pbkdf
@@ -11,6 +12,7 @@ cucumber
 creole
 debugbar
 doing
+dotenv
 ed25519
 fasterer
 flatito
@@ -32,6 +34,7 @@ kramdown
 kramdown-man
 lefthook
 looksee
+mail
 maybe
 mdl
 mdless

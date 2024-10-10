@@ -17,6 +17,7 @@ kmdr
 markdown-it
 markdown-spellcheck
 markdownlint
+markdownlint-cli
 npm-groovy-lint
 oktest
 oxlint

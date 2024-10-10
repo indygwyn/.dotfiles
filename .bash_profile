@@ -12,3 +12,6 @@ export PYTHONSTARTUP="${HOME}/.config/python/startup.py"
 source "${BREW_PREFIX}/opt/mise/etc/bash_completion.d/mise"
 eval "$(${BREW_PREFIX}/bin/mise activate bash)"
 source "${HOME}/.bashrc"
+
+# Created by `pipx` on 2024-10-09 13:25:43
+export PATH="$PATH:/Users/tholt/.local/bin"

@@ -7,6 +7,7 @@ bashate
 black
 bython
 check-jsonschema
+cookiecutter
 devtools
 django
 dlint
@@ -40,7 +41,6 @@ notebook
 notedown
 numpy
 oktest
-open-webui
 pandas
 pathlib
 perflint
@@ -59,7 +59,6 @@ pygithub
 pygments
 pynvim
 pyright
-pysail
 pytest
 pytest-sugar
 python-dotenv

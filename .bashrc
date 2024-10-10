@@ -518,3 +518,6 @@ eval "$(mise exec direnv -- direnv hook bash)"
 [[ -f ~/.rtfm.launch  ]] && source ~/.rtfm.launch
 
 [ -f /Users/tholt/.shelloracle.bash ] && source /Users/tholt/.shelloracle.bash
+
+# Created by `pipx` on 2024-10-09 13:25:43
+export PATH="$PATH:/Users/tholt/.local/bin"

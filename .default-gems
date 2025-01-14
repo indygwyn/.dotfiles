@@ -6,6 +6,7 @@ bcrypt_pbkdf
 binding_of_caller
 brewfile
 caliber
+cliapp
 clipboard
 coderay
 cucumber
@@ -116,6 +117,7 @@ syntax_tree-haml
 syntax_tree-rbs
 tomlrb
 tone
+un
 undercover
 webrick
 wikicloth

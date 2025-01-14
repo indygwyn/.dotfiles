@@ -9,6 +9,7 @@ shopt -s cmdhist    # save multiline cmds in history
 shopt -s cdspell    # spellcheck cd
 shopt -s extglob    # bash extended globbing
 shopt -s checkhash  # rehash the PATH when command not found
+shopt -s extdebug   # turn on DEBUG trapping
 set -o noclobber    # no clobber of files on redirect >| override
 set -o vi           # use a vi-style command line editing interface
 
@@ -383,6 +384,42 @@ function git2http {
     return
 }
 
+function scold_git_checkout() {
+        if [ "$1" != "git" ]; then
+                return 0
+        fi
+        if [ "$2" != "checkout" ]; then
+                return 0
+        fi
+        cat >&2 <<EOF
+////// DON'T use git checkout! //////
+The 'git checkout' command of git has been replaced with two other
+commands: 'git switch' and 'git restore'. You used:
+        $@
+EOF
+        if [ "$3" == "-b" ]; then
+                PASTESAFE="$(printf "%q " "${@:4}")"
+                cat >&2 <<EOF
+You should use the following:
+        git switch -c $PASTESAFE
+EOF
+        elif [ "$3" == "--" ]; then
+                PASTESAFE="$(printf "%q " "${@:4}")"
+                cat >&2 <<EOF
+You should use the following:
+        git restore $PASTESAFE
+EOF
+        else
+                PASTESAFE="$(printf "%q " "${@:3}")"
+                cat >&2 <<EOF
+You can try the following:
+        git switch $PASTESAFE
+EOF
+        fi
+        return 1
+}
+trap 'scold_git_checkout $BASH_COMMAND' DEBUG
+
 if [[ $- =~ i ]]; then
     bind '"\er": redraw-current-line'
     bind '"\C-g\C-f": "$(_gf)\e\C-e\er"'
@@ -433,7 +470,7 @@ darwin*)
         brew update && brew upgrade && brew cleanup
         mise upgrade
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
-        softwareupdate -i -a
+        # softwareupdate -i -a
     }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g
@@ -474,6 +511,10 @@ EOF
                     end tell
 EOF
     }
+
+    function puts() {
+      ruby -rdate -e "puts $*"
+    }
     ;;
 esac
 
@@ -500,11 +541,9 @@ alias x1='exa --oneline --all --group-directories-first'
 alias xt='exa --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias yaml2json="ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))'"
-alias asdf=mise
-alias rtx-up=mise-up
 alias weather='curl wttr.in/indianapolis'
-eval "$(mise exec starship -- starship init bash)"
-eval "$(mise exec direnv -- direnv hook bash)"
+eval "$(starship init bash)"
+eval "$(direnv hook bash)"
 # eval "$(navi widget bash)"
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # shellcheck source=/dev/null
@@ -519,5 +558,6 @@ eval "$(mise exec direnv -- direnv hook bash)"
 
 [ -f /Users/tholt/.shelloracle.bash ] && source /Users/tholt/.shelloracle.bash
 
+eval "$(mise activate bash)"
 # Created by `pipx` on 2024-10-09 13:25:43
 export PATH="$PATH:/Users/tholt/.local/bin"

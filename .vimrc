@@ -23,7 +23,7 @@ if has('timers')
 endif
 Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
 Plug 'rhysd/vim-lsp-ale'                " ALE vim-lsp bridge
-Plug 'sheerun/vim-polyglot'             " collection of language packs
+"Plug 'sheerun/vim-polyglot'             " collection of language packs
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'rhysd/vim-healthcheck'            " like neovim :CheckHealth
 Plug 'ntpeters/vim-better-whitespace'   " Better whitespace highlighting

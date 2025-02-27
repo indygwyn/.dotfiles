@@ -391,6 +391,9 @@ function scold_git_checkout() {
         if [ "$2" != "checkout" ]; then
                 return 0
         fi
+        if [ "$2" != "co" ]; then
+                return 0
+        fi
         cat >&2 <<EOF
 ////// DON'T use git checkout! //////
 The 'git checkout' command of git has been replaced with two other

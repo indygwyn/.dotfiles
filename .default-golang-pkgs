@@ -18,8 +18,10 @@ github.com/danielgtaylor/restish@latest
 github.com/danvergara/dblab@latest
 github.com/ericchiang/pup
 github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+github.com/google/yamlfmt@latest
 github.com/jesseduffield/lazygit
 github.com/josephburnett/jd@latest
+github.com/loeffel-io/ls-lint@latest
 github.com/martinlindhe/validjson@latest
 github.com/martinlindhe/validtoml@latest
 github.com/martinlindhe/validyaml@latest

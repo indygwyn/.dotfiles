@@ -16,6 +16,7 @@ dprint-plugin-dockerfile
 dprint-plugin-json
 dprint-plugin-markdown
 dprint-plugin-typescript
+github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker@latest
 envelope
 eza
 git-branchless

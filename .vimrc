@@ -56,10 +56,18 @@ Plug 'jvdmeulen/json-fold.nvim'         " foldable json
 Plug 'jgdavey/vim-blockle'
 "Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'Raku/vim-raku'
+Plug 'Yggdroot/indentLine'
+Plug 'digitalrounin/vim-yaml-folds'
 "Plug 'leocus/codeassistant.vim'         " not working requires async_wait
 call plug#end()
 
 " post plugin config
+
+" make yaml tabs correct
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+let g:indentLine_char = '⦙'
+
 
 " branch name function for lightline
 function! LightlineFugitive()
@@ -137,7 +145,8 @@ filetype plugin indent on
 scriptencoding utf-8
 
 set autoindent
-set nofoldenable
+set foldenable
+
 set updatetime=250
 set number            " number lines
 set relativenumber    " relative to cursor position

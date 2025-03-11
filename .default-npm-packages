@@ -18,6 +18,7 @@ markdown-it
 markdown-spellcheck
 markdownlint
 markdownlint-cli
+@mermaid-js/mermaid-cli
 npm-groovy-lint
 oktest
 oxlint

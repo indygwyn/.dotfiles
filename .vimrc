@@ -41,7 +41,7 @@ Plug 'noprompt/vim-yardoc'              " syntax highlight yard tags
 Plug 'lilydjwg/colorizer'               " colorize text #rrggbb or #rgb.
 Plug 'AndrewRadev/switch.vim'           " :Switch
 Plug 'AndrewRadev/splitjoin.vim'        " :SplitJoin
-Plug 'docunext/closetag.vim'            " close open HTML/XML tags
+Plug 'alvan/vim-closetag'
 Plug 'mhinz/vim-signify'                " Show a diff in sign column
 Plug 'maximbaz/lightline-ale'           " lightline ale support
 Plug 'macthecadillac/lightline-gitdiff' " lightline git support

@@ -145,7 +145,7 @@ filetype plugin indent on
 scriptencoding utf-8
 
 set autoindent
-set foldenable
+set nofoldenable
 
 set updatetime=250
 set number            " number lines

@@ -18,6 +18,7 @@ dprint-plugin-markdown
 dprint-plugin-typescript
 github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker@latest
 envelope
+epiq
 eza
 git-branchless
 git-cliff

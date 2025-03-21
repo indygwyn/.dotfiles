@@ -37,6 +37,7 @@ github.com/nikitavoloboev/gitupdate
 github.com/noperator/sol/cmd/sol@latest
 github.com/sachaos/viddy@latest
 github.com/sigstore/gitsign@latest
+github.com/sinclairtarget/git-who@latest
 github.com/sterchelen/hssp@latest
 github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops

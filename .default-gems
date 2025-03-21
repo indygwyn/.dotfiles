@@ -44,6 +44,7 @@ metadata-json-lint
 minitest
 na
 niceql
+nokogiri
 octokit
 oktest
 onceover
@@ -63,6 +64,7 @@ pry-doc
 pry-stack_explorer
 pry-theme
 pstore
+psych
 puma
 puppet-lint
 puppet-lint-absolute_classname-check

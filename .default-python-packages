@@ -11,6 +11,7 @@ cookiecutter
 devtools
 django
 dlint
+doccmd
 docutils
 environs
 fawltydeps

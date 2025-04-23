@@ -35,10 +35,12 @@ github.com/natesales/q@latest
 github.com/natesales/q@latest
 github.com/nikitavoloboev/gitupdate
 github.com/noperator/sol/cmd/sol@latest
+github.com/reteps/dockerfmt@latest
 github.com/sachaos/viddy@latest
 github.com/sigstore/gitsign@latest
 github.com/sinclairtarget/git-who@latest
 github.com/sterchelen/hssp@latest
+github.com/thiagokokada/gh-gfm-preview@latest
 github.com/tomnomnom/gron
 go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls

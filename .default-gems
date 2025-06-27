@@ -5,6 +5,7 @@ bashly
 bcrypt_pbkdf
 binding_of_caller
 brewfile
+bundler-audit
 caliber
 cliapp
 clipboard
@@ -17,6 +18,7 @@ dotenv
 ed25519
 fasterer
 flatito
+gem-clone
 gemoji
 git
 git-improved

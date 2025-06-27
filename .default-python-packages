@@ -33,6 +33,7 @@ jupytext
 litecli
 logzero
 marimo
+mbake
 mccabe
 minio==5.0.10
 more_itertools

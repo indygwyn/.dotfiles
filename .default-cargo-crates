@@ -44,6 +44,7 @@ navi
 pastel
 pista
 procs
+qsv
 record-query
 ripgrep
 rmesg
@@ -68,6 +69,5 @@ wasi-vfs
 websocat
 xan
 xplr
-xsv
 ytop
 zoxide

@@ -1,6 +1,7 @@
 @dotenvx/dotenvx
 @markdoc/markdoc
 @prettier/plugin-ruby
+@marp-team/marp-cli
 alex
 bash-language-server
 cspell

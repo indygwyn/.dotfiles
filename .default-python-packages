@@ -37,7 +37,6 @@ mbake
 mccabe
 minio==5.0.10
 more_itertools
-neovim
 notebook
 notedown
 numpy
@@ -58,7 +57,6 @@ ptpython
 pygithub
 pygithub
 pygments
-pynvim
 pyright
 pytest
 pytest-sugar

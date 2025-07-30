@@ -18,6 +18,7 @@ github.com/danielgtaylor/restish@latest
 github.com/danvergara/dblab@latest
 github.com/ericchiang/pup
 github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+github.com/go-shiori/shiori@latest
 github.com/google/yamlfmt@latest
 github.com/jesseduffield/lazygit
 github.com/josephburnett/jd@latest

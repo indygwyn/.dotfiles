@@ -1,3 +1,4 @@
+@cucumber/cucumber
 @dotenvx/dotenvx
 @markdoc/markdoc
 @prettier/plugin-ruby

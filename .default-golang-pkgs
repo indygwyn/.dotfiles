@@ -35,6 +35,7 @@ github.com/multiprocessio/dsq@latest
 github.com/natesales/q@latest
 github.com/natesales/q@latest
 github.com/nikitavoloboev/gitupdate
+github.com/noperator/jqfmt/cmd/jqfmt@latest
 github.com/noperator/sol/cmd/sol@latest
 github.com/reteps/dockerfmt@latest
 github.com/sachaos/viddy@latest

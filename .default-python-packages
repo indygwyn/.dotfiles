@@ -4,6 +4,7 @@ ansible
 ansible-lint
 asyncio
 bashate
+behave
 black
 bython
 check-jsonschema
@@ -37,6 +38,8 @@ mbake
 mccabe
 minio==5.0.10
 more_itertools
+neovim
+niet
 notebook
 notedown
 numpy
@@ -57,6 +60,7 @@ ptpython
 pygithub
 pygithub
 pygments
+pynvim
 pyright
 pytest
 pytest-sugar
@@ -72,6 +76,7 @@ rich-cli
 ruff
 scriv
 shell-genie
+shyaml
 slack_sdk
 sqlfluff
 tox

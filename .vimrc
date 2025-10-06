@@ -58,6 +58,7 @@ Plug 'jgdavey/vim-blockle'
 Plug 'Raku/vim-raku'
 Plug 'Yggdroot/indentLine'
 Plug 'digitalrounin/vim-yaml-folds'
+Plug 'dbakker/vim-lint'
 "Plug 'leocus/codeassistant.vim'         " not working requires async_wait
 call plug#end()
 

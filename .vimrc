@@ -8,7 +8,7 @@ endif
 
 " pre-plugin config
 let mapleader=','
-set encoding=utf-8
+" Note: encoding=utf-8 handled by vim-sensible
 
 " vim-plug is my plugin manager :PlugInstall, :PlugUpdate:, :PlugClean
 call plug#begin('~/.vim/plugged')
@@ -51,21 +51,22 @@ Plug 'itchyny/lightline.vim'            " light and configurable statusline/tabl
 Plug 'editorconfig/editorconfig-vim'    " respect project editorconfigs
 Plug 'chrisbra/csv.vim'                 " filetype for columnar files csv, tsv
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
-Plug 'rodjek/vim-puppet'                " Puppetlabs Style Guide
-Plug 'jvdmeulen/json-fold.nvim'         " foldable json
-Plug 'jgdavey/vim-blockle'
-"Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'Raku/vim-raku'
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'jvdmeulen/json-fold.nvim', { 'for': 'json' }
+Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'Yggdroot/indentLine'
-Plug 'digitalrounin/vim-yaml-folds'
+Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
 Plug 'dbakker/vim-lint'
-"Plug 'leocus/codeassistant.vim'         " not working requires async_wait
+Plug 'rochacbruno/claude-code.vim'
 call plug#end()
 
 " post plugin config
 
-" make yaml tabs correct
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" make yaml tabs correct - use augroup for safety
+augroup yaml_settings
+  autocmd!
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
 
 let g:indentLine_char = '⦙'
 
@@ -145,10 +146,11 @@ set noshowmode        " lightline indicator used instead
 filetype plugin indent on
 scriptencoding utf-8
 
-set autoindent
-set nofoldenable
+" Note: autoindent, backspace, smarttab, incsearch, laststatus, ruler,
+" wildmenu, and other basics handled by vim-sensible
+set nofoldenable      " disable folding by default
 
-set updatetime=250
+set updatetime=250    " faster updates for gitgutter/signify
 set number            " number lines
 set relativenumber    " relative to cursor position
 set hlsearch          " highlight search matches
@@ -166,8 +168,11 @@ imap jj <Esc>
 imap jk <Esc>
 imap kj <Esc>
 
-" use ag for grep if available
-if executable('ag')
+" use modern grep alternatives: ripgrep > ag > grep
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+    set grepformat=%f:%l:%c:%m
+elseif executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
@@ -184,6 +189,10 @@ function! SourceIfExists(file)
 endfunction
 
 let g:markdown_fenced_languages = ['vim','help']
+
+" Popup menu configuration
+set completeopt=menuone,noinsert,noselect
+set pumheight=10      " limit popup menu height
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -203,13 +212,6 @@ let g:ale_writegood_options = '--yes-eprime'
 let g:ale_python_mypy_options = '--strict'
 let g:ale_disable_lsp = 1
 let g:ale_virtualtext_cursor = 'current'
-"let g:ale_linters_ignore = {
-"     \   'sh': ['cspell', 'bashate',],
-"     \   'markdown': ['cspell', 'vale',],
-"     \   'ruby': ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'solargraph', 'standardrb',],
-"     \   'python': ['cspell', 'flake8', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyre', 'pylsp',],
-"     \}
-
 let g:ale_linters = {
     \   'markdown': ['mdl', 'writegood'],
     \   'ruby': ['rubocop'],
@@ -218,21 +220,22 @@ let g:ale_linters = {
     \   'htmldjango': ['j2lint'],
     \ }
 
-let lspServers = [
-      \ #{name: 'bashls', filetype: 'sh', path: 'bash-language-server', args: ['start'] },
-      \ #{name: 'clangd', filetype: ['c', 'cpp'], path: 'clangd', args: ['--background-index', '--clang-tidy'] },
-      \ #{name: 'cssls', filetype: 'css', path: 'css-languageserver', args: ['--stdio'], },
-      \ #{name: 'gopls', filetype: 'go', path: 'gopls', args: ['serve'] },
-      \ #{name: 'htmlls', filetype: 'html', path: 'html-languageserver', args: ['--stdio'], },
-      \ #{name: 'luals', filetype: 'lua', path: 'lua-language-server', args: [], debug: v:true, },
-      \ #{name: 'marksman', filetype: 'markdown', path: '/Users/tholt/.local/share/vim-lsp-settings/servers/marksman/marksman', args: ['server'], debug: v:true, },
-      \ #{name: 'pylsp', filetype: 'python', path: 'pylsp', args: [], },
-      \ #{name: 'puppetls', filetype: 'puppet', path: '/Users/tholt/.local/share/vim-lsp-settings/servers/puppet-ls/puppet-languageserver', args: ['--stdio'], debug: v:true, },
-      \ #{name: 'rustanalyzer', filetype: ['rust'], path: 'rust-analyzer', args: [], syncInit: v:true, },
-      \ #{name: 'solargraph', filetype: ['ruby'], path: 'solargraph', args: ['stdio'], },
-      \ #{name: 'vimls', filetype: 'vim', path: 'vim-language-server', args: ['--stdio'], },
-      \ #{name: 'tsserver', filetype: ['javascript', 'typescript'], path: 'typescript-language-server', args: ['stdio'], },
-      \]
+
+" SECURITY: Load API key from environment variable instead
+let g:claude_api_key = get(environ(), 'ANTHROPIC_AUTH_TOKEN', '')
+let g:claude_api_url = get(environ(), 'ANTHROPIC_BEDROCK_BASE_URL', '')
+let g:claude_use_bedrock = 1
+let g:claude_bedrock_model_id = 'us.anthropic.claude-3-5-haiku-20241022-v1:0'
+let g:claude_code_cli = '/Users/tholt/.local/bin/claude'
+
+let g:claude_map_implement = '<Leader>ci'
+let g:claude_map_open_chat = '<Leader>cc'
+let g:claude_map_send_chat_message = '<C-]>'
+let g:claude_map_cancel_response = '<Leader>cx'
+
+" vim-lsp-settings handles LSP server configuration automatically
+" Remove this manual configuration if mattn/vim-lsp-settings works well
+" Only keep custom configs if you need to override defaults
 
 " load site specific settings
 call SourceIfExists('~/.vimrc-local')

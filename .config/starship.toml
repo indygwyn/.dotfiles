@@ -1,59 +1,142 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+
+# Performance optimizations
 add_newline = false
-command_timeout = 1500
-format = "[$all](dimmed white)"
+command_timeout = 500
+scan_timeout = 30
 
-[aws]
-format = '[$symbol($profile )(\($region\) )]($style)'
-symbol = '☁️ '
-style = 'bold blue'
+# Custom format for faster rendering
+format = """
+[${username}](bold cyan)\
+[@](white)\
+[${hostname}](bold purple) \
+[${directory}](bold green)\
+[${git_branch}](bold pink)\
+[${git_status}](bold red)\
+${python}\
+${ruby}\
+${aws}\
+${direnv}\
+${shlvl}\
+${cmd_duration}\
+${character}"""
 
-[package]
-disabled = true
+palette = "dracula"
 
-[ruby]
-format = '[$symbol($version )]($style)'
-symbol = '💎'
-version_format = '${major}.${minor}'
-disabled = false
+# Dracula color palette
+[palettes.dracula]
+background = "#282a36"
+current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
 
-[python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-symbol = '🐍'
-version_format = '${major}.${minor}'
-disabled = false
+[username]
+format = "[$user]($style)"
+style_user = "bold cyan"
+show_always = false
+
+[hostname]
+format = "[$hostname]($style)"
+style = "bold purple"
+ssh_only = true
+
+[directory]
+style = "bold green"
+truncation_length = 3
+truncate_to_repo = true
+read_only = " 🔒"
 
 [character]
-success_symbol = "[❯](dimmed green)"
-error_symbol = "[❯](dimmed red)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
 
 [cmd_duration]
-min_time = 4
+min_time = 2000
 format = "took [$duration]($style) "
+style = "bold yellow"
+show_milliseconds = false
 
 [git_branch]
-format = 'on [$symbol$branch(:$remote_branch)]($style) '
-symbol = "🌿"
+format = "on [$symbol$branch(:$remote_branch)]($style) "
+symbol = "🌿 "
+style = "bold pink"
+truncation_length = 20
+truncation_symbol = "…"
+
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = "⚔️ "
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "📦"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
 
 [git_metrics]
 disabled = false
+added_style = "bold green"
+deleted_style = "bold red"
+only_nonzero_diffs = true
 
-[time]
+[aws]
 disabled = true
+format = 'in [$symbol($profile )(\($region\) )]($style)'
+symbol = "☁️ "
+style = "bold orange"
+
+[python]
+disabled = false
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = "🐍 "
+style = "bold yellow"
+version_format = "${major}.${minor}"
+pyenv_version_name = false
+
+[ruby]
+disabled = false
+format = '[$symbol($version )]($style)'
+symbol = "💎 "
+style = "bold red"
+version_format = "${major}.${minor}"
 
 [direnv]
-disabled = false
-format = '[$symbol$loaded$allowed]($style) '
-symbol = "🛠️"
+disabled = true
+format = '[$symbol$loaded/$allowed]($style) '
+symbol = "🛠️ "
+style = "bold cyan"
 allowed_msg = "✅"
 not_allowed_msg = "🚫"
 denied_msg = "⛔"
 loaded_msg = "📥"
 unloaded_msg = "📤"
 
-[status]
-disabled = true
-
 [shlvl]
 disabled = false
+format = "[$symbol$shlvl]($style) "
+symbol = "↕️ "
+style = "bold yellow"
+threshold = 2
+
+# Disable slow/unused modules
+[package]
+disabled = true
+
+[time]
+disabled = true
+
+[status]
+disabled = true
 

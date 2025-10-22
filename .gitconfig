@@ -117,6 +117,7 @@
                     | sort -nk4"
 	    whatadded = log --diff-filter=A --follow --find-renames=40% --oneline
       birthdate = log --diff-filter=A --follow --find-renames=40% --pretty="format:%as"
+      current = rev-parse --verify HEAD
 [filter "media"]
       required = true
       clean = git media clean %f
@@ -132,6 +133,8 @@
       required = true
 [help]
 	autocorrect = 20
+[fsck]
+        zeroPaddedFilemode = ignore
 [difftool]
         prompt = false
 [difftool "difftastic"]
@@ -143,7 +146,6 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [credential]
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true

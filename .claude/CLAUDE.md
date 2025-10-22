@@ -1,0 +1,1 @@
+- Always use E-Prime for documentation

@@ -1,32 +1,32 @@
 [core]
-      editor = vim
-      whitespace = trailing-space,space-before-tab
+  editor = vim
+  whitespace = trailing-space,space-before-tab
 	excludesfile = /Users/tholt/.gitignore
-      ignorecase = true
-      autocrlf = input
-      attributesfile = /Users/twh/.gitattributes
+  ignorecase = true
+  autocrlf = input
+  attributesfile = /Users/twh/.gitattributes
 [transfer]
-      fsckobjects = true
+  fsckobjects = true
 [receive]
-      fsckobjects = true
+  fsckobjects = true
 [pull]
-      ff = only
+  ff = only
 [merge]
-      ff = only
-      conflictstyle = diff3
+  ff = only
+  conflictstyle = diff3
 #[diff]
-      #external = difft
-      # tool = difftastic
-      # colorMoved = zebra
+  #external = difft
+  # tool = difftastic
+  # colorMoved = zebra
 [pager]
-      difftool = true
+  difftool = true
 [color]
-      ui = auto
+  ui = auto
 [user]
 	name = Thomas W. Holt Jr.
 	email = twh@pobox.com
 [pack]
-      useSparse = true
+  useSparse = true
 [http]
       postBuffer = 157286400
 [fetch]

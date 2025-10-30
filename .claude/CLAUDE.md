@@ -1,1 +1,2 @@
-- Always use E-Prime for documentation
+- use E-Prime for documentation
+- use rspec v2 syntax for puppet specs

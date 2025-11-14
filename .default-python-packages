@@ -2,7 +2,6 @@ GitPython
 aider
 ansible
 ansible-lint
-asyncio
 bashate
 behave
 black
@@ -36,7 +35,7 @@ logzero
 marimo
 mbake
 mccabe
-minio==5.0.10
+minio
 more_itertools
 neovim
 niet
@@ -45,7 +44,6 @@ notedown
 numpy
 oktest
 pandas
-pathlib
 perflint
 pex
 piera
@@ -57,7 +55,6 @@ pre-commit
 proselint
 pter
 ptpython
-pygithub
 pygithub
 pygments
 pynvim
@@ -84,7 +81,6 @@ sqlfluff
 tox
 tqdm
 treescope
-typing
 wat-inspector
 watchdog
 whale-linter

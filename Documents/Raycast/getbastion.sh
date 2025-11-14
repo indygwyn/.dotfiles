@@ -15,8 +15,11 @@
 # @raycast.description Get a Bastion
 # @raycast.author Thomas W. Holt Jr.
 
-if [[ -z "$1" ]]; then
-  echo ops0-bastion2-1-XXX | pbcopy;
+set -euo pipefail
+
+# Generate bastion hostname and copy to clipboard
+if [[ -z "${1:-}" ]]; then
+  echo "ops0-bastion2-1-XXX" | pbcopy
 else
-  echo ops0-bastion2-1-XXX | sed "s/XXX/$1/" | pbcopy;
+  echo "ops0-bastion2-1-XXX" | sed "s/XXX/$1/" | pbcopy
 fi

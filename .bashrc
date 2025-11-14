@@ -25,13 +25,12 @@ export LS_COLORS
 export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
 export EDITOR=vim                # vim is the only editor
 export VISUAL=vim                # vim is the only editor
-export HISTCONTROL=ignoreboth:erasedups  # skip space cmds and dupes in history
+export HISTCONTROL=ignorespace:erasedups  # skip space cmds and dupes in history
 export HISTIGNORE="rm*:cd*:CD*:ps*:exit*:reset*:clear*:synaptic*:mkdir*:cat*:fg:bg:history:w:date:pwd"
 export HISTFILE="$HOME/.bash_history"
 export HISTFILESIZE=1000000
 export HISTSIZE=${HISTFILESIZE}
 export HISTTIMEFORMAT="%F %T: "
-export HISTCONTROL=ignorespace:erasedups
 export DBHISTORY=true
 export DBHISTORYFILE="$HOME/.dbhist"
 export starship_precmd_user_func=_bash_history_sync
@@ -168,26 +167,41 @@ EOF
 
 function ip2origin {
     if [[ -z "$1" ]]; then
-        echo "Usage: $0 IP"
+        echo "Usage: $0 IP" >&2
+        return 1
     else
         ipary=("${1//./ }")
+        if ! command -v dig &> /dev/null; then
+            echo "Error: dig command not found" >&2
+            return 1
+        fi
         dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".origin.asn.cymru.com TXT
     fi
 }
 
 function ip2peer {
     if [[ -z "$1" ]]; then
-        echo "Usage: $0 IP"
+        echo "Usage: $0 IP" >&2
+        return 1
     else
         ipary=("${1//./ }")
+        if ! command -v dig &> /dev/null; then
+            echo "Error: dig command not found" >&2
+            return 1
+        fi
         dig +short "${ipary[3]}"."${ipary[2]}"."${ipary[1]}"."${ipary[0]}".peer.asn.cymru.com TXT
     fi
 }
 
 function asninfo {
     if [[ -z "$1" ]]; then
-        echo "Usage: $0 AS#####"
+        echo "Usage: $0 AS#####" >&2
+        return 1
     else
+        if ! command -v dig &> /dev/null; then
+            echo "Error: dig command not found" >&2
+            return 1
+        fi
         dig +short "$1.asn.cymru.com" TXT
     fi
 }
@@ -213,16 +227,35 @@ function httpget {
 }
 
 function httpcompression {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 <URL>" >&2
+        return 1
+    fi
+    if ! command -v curl &> /dev/null; then
+        echo "Error: curl command not found" >&2
+        return 1
+    fi
     local encoding
-    encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" |
+    encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" 2>/dev/null |
         grep '^Content-Encoding:')" &&
         echo "$1 is encoded using ${encoding#* }" ||
         echo "$1 is not using any encoding"
 }
 
 function dataurl {
+    if [[ -z "$1" ]]; then
+        echo "Usage: $0 <file>" >&2
+        return 1
+    fi
+    if [[ ! -f "$1" ]]; then
+        echo "Error: File not found: $1" >&2
+        return 1
+    fi
     local mimeType
-    mimeType="$(file -b --mime-type "$1")"
+    mimeType="$(file -b --mime-type "$1")" || {
+        echo "Error: Could not determine MIME type" >&2
+        return 1
+    }
     if [[ $mimeType == text/* ]]; then
         mimeType="${mimeType};charset=utf-8"
     fi
@@ -282,24 +315,32 @@ function highlight {
 }
 
 function tcpknock {
-    if [[ -z $1 || -z $2 ]]; then
-        echo "Usage: $0 <host> <port>"
-        return
+    if [[ -z ${1:-} || -z ${2:-} ]]; then
+        echo "Usage: $0 <host> <port>" >&2
+        return 1
     fi
     local host=$1
     local port=$2
+    if ! command -v timeout &> /dev/null; then
+        echo "Error: timeout command not found" >&2
+        return 1
+    fi
     timeout 1 bash -c "</dev/tcp/$host/$port &> /dev/null" &&
         echo "$host: port $port is open" ||
         echo "$host: port $port is closed"
 }
 
 function tlsdates {
-    if [[ -z $1 || -z $2 ]]; then
-        echo "Usage: $0 <host> <port>"
-        return
+    if [[ -z ${1:-} || -z ${2:-} ]]; then
+        echo "Usage: $0 <host> <port>" >&2
+        return 1
     fi
     local host=$1
     local port=$2
+    if ! command -v openssl &> /dev/null; then
+        echo "Error: openssl command not found" >&2
+        return 1
+    fi
     echo | openssl s_client -servername "${host}" -connect "${host}:${port}" 2>/dev/null | openssl x509 -noout -dates
 }
 
@@ -388,10 +429,7 @@ function scold_git_checkout() {
         if [ "$1" != "git" ]; then
                 return 0
         fi
-        if [ "$2" != "checkout" ]; then
-                return 0
-        fi
-        if [ "$2" != "co" ]; then
+        if [ "$2" != "checkout" ] && [ "$2" != "co" ]; then
                 return 0
         fi
         cat >&2 <<EOF
@@ -453,7 +491,6 @@ darwin*)
     alias ldd='otool -L'
     alias md5sum='md5'
     alias sha1sum='shasum'
-    alias cpwd='pwd|tr -d "\n"|pbcopy'
     #alias docker='podman'
     function flushdns {
         sudo dscacheutil -flushcache
@@ -474,6 +511,7 @@ darwin*)
         mise upgrade
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
         # softwareupdate -i -a
+        npm upgrade -g @anthropic-ai/claude-code
     }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g

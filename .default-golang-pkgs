@@ -31,8 +31,6 @@ github.com/maxmunzel/kvass@latest
 github.com/mikefarah/yq/v4@latest
 github.com/mrtazz/checkmake/cmd/checkmake@latest
 github.com/multiprocessio/dsq@latest
-github.com/multiprocessio/dsq@latest
-github.com/natesales/q@latest
 github.com/natesales/q@latest
 github.com/nikitavoloboev/gitupdate
 github.com/noperator/jqfmt/cmd/jqfmt@latest
@@ -48,4 +46,5 @@ go.mozilla.org/sops/v3/cmd/sops
 golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
 oss.terrastruct.com/d2@latest
+github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker@latest
 

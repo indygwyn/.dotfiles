@@ -1,5 +1,6 @@
-asciidoctor
 amazing_print
+anthropic
+asciidoctor
 awesome_print
 bashly
 bcrypt_pbkdf
@@ -7,6 +8,7 @@ binding_of_caller
 brewfile
 bundler-audit
 caliber
+claude_hooks
 cliapp
 clipboard
 coderay
@@ -52,7 +54,6 @@ oktest
 onceover
 onceover-codequality
 opal
-open-uri
 org-ruby
 pandoc-ruby
 pghero
@@ -123,7 +124,6 @@ tomlrb
 tone
 un
 undercover
-webrick
 wikicloth
 xdg
 yamljson

@@ -21,9 +21,13 @@ compare_url=$(pbpaste | awk '
   /:git:/ {
     # Extract git URL and convert to https
     url = $2
-    gsub(/^git@/, "https://", url)
-    gsub(/:/, "/", url)
     gsub(/\.git$/, "", url)
+    gsub(/^git@/, "https://", url)
+    # Replace colons after protocol with forward slashes
+    protocol = substr(url, 1, 8)
+    rest = substr(url, 9)
+    gsub(/:/, "/", rest)
+    url = protocol rest
   }
   /:ref:/ {
     # Collect refs
@@ -40,4 +44,5 @@ compare_url=$(pbpaste | awk '
   }
 ') || exit 1
 
+#echo "$compare_url"
 open "$compare_url"

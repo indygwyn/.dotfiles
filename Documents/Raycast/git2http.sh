@@ -27,7 +27,7 @@ if ! [[ "$giturl" =~ ^git@[a-zA-Z0-9.-]+:[a-zA-Z0-9._/-]+\.git$ ]]; then
 fi
 
 # Convert: git@github.com:user/repo.git -> https://github.com/user/repo.git
-httpsurl=$(echo "$giturl" | sed -e 's/^git@/https:\/\//' -e 's/:/\//')
+httpsurl=$(echo "$giturl" | awk -F'[:@]' '{path=$3; gsub(/\.git$/, "", path); print "https://" $2 "/" path}')
 
 # Copy to clipboard and open
 open "$(echo "$httpsurl" | tee >(pbcopy))"

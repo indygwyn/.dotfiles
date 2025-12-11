@@ -1,2 +1,6 @@
+formatter:
+  type: basic
+  include_document_start: true
+  eof_newline: true
 rules:
   line-length: disable

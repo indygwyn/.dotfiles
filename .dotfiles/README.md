@@ -1,14 +1,4 @@
-# Mermaid test
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-
-# Keep dotfiles where they belong and avoid symlinks entirely
+## Keep dotfiles where they belong and avoid symlinks entirely
 
 This arrangement of dotfiles is taken from
 [here](https://news.ycombinator.com/item?id=11070797) and
@@ -65,25 +55,11 @@ dotfiles checkout
 Use `brew bundle --global` to install everything in your
 ~/.[Brewfile](https://github.com/Homebrew/homebrew-bundle)
 
-### ASDF
+### mise-en-place
 
 Much of what used to be installed and managed by HomeBrew is now managed by
-[ASDF](https://asdf-vm.com), which is a version manager similar to rbenv or
+[mise-enplace](https://mise.jdx.dev), which is a version manager similar to rbenv or
 pyenv but with plugins to manage just about anything
-
-- asdf plugin list
-  - direnv
-  - fzf
-  - golang
-  - java
-  - nodejs
-  - python
-  - ruby
-  - rust
-  - shellcheck
-  - shfmt
-  - starship
-  - terraform
 
 The .default-* files control the Ruby Gems, Python Modules, Rust Crates,
 NodeJS Packages, and Go Packages that are maintained/installed when you install
@@ -115,3 +91,16 @@ iTerm2. Hyper supports my font ligatures. My preferred colorthem is
 
 Many of my configs will load up a .blah-local file if it exists for settings
 and such that are only required on that particular machine/environment.
+
+## SCRATCH
+
+### Mermaid test
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+

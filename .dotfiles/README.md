@@ -5,7 +5,7 @@ This arrangement of dotfiles is taken from
 [here](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
 and [here](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b).
 
-The idea is to keep all the dotfiles at their original locations, and avoid
+This approach keeps all the dotfiles at their original locations, and avoids
 symlinks entirely (as opposed to the general approach of putting all config
 files in one directory and symlinking them with a script or GNU stow).
 Basically, we create a bare git repo and set the work-tree to be our
@@ -58,19 +58,19 @@ Use `brew bundle --global` to install everything in your
 ### mise-en-place
 
 Much of what used to be installed and managed by HomeBrew is now managed by
-[mise-enplace](https://mise.jdx.dev), which is a version manager similar to rbenv or
+[mise-en-place](https://mise.jdx.dev), a version manager similar to rbenv or
 pyenv but with plugins to manage just about anything
 
 The .default-* files control the Ruby Gems, Python Modules, Rust Crates,
 NodeJS Packages, and Go Packages that are maintained/installed when you install
-ad new version of those tools
+a new version of those tools
 
 ### VIM setup
 
-My VIM setup is not terribly complicated but depends on a lot of the linters
-and LSP providers that are maintained via asdf or homebrew
+My VIM setup remains fairly simple but depends on many linters
+and LSP providers maintained via mise or homebrew
 
-I install MacVIM as most of my machines are macs, but it the setup should work
+I install MacVIM as most of my machines run macOS, but the setup should work
 with plain jane vim as well (some day NeoVIM or OniVIM2)
 
 The main plugins I depend on are ALE(linting) and deoplete(completion) and they
@@ -83,7 +83,7 @@ in my setup.
 ### Terminal
 
 I use [Hyper](https://hyper.is), I like it. You could easily adapt this to
-iTerm2. Hyper supports my font ligatures. My preferred colorthem is
+iTerm2. Hyper supports my font ligatures. My preferred color theme remains
 [Dracula](https://draculatheme.com) or
 [Daycula](https://github.com/ghifarit53/daycula-vim)
 

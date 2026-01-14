@@ -35,4 +35,5 @@ SPLUNK_BASE="https://splunk-web-noncore.log-analytics.monitoring.aws-esvc1-useas
 # Build Splunk URL - searches for puppet run logs in last 60 minutes
 splunkurl="${SPLUNK_BASE}?earliest=-60m@m&latest=now&q=search%20index%3Ddistapps%20sourcetype%3Dpuppet%20host%3D${1}&display.page.search.mode=smart&dispatch.sample_ratio=1&display.prefs.events.offset=60"
 
-open "$(urldecode "$splunkurl")"
+#open "$(urldecode "$splunkurl")"
+echo "$(urldecode "$splunkurl")"

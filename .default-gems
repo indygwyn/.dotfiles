@@ -6,6 +6,9 @@ bashly
 bcrypt_pbkdf
 binding_of_caller
 brewfile
+bubbles
+bubbletea
+bubblezone
 bundler-audit
 caliber
 claude_hooks
@@ -25,8 +28,10 @@ gemoji
 git
 git-improved
 git-lint
+glamour
 gollum
 grepfruit
+gum
 hanami
 hashie
 hirb
@@ -38,6 +43,7 @@ jekyll
 kramdown
 kramdown-man
 lefthook
+lipgloss
 looksee
 mail
 maybe
@@ -49,6 +55,7 @@ minitest
 na
 niceql
 nokogiri
+ntcharts
 octokit
 oktest
 onceover

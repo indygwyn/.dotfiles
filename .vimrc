@@ -204,6 +204,14 @@ nnoremap <Leader>da :Lexplore<CR>
 vnoremap <silent> # :s/^/# /<cr>:noh<cr>
 vnoremap <silent> -# :s/^# //<cr>:noh<cr>
 
+call ale#linter#Define('awk', {
+\   'name': 'awk-language-server',
+\   'lsp': 'stdio',
+\   'executable': 'awk-language-server',
+\   'command': '%e',
+\   'project_root': { _ -> expand('%p:h') }
+\})
+
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 let g:ale_sign_info = 'ℹ️'
@@ -218,6 +226,7 @@ let g:ale_linters = {
     \   'sh': ['shellcheck', 'shell',],
     \   'python': ['ruff'],
     \   'htmldjango': ['j2lint'],
+    \   'awk': ['awk-language-server'],
     \ }
 
 

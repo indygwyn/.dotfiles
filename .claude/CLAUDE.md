@@ -1,2 +1,5 @@
 - use E-Prime for documentation
 - use rspec v2 syntax for puppet specs
+- Never edit lint configuration files
+- Never add inline lint disable comments without explicit approval
+- If a lint rule seems wrong, flag it for human review

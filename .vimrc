@@ -224,7 +224,7 @@ let g:ale_linters = {
     \   'markdown': ['mdl', 'writegood'],
     \   'ruby': ['rubocop'],
     \   'sh': ['shellcheck', 'shell',],
-    \   'python': ['ruff'],
+    \   'python': ['ruff', 'pylint'],
     \   'htmldjango': ['j2lint'],
     \   'awk': ['awk-language-server'],
     \ }
@@ -241,6 +241,12 @@ let g:claude_map_implement = '<Leader>ci'
 let g:claude_map_open_chat = '<Leader>cc'
 let g:claude_map_send_chat_message = '<C-]>'
 let g:claude_map_cancel_response = '<Leader>cx'
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'Zuban',
+    \ 'cmd': ['zuban', 'server'],
+    \ 'allowlist': ['python'],
+    \ })
 
 " vim-lsp-settings handles LSP server configuration automatically
 " Remove this manual configuration if mattn/vim-lsp-settings works well

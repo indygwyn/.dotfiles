@@ -47,4 +47,4 @@ golang.org/x/tools/gopls
 mvdan.cc/sh/v3/cmd/shfmt@latest
 oss.terrastruct.com/d2@latest
 github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker@latest
-
+github.com/maaslalani/sheets@main

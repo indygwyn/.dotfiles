@@ -404,13 +404,6 @@ function _gs {
         cut -d: -f1
 }
 
-function correcthorse {
-  for word in $(ggrep -E '^[a-z]{4,7}$' /usr/share/dict/words | shuf -n 5) ; do
-    echo -n "${word^}-"
-  done
-  date "+%m" | sed -e 's/^0//'
-}
-
 function git2http {
     if [[ -n "$1" ]]; then
         echo "$1" | sed -e 's/\:/\//' -e 's/git@/https:\/\//'
@@ -423,6 +416,15 @@ function git2http {
     fi
     echo
     return
+}
+
+function gitremotehead {
+    if [[ -z ${1:-} ]]; then
+        echo "Usage: $0 <giturl>" >&2
+        return 1
+    fi
+    local giturl=$1
+    git ls-remote --symref $giturl HEAD | awk '/^ref:/ {print $2}' | awk -F/ '{print $3}'
 }
 
 function scold_git_checkout() {
@@ -511,7 +513,7 @@ darwin*)
         mise upgrade
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
         # softwareupdate -i -a
-        npm upgrade -g @anthropic-ai/claude-code
+        # npm upgrade -g @anthropic-ai/claude-code
     }
     function f { open -a "Finder" "${1-.}"; }
     complete -o default -o nospace -F _git g
@@ -602,3 +604,22 @@ eval "$(direnv hook bash)"
 eval "$(mise activate bash)"
 # Created by `pipx` on 2024-10-09 13:25:43
 export PATH="$PATH:/Users/tholt/.local/bin"
+
+
+# devbar-managed-start
+export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
+# devbar-managed-end
+
+# >>> aisuite >>>
+export NODE_EXTRA_CA_CERTS="/Users/tholt/.aisuite/conf/npm-sfdc-certs.pem"
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH" ;;
+esac
+export PATH="/Users/tholt/.aisuite/bin:/Users/tholt/.aisuite/bin/aliases:$PATH"
+# <<< aisuite <<<
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/tholt/.lmstudio/bin"
+# End of LM Studio CLI section
+

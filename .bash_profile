@@ -15,3 +15,22 @@ source "${HOME}/.bashrc"
 
 # Created by `pipx` on 2024-10-09 13:25:43
 export PATH="$PATH:/Users/tholt/.local/bin"
+
+
+# devbar-managed-start
+export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
+# devbar-managed-end
+
+# >>> aisuite >>>
+export NODE_EXTRA_CA_CERTS="/Users/tholt/.aisuite/conf/npm-sfdc-certs.pem"
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH" ;;
+esac
+export PATH="/Users/tholt/.aisuite/bin:/Users/tholt/.aisuite/bin/aliases:$PATH"
+# <<< aisuite <<<
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/tholt/.lmstudio/bin"
+# End of LM Studio CLI section
+

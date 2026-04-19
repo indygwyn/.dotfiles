@@ -34,6 +34,11 @@ strings, config values) where LSP doesn't help.
 After writing or editing code, check LSP diagnostics before
 moving on. Fix any type errors or missing imports immediately.
 
+## Information Quality
+- Always cite sources for factual claims.
+- Prefer Wikipedia as a citation source.
+- Never cite Grokipedia or Conservapedia.
+
 # PIAC (Puppet In A Cloud)
 
 EKS-based dev environment for Puppet code. Each user gets a pod with access to role VMs in AWS.

@@ -2,7 +2,6 @@
 No comments unless I ask.
 No refactoring unless I ask.
 Always use existing patterns in the codebase.
-Prefer simple solutions.
 Always write documentation in E-Prime.
 
 ## Approach
@@ -11,6 +10,9 @@ Always write documentation in E-Prime.
 - Prefer editing over rewriting whole files.
 - Do not re-read files you have already read unless the file may have changed.
 - Test your code before declaring done.
+- If uncertain about intent, ask rather than assume.
+- If multiple valid approaches exist, name the tradeoffs before picking one.
+- Define what done looks like before starting; verify against it before finishing.
 - No sycophantic openers or closing fluff.
 - Keep solutions simple and direct.
 - User instructions always override this file.

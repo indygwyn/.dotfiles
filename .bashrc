@@ -4,29 +4,19 @@
 # exec 3>&2 2>/tmp/bashstart.$$.log
 # set -x
 
+[[ $- == *i* ]] || return
+
 shopt -s histappend # append to history instead of overwrite
 shopt -s cmdhist    # save multiline cmds in history
 shopt -s cdspell    # spellcheck cd
 shopt -s extglob    # bash extended globbing
 shopt -s checkhash  # rehash the PATH when command not found
-shopt -s extdebug   # turn on DEBUG trapping
 set -o noclobber    # no clobber of files on redirect >| override
 set -o vi           # use a vi-style command line editing interface
 
 # [[ $- == *i* ]] && source ${HOME}/.local/share/blesh/ble.sh --noattach
 
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
-export CLICOLOR=1 # colorize ls
-export LSCOLORS=Exfxcxdxbxegedabagacad
-#export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-LS_COLORS="$(vivid generate dracula)"
-export LS_COLORS
-export LESS='-X -R -M --shift 5' # LESS no clear on exit, show RAW ANSI, long prompt, move 5 on arrow
-export EDITOR=vim                # vim is the only editor
-export VISUAL=vim                # vim is the only editor
 export HISTCONTROL=ignorespace:erasedups  # skip space cmds and dupes in history
-export HISTIGNORE="rm*:cd*:CD*:ps*:exit*:reset*:clear*:synaptic*:mkdir*:cat*:fg:bg:history:w:date:pwd"
 export HISTFILE="$HOME/.bash_history"
 export HISTFILESIZE=1000000
 export HISTSIZE=${HISTFILESIZE}
@@ -34,7 +24,9 @@ export HISTTIMEFORMAT="%F %T: "
 export DBHISTORY=true
 export DBHISTORYFILE="$HOME/.dbhist"
 export starship_precmd_user_func=_bash_history_sync
-export CDPATH=.:"$HOME"
+CDPATH=.:"$HOME"
+GPG_TTY=$(tty)
+export GPG_TTY
 
 function history {
     _bash_history_sync
@@ -58,14 +50,13 @@ function d2h {
 
 function autoCompleteHostname {
     local hosts
-    local cur
-    # shellcheck disable=SC2034,SC2207
-    hosts=($(awk '{split($1,a,",");print a[1]}' "$HOME/.ssh/known_hosts"))
-    cur=${COMP_WORDS[COMP_CWORD]}
-    # shellcheck disable=SC2016,SC2207,SC2086
-    COMPREPLY=($(compgen -W '${hosts[@]}' -- $cur))
+    hosts=$({
+        awk '$1 !~ /^\|/ {split($1,a,","); gsub(/^\[|\]:.*$/,"",a[1]); print a[1]}' "$HOME/.ssh/known_hosts"
+        awk 'tolower($1)=="host" {for (i=2;i<=NF;i++) if ($i !~ /[*?!]/) print $i}' "$HOME/.ssh/config"
+    } 2>/dev/null | sort -u)
+    # shellcheck disable=SC2207
+    COMPREPLY=($(compgen -W "$hosts" -- "${COMP_WORDS[COMP_CWORD]}"))
 }
-complete -F autoCompleteHostname ssh # ssh autocomplete function
 
 function cd {
     case $1 in
@@ -79,16 +70,6 @@ function cd {
         builtin cd "$@" || return
         ;;
     esac
-}
-
-function seqx {
-    local lower upper output
-    lower=$1 upper=$2
-    while [ "$lower" -le "$upper" ]; do
-        output="$output $lower"
-        lower=$(("$lower" + 1))
-    done
-    echo "$output"
 }
 
 function ip2hex {
@@ -105,64 +86,6 @@ function spinner {
     while true; do
         echo -en "\b${sp:i++%${#sp}:1}"
     done
-}
-
-function ssh-copy-id {
-    if [[ -z "$1" ]]; then
-        echo "!! Enter a hostname in order to send public key !!"
-    else
-        echo "* Copying SSH public key to server..."
-        ssh "${1}" "mkdir -p .ssh && cat - >> .ssh/authorized_keys" <"\
-$HOME/.ssh/id_ed25519.pub"
-        echo "* All done!"
-    fi
-
-    ID_FILE="${HOME}/.ssh/id_ed25519.pub"
-
-    if [ "-i" = "$1" ]; then
-        shift
-        # check if we have 2 parameters left, if so the first is the new ID file
-        if [ -n "$2" ]; then
-            if expr "$1" : ".*\.pub" >/dev/null; then
-                ID_FILE="$1"
-            else
-                ID_FILE="$1.pub"
-            fi
-            shift # and this should leave $1 as the target name
-        fi
-    else
-        if [ "x$SSH_AUTH_SOCK" != x ] && ssh-add -L >/dev/null 2>&1; then
-            GET_ID="$GET_ID ssh-add -L"
-        fi
-    fi
-
-    if [ -z "$(eval "$GET_ID")" ] && [ -r "${ID_FILE}" ]; then
-        GET_ID="cat ${ID_FILE}"
-    fi
-
-    if [ -z "$(eval "$GET_ID")" ]; then
-        echo "ssh-copy-id: ERROR: No identities found" >&2
-        return 1
-    fi
-
-    if [ "$#" -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        echo "Usage: ssh-copy-id [-i [identity_file]] [user@]machine" >&2
-        return 1
-    fi
-
-    # strip any trailing colon
-    host=${1%:}
-
-    { eval "$GET_ID"; } | ssh "$host" "umask 077; test -d \${HOME}/.ssh || mkdir \${HOME}/.ssh ; cat >> \${HOME}/.ssh/authorized_keys" || return 1
-
-    cat <<EOF
-Now try logging into the machine, with "ssh '$host'", and check in:
-
-    ${HOME}/.ssh/authorized_keys
-
-to make sure we haven't added extra keys that you weren't expecting.
-
-EOF
 }
 
 function ip2origin {
@@ -213,19 +136,6 @@ function surootx {
     sudo -i
 }
 
-function httpget {
-    # shellcheck disable=SC2034
-    IFS=/ read -r proto z host query <<<"$1"
-    exec 3</dev/tcp/"$host"/80
-    {
-        echo GET /"$query" HTTP/1.1
-        echo connection: close
-        echo host: "$host"
-        echo
-    } >&3
-    sed '1,/^$/d' <&3 >"$(basename "$1")"
-}
-
 function httpcompression {
     if [[ -z "$1" ]]; then
         echo "Usage: $0 <URL>" >&2
@@ -264,11 +174,6 @@ function dataurl {
 
 function base64url {
     base64 -w 0 | tr '+/' '-_' | tr -d '='
-}
-
-function 64font {
-    openssl base64 -in "$1" | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "src:url(\"data:font/"ext";base64,"str1"\")  format(\"woff\");" }' | pbcopy
-    echo "$1 encoded as font and copied to clipboard"
 }
 
 function gz {
@@ -311,7 +216,7 @@ function highlight {
 
     fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
     c_rs=$'\e[0m'
-    gsed -u s"/$2/$fg_c\0$c_rs/g"
+    sed -u s"/$2/$fg_c&$c_rs/g"
 }
 
 function tcpknock {
@@ -424,7 +329,7 @@ function gitremotehead {
         return 1
     fi
     local giturl=$1
-    git ls-remote --symref $giturl HEAD | awk '/^ref:/ {print $2}' | awk -F/ '{print $3}'
+    git ls-remote --symref "$giturl" HEAD | awk '/^ref:/ {print $2}' | awk -F/ '{print $3}'
 }
 
 function scold_git_checkout() {
@@ -461,7 +366,10 @@ EOF
         fi
         return 1
 }
-trap 'scold_git_checkout $BASH_COMMAND' DEBUG
+
+function git {
+    scold_git_checkout git "$@" && command git "$@"
+}
 
 if [[ $- =~ i ]]; then
     bind '"\er": redraw-current-line'
@@ -476,10 +384,8 @@ fi
 # Platform Specific Aliases here
 case $OSTYPE in
 darwin*)
-    alias ls="gls --color"
+    command -v gls >/dev/null && alias ls="gls --color=auto"
     alias eject='hdiutil eject'
-    alias apinfo='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
-    alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s'
     alias cpwd='pwd|xargs echo -n|pbcopy'
     alias locate='mdfind -name'
     alias preview='open -a Preview'
@@ -516,7 +422,6 @@ darwin*)
         # npm upgrade -g @anthropic-ai/claude-code
     }
     function f { open -a "Finder" "${1-.}"; }
-    complete -o default -o nospace -F _git g
     function pdfman() {
         mandoc -T pdf "$(/usr/bin/man -w "$@")" | open -fa Preview
     }
@@ -558,10 +463,16 @@ EOF
     function puts() {
       ruby -rdate -e "puts $*"
     }
+    function 64font {
+        openssl base64 -in "$1" | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "src:url(\"data:font/"ext";base64,"str1"\")  format(\"woff\");" }' | pbcopy
+        echo "$1 encoded as font and copied to clipboard"
+    }
+    ;;
+linux*)
+    alias ls="ls --color=auto"
+    alias yesterday='date -d yesterday +"%A %B %d, %Y"'
     ;;
 esac
-
-complete -C vault vault
 
 alias idle='while true ; do uname -a ; uptime ; sleep 30 ; done'
 alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'
@@ -572,54 +483,39 @@ alias yesterday='date -v-1d +"%A %B %d, %Y"'
 alias epoch='date +%s'
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 alias badge="tput bel"
-alias op-signin='eval $(op signin my.1password.com)'
 alias op-logout='op signout && unset OP_SESSION_example'
 alias serveit='ruby -run -e httpd . -p 8000'
 alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
 alias dtig='GIT_DIR="${HOME}/.dotfiles" GIT_WORK_TREE="${HOME}" tig'
-export EXA_COLORS="da=1;34:di=32:gm=33:gd=31"
-export EXA_STRICT=true
-alias x='exa --all --long --header --group --group-directories-first --time-style long-iso --git --git-ignore'
-alias x1='exa --oneline --all --group-directories-first'
-alias xt='exa --tree'
+alias x='eza --all --long --header --group --group-directories-first --time-style long-iso --git --git-ignore'
+alias x1='eza --oneline --all --group-directories-first'
+alias xt='eza --tree'
 alias vim-update='vim +PlugUpgrade +PlugUpdate +PlugClean +qall!'
 alias yaml2json="ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))'"
 alias weather='curl wttr.in/indianapolis'
-eval "$(starship init bash)"
-eval "$(direnv hook bash)"
+
+# shellcheck source=/dev/null
+[[ -r ${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh ]] && source "${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh"
+complete -F autoCompleteHostname ssh
+command -v vault >/dev/null && complete -C vault vault
+
+if command -v mise >/dev/null; then
+    eval "$(mise activate bash)"
+    # shellcheck source=/dev/null
+    [[ -f ${HOMEBREW_PREFIX:-}/opt/mise/etc/bash_completion.d/mise ]] && source "${HOMEBREW_PREFIX}/opt/mise/etc/bash_completion.d/mise"
+fi
+command -v atuin >/dev/null && eval "$(atuin init bash --disable-up-arrow)"
+command -v starship >/dev/null && eval "$(starship init bash)"
+command -v direnv >/dev/null && eval "$(direnv hook bash)"
 # eval "$(navi widget bash)"
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# shellcheck source=/dev/null
-[[ -f ~/.bashrc-local ]] && source ~/.bashrc-local
-# shellcheck source=/dev/null
-[[ -f ~/.bash.d/cht.sh ]] && source ~/.bash.d/cht.sh
 [[ -f ~/.local/share/bash-surround/inputrc-surround ]] && bind -f ~/.local/share/bash-surround/inputrc-surround
+
 # shellcheck source=/dev/null
-[[ -f ~/.config/op/plugins.sh ]] && source ~/.config/op/plugins.sh
-# shellcheck source=/dev/null
-[[ -f ~/.rtfm.launch  ]] && source ~/.rtfm.launch
+for f in ~/.config/op/plugins.sh ~/.rtfm.launch ~/.shelloracle.bash ~/.bash.d/*.sh ~/.bashrc-local; do
+    [[ -f $f ]] && source "$f"
+done
+unset f
 
-[ -f /Users/tholt/.shelloracle.bash ] && source /Users/tholt/.shelloracle.bash
-
-eval "$(mise activate bash)"
-# Created by `pipx` on 2024-10-09 13:25:43
-export PATH="$PATH:/Users/tholt/.local/bin"
-
-
-# devbar-managed-start
-export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
-# devbar-managed-end
-
-# >>> aisuite >>>
-export NODE_EXTRA_CA_CERTS="/Users/tholt/.aisuite/conf/npm-sfdc-certs.pem"
-case ":$PATH:" in
-  *":$HOME/.local/bin:"*) ;;
-  *) [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH" ;;
-esac
-export PATH="/Users/tholt/.aisuite/bin:/Users/tholt/.aisuite/bin/aliases:$PATH"
-# <<< aisuite <<<
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/tholt/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# set +x
+# exec 2>&3 3>&-

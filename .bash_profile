@@ -45,7 +45,7 @@ command -v vivid >/dev/null && LS_COLORS="$(vivid generate dracula)" && export L
 [[ -f ~/.bashrc ]] && source ~/.bashrc
 
 # GitHub API token for mise + Homebrew rate limits (value lives in keychain, never in this file)
-if [ -z "" ]; then
+if [ -z "${GITHUB_TOKEN:-}" ]; then
   export GITHUB_TOKEN="$(security find-generic-password -a twh -s MISE_GITHUB_TOKEN -w 2>/dev/null)"
 fi
-[ -n "" ] && export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
+[ -n "${GITHUB_TOKEN:-}" ] && export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"

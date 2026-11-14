@@ -6,6 +6,7 @@ go = "latest"
 starship = "latest"
 direnv = "latest"
 atuin = "latest"
+"github:atuinsh/atuin" = { version = "latest", os = ["linux"], asset_pattern = "atuin-server-x86_64-unknown-linux-gnu.tar.gz" }
 fzf = "latest"
 vivid = "latest"
 eza = "latest"

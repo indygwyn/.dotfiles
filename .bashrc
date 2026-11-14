@@ -385,6 +385,7 @@ fi
 case $OSTYPE in
 darwin*)
     command -v gls >/dev/null && alias ls="gls --color=auto"
+    alias yesterday='date -v-1d +"%A %B %d, %Y"'
     alias eject='hdiutil eject'
     alias cpwd='pwd|xargs echo -n|pbcopy'
     alias locate='mdfind -name'
@@ -469,6 +470,8 @@ EOF
     }
     ;;
 linux*)
+    # shellcheck source=/dev/null
+    [[ -f /etc/bashrc ]] && source /etc/bashrc
     alias ls="ls --color=auto"
     alias yesterday='date -d yesterday +"%A %B %d, %Y"'
     ;;
@@ -479,7 +482,6 @@ alias ipsort='sort  -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4'
 alias j='jobs -l'
 alias sl=ls
 alias today='date +"%A, %B %d, %Y"'
-alias yesterday='date -v-1d +"%A %B %d, %Y"'
 alias epoch='date +%s'
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 alias badge="tput bel"

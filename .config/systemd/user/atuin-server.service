@@ -1,0 +1,12 @@
+[Unit]
+Description=Atuin sync server
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/mise exec -- atuin-server start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -508,7 +508,6 @@ alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 alias badge="tput bel"
 alias op-logout='op signout && unset OP_SESSION_example'
 alias serveit='ruby -run -e httpd . -p 8000'
-alias dotfiles='git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}"'
 alias dtig='GIT_DIR="${HOME}/.dotfiles" GIT_WORK_TREE="${HOME}" tig'
 alias x='eza --all --long --header --group --group-directories-first --time-style long-iso --git --git-ignore'
 alias x1='eza --oneline --all --group-directories-first'
@@ -519,6 +518,16 @@ alias weather='curl wttr.in/indianapolis'
 
 # shellcheck source=/dev/null
 [[ -r ${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh ]] && source "${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh"
+declare -F __git_complete >/dev/null || declare -F _comp_load >/dev/null && _comp_load git 2>/dev/null
+declare -F __git_complete >/dev/null || {
+  # shellcheck source=/dev/null
+  [[ -r /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ]] && source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+}
+if declare -F __git_complete >/dev/null; then
+  __git_complete dotfiles __git_main
+  _dotfiles_complete() { GIT_DIR="${HOME}/.dotfiles" GIT_WORK_TREE="${HOME}" __git_wrap__git_main "$@"; }
+  complete -o bashdefault -o default -o nospace -F _dotfiles_complete dotfiles
+fi
 complete -F autoCompleteHostname ssh
 command -v vault >/dev/null && complete -C vault vault
 

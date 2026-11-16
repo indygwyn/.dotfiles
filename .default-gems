@@ -37,6 +37,7 @@ hashie
 hirb
 http
 httpclient
+inkmark
 irb-theme-dracula
 iruby
 jekyll
@@ -111,6 +112,7 @@ rubocop-md
 rubocop-performance
 rubocop-rspec
 ruby-lsp
+rubyzen-lint
 rufo
 sequel
 simplecov

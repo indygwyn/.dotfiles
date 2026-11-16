@@ -332,6 +332,28 @@ function gitremotehead {
     git ls-remote --symref "$giturl" HEAD | awk '/^ref:/ {print $2}' | awk -F/ '{print $3}'
 }
 
+goremote() {
+  local remote url
+  remote="${1:-origin}"
+
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "goremote: not inside a git repository" >&2
+    return 1
+  fi
+
+  url=$(git remote get-url "$remote" 2>/dev/null)
+  if [ -z "$url" ]; then
+    echo "goremote: no remote named '$remote'" >&2
+    return 1
+  fi
+
+  url=$(printf '%s\n' "$url" \
+    | sed -E 's#^git@([^:]+):#https://\1/#; s#^ssh://git@([^/]+)/#https://\1/#; s#^git://([^/]+)/#https://\1/#; s#\.git$##')
+
+  echo "Opening $url"
+  open "$url"
+}
+
 function scold_git_checkout() {
         if [ "$1" != "git" ]; then
                 return 0
@@ -418,9 +440,8 @@ darwin*)
     function daily-up {
         brew update && brew upgrade && brew cleanup
         mise upgrade
+        sf update
         vim +PlugUpgrade +PlugUpdate +PlugClean +qall
-        # softwareupdate -i -a
-        # npm upgrade -g @anthropic-ai/claude-code
     }
     function f { open -a "Finder" "${1-.}"; }
     function pdfman() {

@@ -1,6 +1,9 @@
 [settings]
 experimental = true # enable experimental features
 
+[settings.github]
+credential_command = "gh auth token --hostname github.com"
+
 [tools]
 go = "latest"
 starship = "latest"

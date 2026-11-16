@@ -49,4 +49,6 @@ Nothing committed or pushed. The handoff edit sits uncommitted in the dotfiles w
 
 ## Done
 
-(none yet)
+- 2026-11-16: `dotfiles` moved from alias to `~/.local/bin/dotfiles` on home and work. `info/exclude` holds `*` on both. `gh auth token` works on both, and Thomas confirmed mise works at work.
+- 2026-11-16: `bash-completion@2` replaced v1 on work. Home removed the v1 line from `.Brewfile` so `brew bundle` cannot hit the conflict.
+- Still open: Thomas presses Tab on `dotfiles checkout ma` in a fresh shell at work; `info/exclude` line on twhlab01, twhnas01, and twh-win01.

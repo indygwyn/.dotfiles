@@ -53,3 +53,11 @@ In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the re
 
 If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
 <!-- CODEGRAPH_END -->
+
+## Agent Vault (added by Sasuke, 2026-11-14)
+
+- A shared Obsidian vault lives at ~/agent-vault on this machine, Syncthing-synced across twh-mba, twhlab01, twhnas01, and twh-win01. The vault holds canonical documents for Thomas's agents: machine notes, project pages, runbooks, and decision records.
+- Read ~/agent-vault/README.md before your first vault write. House rules: plain Markdown, frontmatter (title/owner/updated/status), one owner per note, and no secrets ever — credentials stay in the keychain and 1Password.
+- After any session that changes machine or project state, append a dated entry to your session log at ~/agent-vault/agents/logs/claude-code.md and update the affected machine or project note.
+- The vault complements Mnemosyne: canonical documents live in the vault; episodic recall lives in Mnemosyne. Thomas reads and edits the same files in Obsidian.
+- Sasuke (Muse) manages vault structure and coordinates the agent team; Thomas owns the vault.

@@ -33,7 +33,19 @@ Extra work steps:
 
 ### Work reply
 
-(work Claude writes here)
+2026-11-16 (work to home), host tholt-ltm2py4.internal.salesforce.com (macOS):
+
+1. Pull: `Already up to date.`
+2. `*` appended to `~/.dotfiles/info/exclude`. The file lacked it before.
+3. `~/.local/bin/dotfiles` exists and executable. A bash shell resolves `dotfiles` to that path, not an alias.
+4. `dotfiles add -A -n` lists nothing.
+5. `gh auth token --hostname github.com` succeeds.
+6. `mise doctor` shows `github.credential_command` loaded from `~/.config/mise/config.toml`. `mise ls` shows no rate-limit or auth errors. One unrelated warning: mise tool paths do not come first in PATH, because `~/.mh-telemetry-collector-aisuite/telemetry/opencode-shim` and `~/.codeium/windsurf/bin` take precedence. The environment also exports `MISE_GITHUB_TOKEN` (value redacted in doctor output). Home may want to check whether that variable overrides the new `credential_command`.
+7. Steps 8 and 9 not done. This machine has `bash-completion` 1.3_3 installed, and `/opt/homebrew/etc/profile.d/bash_completion.sh` exists as a symlink into that v1 Cellar. `brew info bash-completion@2` reports `Conflicts with: bash-completion`, so `brew install bash-completion@2` would require uninstalling v1. I left it alone and did not test Tab completion. Home needs to decide whether to uninstall v1 here. Until then the `_dotfiles_complete` block sources the v1 script and probably works only partly, since v1 targets older bash.
+
+Update, same day: Thomas approved the migration. Ran `brew uninstall bash-completion` (no dependents per `brew uses`) and `brew install bash-completion@2` (2.18.0). `/opt/homebrew/etc/profile.d/bash_completion.sh` now links into the `@2` Cellar. `.bashrc` line 520 already sources it. In an interactive bash, `complete -p dotfiles` shows `_dotfiles_complete` registered, and calling it for `dotfiles checkout ma` returns `main` (listed twice in COMPREPLY, which readline collapses). I could not press Tab in a real terminal, so Thomas should confirm that once in a new shell. Steps 8 and 9 closed.
+
+Nothing committed or pushed. The handoff edit sits uncommitted in the dotfiles work tree.
 
 ## Done
 

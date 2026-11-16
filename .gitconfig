@@ -138,3 +138,7 @@
         prompt = false
 [difftool "difftastic"]
         cmd = difft "$LOCAL" "$REMOTE"
+[credential "https://gitcore.soma.salesforce.com"]
+	provider = github
+[credential "https://c360-ai-suite.sfproxy.monitoring.dev1-uswest2.aws.sfdc.cl"]
+	provider = generic

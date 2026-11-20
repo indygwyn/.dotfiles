@@ -518,7 +518,13 @@ alias weather='curl wttr.in/indianapolis'
 
 # shellcheck source=/dev/null
 [[ -r ${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh ]] && source "${HOMEBREW_PREFIX:-}/etc/profile.d/bash_completion.sh"
-declare -F __git_complete >/dev/null || declare -F _comp_load >/dev/null && _comp_load git 2>/dev/null
+if ! declare -F __git_complete >/dev/null; then
+  if declare -F _comp_load >/dev/null; then
+    _comp_load git 2>/dev/null
+  elif declare -F __load_completion >/dev/null; then
+    __load_completion git 2>/dev/null
+  fi
+fi
 declare -F __git_complete >/dev/null || {
   # shellcheck source=/dev/null
   [[ -r /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ]] && source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
